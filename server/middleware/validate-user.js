@@ -33,7 +33,7 @@ export const validateUser = async (req, res, next) => {
     debug('Error al validar el usuario')
     debug(error)
     return res.status(401).json({
-      message: 'Imposible valida',
+      message: 'Imposible validar',
       error:   'Ha ocurrido un error'
     })
 

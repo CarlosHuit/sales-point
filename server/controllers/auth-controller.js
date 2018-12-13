@@ -1,4 +1,3 @@
-import express from 'express'
 import Debug from 'debug'
 import jwt from 'jsonwebtoken'
 import { secret, nameProject } from '../config'

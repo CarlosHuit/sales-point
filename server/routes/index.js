@@ -1,1 +1,5 @@
-export { default as auth} from './auth'
+export { default as auth      } from './auth'
+export { default as clients   } from './clients'
+export { default as providers } from './providers'
+export { default as prices    } from './prices'
+export { default as products  } from './products'
