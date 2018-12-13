@@ -1,0 +1,144 @@
+.container {
+  margin-top: 0;
+}
+/* dektop version */
+.d-c-signup {
+  display:          flex;
+  justify-content:  center;
+  align-items:      center;
+  overflow:         auto;
+}
+
+.d-c-card-signup {
+  width:      480px;
+  padding:    40px 25px;
+  margin:     0 20px;
+  min-width:  320px;
+  min-height: 420px;
+}
+
+@media (max-height: 660px) {
+
+  .d-c-signup {
+    overflow:     auto;
+    align-items:  unset;
+  }
+
+  .d-c-card-signup {
+    padding-top:    20px; 
+    padding-bottom: 20px; 
+    margin:         10px auto;
+    height:         540px;
+  }
+
+}
+
+
+/* mobile version */
+.m-c-banner-title {
+  height:             56px;
+  width:              100%;
+  background-color: #1a5e7e;
+  display:            flex;
+  justify-content:    center;
+  align-items:        center;
+}
+
+.m-c-banner-title .logo-title {
+  color:            white;
+  padding:          0 20px;
+  display:          flex;
+  justify-content:  center;
+  align-items:      center;
+  font-weight:      bold;
+  font-size:        26px;
+  font-family:      sans-serif;
+}
+
+.m-c-card-signup {
+  padding:          0;
+  border-radius:    3px;
+  padding:          0 5%;
+  position:         relative;
+  width:            96%;
+  height:           98%;
+  box-sizing:       border-box;
+  max-height:       580px;
+  max-width:        380px;
+}
+
+.icon-signup {
+  position: absolute;
+  left:     calc((100% / 2) - 80px);
+  top:      calc((100% / 2) - 80px);
+}
+
+.icon-signup img {
+  width:    160px;
+  height:   160px;
+  opacity:  .12;
+}
+
+.signup-title {
+  text-align:   center;
+  font-weight:  normal;
+  font-family:  sans-serif, 'Noto Sans', sans-serif;
+  font-size:    32px;
+}
+
+.m-c-signup-form {
+  display:        flex;
+  flex-direction: column;
+  width:          95%;
+  margin:         0px auto;
+  padding:        0;
+}
+
+.m-c-button-signup {
+  margin-top:   8px;
+  font-size:    20px;
+  font-weight:  bold;
+  background: #fa7e29;
+  background:   linear-gradient(180deg, #fa7e29 0%, #F6682F 80%, #F6682F 100%);
+  font-family: sans-serif;
+}
+
+.redirect-signup {
+  font-size:        18px;
+  font-family:      sans-serif;
+  text-align:       center;
+  padding-top:      15px;
+  margin:           0 auto;
+  text-decoration:  underline;
+  color:          #0a8ecd;
+  cursor:           pointer;
+}
+
+@media (max-height: 640px) and (orientation: portrait) {
+
+  .container {
+    overflow: auto;
+    display: block;
+  }
+
+  .m-c-card-signup {
+    height: 560px;
+    margin: 10px;
+    width: calc( 100% - 20px);
+  }
+
+}
+
+@media (min-width: 320px) and (orientation: landscape) {
+
+  .container.mobile {
+    overflow: auto;
+    display: block;
+  }
+
+  .m-c-card-signup {
+    height: 560px;
+    margin: 10px auto;
+  }
+
+}

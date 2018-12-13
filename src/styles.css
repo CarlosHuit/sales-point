@@ -2,3 +2,226 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+/* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
+
+
+body {
+  margin: 0;
+  user-select: none !important;
+  font-family: 'Noto Sans' !important;
+  outline: none !important;
+}
+
+.container {
+  width:            100vw;
+  height:           calc(100vh - 56px);
+  background:     #eaecee;
+  margin:           0;
+  padding:          0;
+  display:          flex;
+  justify-content:  center;
+  align-items:      center;
+  margin-top:       56px;
+  position:         relative;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+.quit-scroll-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  width: 95%;
+  height: 96%;
+  background-color: white;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.8);
+  padding: 0;
+  overflow: auto;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.hide {
+  opacity: 0;
+  transition: 200ms;
+}
+
+.show {
+  opacity: 1
+}
+
+.hideSucces {
+  opacity: 0;
+  transition: 50ms;
+}
+
+.showSuccess {
+  opacity: 1
+}
+
+.center {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.press:active {
+  transition: 100ms;
+  transform: scale(.98);
+}
+
+.mat-card {
+  font-family: 'Noto Sans', Roboto, "Helvetica Neue", sans-serif;
+}
+
+.icon-help {
+  width:          40px;
+  height:         40px;
+  position:       absolute;
+  top:            8px;
+  left:           8px;
+  transition:     100ms;
+  background:   #0c6d9e;
+  box-shadow:     0px 0px 3px 0.8px rgba(0, 0, 0, 0.6); 
+  border:         2px solid white;
+  border-radius:  50%;
+  color:        white;
+  font-weight:    bolder;
+  font-size:      26px;
+  box-sizing:     border-box;
+  outline:        none;
+  transition:     200ms;
+}
+
+.icon-help:active {
+  transform: scale(.98);
+}
+
+.star {
+  position: relative;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 0.9em;
+  margin-right: 0.9em;
+  margin-bottom: 1.2em;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0.7em solid #FC0;
+  border-left: 0.3em solid transparent;
+  /* Controlls the size of the stars. */
+  font-size: 24px;
+}
+
+.star:before,
+.star:after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 0.6em;
+  left: -1em;
+  border-right: 1em solid transparent;
+  border-bottom: 0.7em solid #FC0;
+  border-left: 1em solid transparent;
+  transform: rotate(-35deg);
+}
+
+.highlight {
+  color:             rgb(255, 191, 0) !important;
+  -webkit-text-stroke: 2px #202020;
+}
+
+.star:after {
+  transform: rotate(35deg);
+}
+
+.mat-tab-labels {
+  display: flex;
+  justify-content: center;
+}
+
+.mat-tab-body-wrapper {
+  height:       100%;
+  background: #eaecee;
+}
+
+.mat-tab-group {
+  font-family: 'Noto Sans';
+  min-height:  100%
+}
+
+.mat-tab-body-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* width of the snack bar */
+.mat-snack-bar-handset .mat-snack-bar-container {
+  min-width: unset !important;
+}
+
+.mat-tab-label .mat-tab-label-content {
+  font-weight: bold;
+  font-size: 18px;
+  font-family: sans-serif, 'Noto Sans';
+}
+
+.mat-tab-group.mat-background-warn .mat-tab-header, .mat-tab-group.mat-background-warn .mat-tab-links, .mat-tab-nav-bar.mat-background-warn .mat-tab-header, .mat-tab-nav-bar.mat-background-warn .mat-tab-links {
+  background-color: #1a5e7e;
+}
+
+.mat-tab-group.mat-accent .mat-ink-bar, .mat-tab-nav-bar.mat-accent .mat-ink-bar {
+  background-color: #f44336;
+  height: 4px;
+}
+.mat-tab-label:foucs:not(.mat-tab-disabled) {
+  opacity: 1 !important;
+}
+
+.mat-tab-label {
+  opacity: 1 !important;
+  padding: 0 !important;
+}
+
+.mat-expansion-panel-header {
+  padding: 10px 24px !important;
+}
+
+.mat-expansion-panel-body {
+  padding: 0 20px 16px !important;
+}
+
+.mat-form-field {
+  margin-bottom: 5px;
+}
+
+.mat-progress-spinner {
+  width:  100% !important;
+  height: 100% !important;
+}
+
+.mat-progress-spinner svg {
+  width:   100% !important;
+  height:  100% !important;
+}
+
+.mat-progress-spinner circle, .mat-spinner circle {
+  stroke: #1e7096;
+}
+
+.cdk-overlay-pane {
+  max-width: 340px !important;
+
+}
+
+.mat-dialog-container {
+  max-width: 90vw !important;
+  margin: 0 auto  !important;
+}
+
+@media (min-width: 320px) and (orientation: landscape) {}
