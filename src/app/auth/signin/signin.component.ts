@@ -28,12 +28,16 @@ export class SigninComponent implements OnInit, OnDestroy {
 
   signinForm: FormGroup;
   matcher =   new MyErrorStateMatcher();
+  imgUrl: string;
 
   constructor(
     private authService: AuthService,
     private _mobile:     DetectMobileService,
     private _router:     Router
-  ) { }
+  ) {
+    // this.imgUrl = `file://${__dirname}/dist/assets/img/shop.png`;
+    this.imgUrl = `assets/img/shop.png`;
+  }
 
   ngOnInit() {
 

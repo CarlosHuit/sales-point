@@ -10,9 +10,10 @@ import { JwtHelperService     } from '@auth0/angular-jwt';
 import { StorageService       } from '../services/storage/storage.service';
 
 
-
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
 };
 
 @Injectable({ providedIn: 'root' })
@@ -133,5 +134,6 @@ export class AuthService {
     }
 
   }
+
 
 }
