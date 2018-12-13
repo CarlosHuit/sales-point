@@ -1,12 +1,15 @@
 import express from 'express'
-import { get_provider, get_providers, save_provider, save_providers } from '../controllers/providers-controller'
+import { get_provider, get_providers, save_provider, save_providers, update_provider } from '../controllers/providers-controller'
 
 const app = express.Router()
 
-app.post('/:id', get_provider  )
-app.post('/',    get_providers )
 
-app.get('/:id', save_provider  )
-app.get('/',    save_providers )
+app.get('/:id',  get_provider    )
+app.get('/',     get_providers   )
+
+app.post('/:id', save_provider   )
+app.post('/',    save_providers  )
+
+app.put('/:id',  update_provider )
 
 export default app
