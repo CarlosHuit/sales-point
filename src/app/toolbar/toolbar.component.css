@@ -18,6 +18,7 @@
   font-family: sans-serif;
   font-weight: bold;
   text-transform: capitalize;
+  cursor: pointer;
 }
 
 .icon-menu {

@@ -1,1 +1,38 @@
-<router-outlet></router-outlet>
+<app-toolbar
+  (evsMenu)="toggleMenu($event)"
+  [title]="title"
+  >
+</app-toolbar>
+
+
+<div class="container">
+  <mat-drawer-container class="example-container">
+
+
+    <mat-drawer
+      class="menu"
+      [opened]="show || !mobileQuery.matches"
+      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      >
+      <app-lateral-bar>
+      </app-lateral-bar>
+    </mat-drawer>
+
+
+    <mat-drawer-content
+      style="background: #eaecee;"
+      >
+
+      <div class="container-router-outlet">
+          <router-outlet></router-outlet>
+      </div>
+
+
+    </mat-drawer-content>
+
+
+  </mat-drawer-container>
+</div>
+
+
+

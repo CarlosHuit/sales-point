@@ -17,6 +17,7 @@ class ItemOpt  {
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
+
 export class DashboardComponent implements OnInit, OnDestroy {
 
   mobileQuery: MediaQueryList;
@@ -24,9 +25,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   title = 'dashboard';
   private _mobileQueryListener: () => void;
   cards = [
-    new ItemOpt( 'Ventas',        'sale',       'sales',       {w: 215, h: 215 } ),
-    new ItemOpt( 'Compras',       'purchase',   'purchases',   {w: 205, h: 205 } ),
-    new ItemOpt( 'Devoluciones',  'devolution', 'devolutions', {w: 195, h: 195 } ),
+    new ItemOpt( 'Ventas',       'sale',       'sales/register',       {w: 215, h: 215 } ),
+    new ItemOpt( 'Compras',      'purchase',   'purchases/register',   {w: 205, h: 205 } ),
+    new ItemOpt( 'Devoluciones', 'devolution', 'devolutions/register', {w: 195, h: 195 } ),
   ];
 
   show: boolean;

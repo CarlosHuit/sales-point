@@ -24,6 +24,9 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { LateralBarComponent } from './dashboard/lateral-bar/lateral-bar.component';
 import { PurchasesComponent } from './purchases/purchases/purchases.component';
 import { DevolutionsComponent } from './devolutions/devolutions/devolutions.component';
+import { SalesRegisterComponent } from './sales/sales-register/sales-register.component';
+import { PurchasesRegisterComponent } from './purchases/purchases-register/purchases-register.component';
+import { DevolutionsRegisterComponent } from './devolutions/devolutions-register/devolutions-register.component';
 
 
 
@@ -45,6 +48,9 @@ import { DevolutionsComponent } from './devolutions/devolutions/devolutions.comp
     LateralBarComponent,
     PurchasesComponent,
     DevolutionsComponent,
+    SalesRegisterComponent,
+    PurchasesRegisterComponent,
+    DevolutionsRegisterComponent,
   ],
   imports: [
     ReactiveFormsModule,

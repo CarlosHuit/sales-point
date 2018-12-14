@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
+import { Router } from '@angular/router';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { DetectMobileService } from './services/detect-mobile/detect-mobile.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'sales-point';
+
+  mobileQuery: MediaQueryList;
+  show:        boolean;
+  title        = 'dashboard';
+  private _mobileQueryListener: () => void;
+
+  constructor(
+    public  changeDetectorRef:  ChangeDetectorRef,
+    public  media:              MediaMatcher,
+  ) {
+    this.mobileQuery = media.matchMedia('(max-width: 864px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+  }
+
+  toggleMenu = (ev) => {
+    this.show = !this.show;
+  }
+
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-toolbar',
@@ -10,13 +11,19 @@ export class ToolbarComponent implements OnInit {
   @Input() title: string;
   @Output() evsMenu = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor(
+    private _router: Router
+  ) { }
 
   ngOnInit() {
   }
 
   toggleLateralBar = () => {
     this.evsMenu.emit(true);
+  }
+
+  goToDashBoard() {
+    this._router.navigateByUrl('');
   }
 
 }
