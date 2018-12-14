@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { MatAccordion } from '@angular/material';
 
 class Option {
   constructor(
@@ -14,9 +16,15 @@ class Option {
 })
 export class LateralBarComponent implements OnInit {
 
+  @Output() evsLateralBar = new EventEmitter<boolean>();
+  @Input() mobile: boolean;
+  @ViewChild(MatAccordion) accordion: MatAccordion;
+  multi: boolean;
+
   items = [
     {
-      title: 'Ventas',
+      title:   'Ventas',
+      keyword: 'sales',
       opts: [
         new Option('Registrar venta', 'sales/register' ),
         new Option('Ver ventas',      'sales/consult'  ),
@@ -25,6 +33,7 @@ export class LateralBarComponent implements OnInit {
     },
     {
       title: 'Compras',
+      keyword: 'purchases',
       opts: [
         new Option('Registrar compra',  'purchases/register' ),
         new Option('Actualizar compra', 'purchases/update'   ),
@@ -33,6 +42,7 @@ export class LateralBarComponent implements OnInit {
     },
     {
       title: 'Devoluciones',
+      keyword: 'devolutions',
       opts: [
         new Option('Registrar devolución',  'devolutions/register' ),
         new Option('Modificar devolución',  'devolutions/update'   ),
@@ -41,15 +51,17 @@ export class LateralBarComponent implements OnInit {
     },
     {
       title: 'Productos',
+      keyword: 'products',
       opts: [
-        new Option('Registrar producto',  'product/register' ),
-        new Option('Modificar producto',  'product/update'   ),
-        new Option('Revisar producto',    'product/check'    ),
-        new Option('Buscar producto',     'product/search'    ),
+        new Option('Registrar producto',  'products/register' ),
+        new Option('Modificar producto',  'products/update'   ),
+        new Option('Revisar producto',    'products/check'    ),
+        new Option('Buscar producto',     'products/search'    ),
       ]
     },
     {
       title: 'Clientes',
+      keyword: 'clients',
       opts: [
         new Option('Registrar cliente',  'client/register' ),
         new Option('Modificar cliente',  'client/update'   ),
@@ -57,6 +69,7 @@ export class LateralBarComponent implements OnInit {
     },
     {
       title: 'Proveedores',
+      keyword: 'providers',
       opts: [
         new Option('Registrar proveedor',    'providers/register' ),
         new Option('Modificar proveedores',  'providers/update'   ),
@@ -64,6 +77,7 @@ export class LateralBarComponent implements OnInit {
     },
     {
       title: 'Existencias',
+      keyword: 'inventory',
       opts: [
         new Option('Consultar existencias',  'inventory/existences' ),
         new Option('Inventario general',     'inventory/to-require' ),
@@ -71,13 +85,40 @@ export class LateralBarComponent implements OnInit {
     },
   ];
 
-  constructor() { }
+  constructor(
+    public _router: Router,
+    ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   redirectTo = (url: string) => {
-    console.log(url);
+
+    if (this.mobile) {
+      this.closeAllExpansion();
+    }
+
+    this.evsLateralBar.emit(true);
+    this._router.navigateByUrl(url);
+  }
+
+  isCurrentUrl = (url: string) => {
+    if (this._router.url === `/${url}`) {
+      return true;
+    }
+    return false;
+  }
+
+  isActiveUrl = (keyword: string) => {
+    if ( this._router.url.includes(keyword) ) {
+      return true;
+    }
+
+    return false;
+  }
+
+  closeAllExpansion = () => {
+    this.multi = true;
+    setTimeout(() => (this.accordion.closeAll(), this.multi = false), 0);
   }
 
 }

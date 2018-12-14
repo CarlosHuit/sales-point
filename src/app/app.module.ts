@@ -27,6 +27,9 @@ import { DevolutionsComponent } from './devolutions/devolutions/devolutions.comp
 import { SalesRegisterComponent } from './sales/sales-register/sales-register.component';
 import { PurchasesRegisterComponent } from './purchases/purchases-register/purchases-register.component';
 import { DevolutionsRegisterComponent } from './devolutions/devolutions-register/devolutions-register.component';
+import { ProductsRegisterComponent } from './products/products-register/products-register.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { AddProductComponent } from './dialogs/add-product/add-product.component';
 
 
 
@@ -51,6 +54,9 @@ import { DevolutionsRegisterComponent } from './devolutions/devolutions-register
     SalesRegisterComponent,
     PurchasesRegisterComponent,
     DevolutionsRegisterComponent,
+    ProductsRegisterComponent,
+    NotFoundComponent,
+    AddProductComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -63,7 +69,7 @@ import { DevolutionsRegisterComponent } from './devolutions/devolutions-register
     MaterialModule,
   ],
   entryComponents: [
-    // IconsUserDialogComponent,
+    AddProductComponent,
     // DeleteCommentDialogComponent
   ],
   providers: [

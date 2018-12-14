@@ -1,12 +1,12 @@
 <div class="container-items">
-  <mat-accordion>
+  <mat-accordion [multi]="multi" >
 
     <mat-expansion-panel *ngFor="let item of items" >
 
 
       <mat-expansion-panel-header>
-        <mat-panel-title > 
-          <p class="panel-title">
+        <mat-panel-title> 
+          <p class="panel-title" [class.is-active]="isActiveUrl(item.keyword)" >
             {{item.title}}
           </p>
         </mat-panel-title>
@@ -16,7 +16,7 @@
       <mat-list>
         <mat-divider></mat-divider>
 
-        <div class="item-list" *ngFor="let opt of item.opts" (click)="redirectTo(opt.url)" >
+        <div class="item-list" *ngFor="let opt of item.opts" [class.hightlight-item]="isCurrentUrl(opt.url)" (click)="redirectTo(opt.url)" >
           <mat-list-item>
             <p class="list-title">
               {{opt.title}}

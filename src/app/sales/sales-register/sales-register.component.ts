@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroupDirective, NgForm, FormGroup, Validators } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth/auth.service';
 import { User } from '../../classes/user';
+import { MatDialog } from '@angular/material';
+import { AddProductComponent } from '../../dialogs/add-product/add-product.component';
 
 
 export interface PeriodicElement {
@@ -38,15 +39,20 @@ export class SalesRegisterComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = [
     {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-    {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-    {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-    {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-    {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-    {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-    {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
   ];
 
-  constructor(private authService: AuthService) { }
+
+  clients = [
+    'carlos',
+    'manuel'
+  ];
+
+  total = 200.00;
+
+  constructor(
+    private authService: AuthService,
+    private dialog: MatDialog
+    ) { }
 
   ngOnInit() {
     this.signinForm = new FormGroup({
@@ -61,6 +67,21 @@ export class SalesRegisterComponent implements OnInit {
 
     x.unshift(t);
     this.dataSource = x;
+
+  }
+
+  openDialog = (id: string) => {
+
+    const dialogRef = this.dialog.open( AddProductComponent, { disableClose: false });
+
+    dialogRef.afterClosed()
+      .subscribe(
+        (ev) => ev !== undefined ? this.addProd(ev) : null
+      );
+
+  }
+
+  addProd = (prod) => {
 
   }
 

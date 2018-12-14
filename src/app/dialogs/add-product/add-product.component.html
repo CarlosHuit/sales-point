@@ -1,0 +1,47 @@
+<h1 mat-dialog-title class="title" >Agregar Producto</h1>
+
+<div mat-dialog-content>
+  
+  <p class="subtitle">Escanea el código de barras o ingresa el SKU del producto.</p>
+
+  <div class="m-c-input">
+    <input
+      type="text"
+      placeholder="Código de barras o SKU"
+      spellcheck="false"
+      (input)="search(code.value)"
+      autofocus #code
+      >
+  </div>
+
+  <div class="description">
+    <p *ngIf="!product" > No se ha encontrado el producto </p>
+    <p *ngIf="product" > {{product.description}} </p>
+  </div>
+
+  <div class="m-c-quantity">
+    <label>
+      Unidades
+      <input type="number" #quanity>
+    </label>
+  </div>
+
+</div>
+
+<div mat-dialog-actions class="dialog-buttons">
+  
+    <button
+      mat-flat-button
+      style="background: #239B56"
+      [disabled]="code.value.length === 0 || !product"
+      color="warn"
+      class="btn-selected"
+      [mat-dialog-close]="product"
+      >
+      <!-- cdkFocusInitial -->
+      Agregar
+    </button>
+    <button mat-button color="primary" (click)="onNoClick()">Cancelar</button>
+
+
+</div>

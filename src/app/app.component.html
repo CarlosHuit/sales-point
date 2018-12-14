@@ -14,8 +14,10 @@
       [opened]="show || !mobileQuery.matches"
       [mode]="mobileQuery.matches ? 'over' : 'side'"
       >
-      <app-lateral-bar>
-      </app-lateral-bar>
+      <app-lateral-bar
+        [mobile]="mobileQuery.matches"
+        (evsLateralBar)="closeMatDrawer($event)"
+      ></app-lateral-bar>
     </mat-drawer>
 
 

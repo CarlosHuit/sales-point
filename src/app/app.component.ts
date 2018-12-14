@@ -28,4 +28,10 @@ export class AppComponent {
     this.show = !this.show;
   }
 
+  closeMatDrawer = (event) => {
+    if (this.mobileQuery.matches) {
+      this.show = false;
+    }
+  }
+
 }

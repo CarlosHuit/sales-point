@@ -24,6 +24,15 @@
   text-decoration: underline;
 }
 
+.hightlight-item {
+  background: rgba(0,0,0,.05);
+}
+
+.is-active {
+  margin-bottom: 5px;
+  border-bottom: 3px solid #1c97d4;
+}
+
 @media(min-width: 264px) {
   .container-items {
     width: 95%;
