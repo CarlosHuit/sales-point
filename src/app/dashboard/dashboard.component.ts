@@ -3,9 +3,13 @@ import { Router } from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { DetectMobileService } from '../services/detect-mobile/detect-mobile.service';
 
-export interface Section {
-  name: string;
-  updated: Date;
+class ItemOpt  {
+  constructor(
+    public title: string,
+    public img:   string,
+    public url:   string,
+    public size:  { w: number, h: number }
+  ) {}
 }
 
 @Component({
@@ -20,50 +24,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   title = 'dashboard';
   private _mobileQueryListener: () => void;
   cards = [
-    {
-      title: 'Ventas',
-      img:   'sale',
-      url:   'ventas',
-      size: {w: 215, h: 215 }
-    },
-    {
-      title: 'Compras',
-      img:   'purchase',
-      url:   'compras',
-      size: {w: 205, h: 205 }
-    },
-    {
-      title: 'Devoluciones',
-      img:   'devolution',
-      url:   'devoluciones',
-      size: {w: 195, h: 195 }
-    }
+    new ItemOpt( 'Ventas',        'sale',       'sales',       {w: 215, h: 215 } ),
+    new ItemOpt( 'Compras',       'purchase',   'purchases',   {w: 205, h: 205 } ),
+    new ItemOpt( 'Devoluciones',  'devolution', 'devolutions', {w: 195, h: 195 } ),
   ];
 
-  folders: Section[] = [
-    {
-      name: 'Photos',
-      updated: new Date('1/1/16'),
-    },
-    {
-      name: 'Recipes',
-      updated: new Date('1/17/16'),
-    },
-    {
-      name: 'Work',
-      updated: new Date('1/28/16'),
-    }
-  ];
-  notes: Section[] = [
-    {
-      name: 'Vacation Itinerary',
-      updated: new Date('2/20/16'),
-    },
-    {
-      name: 'Kitchen Remodel',
-      updated: new Date('1/18/16'),
-    }
-  ];
   show: boolean;
 
   constructor(
@@ -89,13 +54,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   redirect = (word: string) => {
     const url = `/${word}`;
-    console.log(url);
     this._router.navigateByUrl(url);
   }
 
   toggleMenu = (ev) => {
     this.show = !this.show;
-    console.log(this.show);
   }
 
 }

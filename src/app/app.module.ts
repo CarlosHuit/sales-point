@@ -16,13 +16,14 @@ import { ClientsComponent } from './clients/clients/clients.component';
 import { ProvidersComponent } from './providers/providers/providers.component';
 import { ProductsComponent } from './products/products/products.component';
 import { SalesComponent } from './sales/sales/sales.component';
-import { ShoppingComponent } from './shopping/shopping/shopping.component';
 import { AdminComponent } from './admin/admin/admin.component';
 import { PermissionsComponent } from './admin/permissions/permissions.component';
 import { EstadisticsComponent } from './admin/estadistics/estadistics.component';
 import { EarningsComponent } from './admin/earnings/earnings.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { LateralBarComponent } from './dashboard/lateral-bar/lateral-bar.component';
+import { PurchasesComponent } from './purchases/purchases/purchases.component';
+import { DevolutionsComponent } from './devolutions/devolutions/devolutions.component';
 
 
 
@@ -36,13 +37,14 @@ import { LateralBarComponent } from './dashboard/lateral-bar/lateral-bar.compone
     ProvidersComponent,
     ProductsComponent,
     SalesComponent,
-    ShoppingComponent,
     AdminComponent,
     PermissionsComponent,
     EstadisticsComponent,
     EarningsComponent,
     ToolbarComponent,
     LateralBarComponent,
+    PurchasesComponent,
+    DevolutionsComponent,
   ],
   imports: [
     ReactiveFormsModule,

@@ -16,7 +16,7 @@
       <mat-list>
         <mat-divider></mat-divider>
 
-        <div class="item-list" *ngFor="let opt of item.opts" >
+        <div class="item-list" *ngFor="let opt of item.opts" (click)="redirectTo(opt.url)" >
           <mat-list-item>
             <p class="list-title">
               {{opt.title}}
