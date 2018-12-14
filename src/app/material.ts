@@ -22,6 +22,7 @@ import {
   MatSliderModule,
   MatProgressBarModule,
   MatProgressSpinnerModule,
+  MatTableModule
 
 } from '@angular/material';
 
@@ -47,6 +48,7 @@ const modules = [
   MatSliderModule,
   MatProgressBarModule,
   MatProgressSpinnerModule,
+  MatTableModule
 ];
 
 @NgModule({

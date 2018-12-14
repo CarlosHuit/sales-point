@@ -4,4 +4,5 @@ export { default as Clients        } from './clients'
 export { default as Providers      } from './providers'
 export { default as Prices         } from './prices'
 export { default as PreviousPrices } from './previous_prices'
+export { default as Sale           } from './sale'
 
