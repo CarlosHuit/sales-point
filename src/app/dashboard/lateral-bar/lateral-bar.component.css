@@ -1,0 +1,37 @@
+.container-items {
+  width: 100%;
+}
+
+.panel-title {
+  font-size: 22px;
+  margin: 10px 0;
+  font-weight: bold;
+  font-family: sans-serif;
+  letter-spacing: 0.8px;
+}
+
+.item-list {
+  cursor: pointer;
+  font-family: sans-serif;
+}
+
+.item-list:hover{
+  background-color: rgba(0, 0, 0, .05)
+}
+
+.list-title {
+  color: #1f8bc0;
+  text-decoration: underline;
+}
+
+@media(min-width: 264px) {
+  .container-items {
+    width: 95%;
+    margin: 10px auto;
+    padding: 10px;
+    background: #ebedee;
+    box-sizing: border-box;
+    border: 1px solid rgba(0,0,0, .1);
+    border-radius: 3px;
+  }
+}

@@ -19,7 +19,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "electron": "npm run build && electron ."
+    "electron": "npm run build && electron .",
+    "s": "electron ."
   },
   "engines": {
     "node": "10.14.0",

@@ -1,0 +1,35 @@
+<div class="container-items">
+  <mat-accordion>
+
+    <mat-expansion-panel *ngFor="let item of items" >
+
+
+      <mat-expansion-panel-header>
+        <mat-panel-title > 
+          <p class="panel-title">
+            {{item.title}}
+          </p>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+
+      <mat-list>
+        <mat-divider></mat-divider>
+
+        <div class="item-list" *ngFor="let opt of item.opts" >
+          <mat-list-item>
+            <p class="list-title">
+              {{opt.title}}
+            </p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </div>
+
+      </mat-list>
+
+
+    </mat-expansion-panel>
+
+
+  </mat-accordion>
+</div>

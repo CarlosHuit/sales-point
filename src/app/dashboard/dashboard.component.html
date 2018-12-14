@@ -1,3 +1,29 @@
-<p>
-  dashboard works!
-</p>
+<app-toolbar (evsMenu)="toggleMenu($event)" [title]="title"></app-toolbar>
+<div class="container">
+  <mat-drawer-container class="example-container">
+
+    <!-- <mat-drawer #sidenav class="menu" [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="show || !mobileQuery.matches"> -->
+    <mat-drawer #sidenav class="menu" [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="show || !mobileQuery.matches">
+      <app-lateral-bar></app-lateral-bar>
+    </mat-drawer>
+
+
+
+
+    <mat-drawer-content style="background: #eaecee;">
+
+      <div class="container-cards">
+
+        <mat-card class="item-card" *ngFor="let item of cards" (click)="redirect(item.url)">
+          <img [src]="genUrl(item.img)" [width]="item.size.w" [height]="item.size.h">
+          <p class="title">
+            {{item.title}}
+          </p>
+        </mat-card>
+
+      </div>
+
+    </mat-drawer-content>
+
+  </mat-drawer-container>
+</div>

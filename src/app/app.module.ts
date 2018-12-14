@@ -12,6 +12,17 @@ import { GestureConfig                    } from '@angular/material';
 import { SigninComponent                  } from './auth/signin/signin.component';
 import { SignupComponent                  } from './auth/signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ClientsComponent } from './clients/clients/clients.component';
+import { ProvidersComponent } from './providers/providers/providers.component';
+import { ProductsComponent } from './products/products/products.component';
+import { SalesComponent } from './sales/sales/sales.component';
+import { ShoppingComponent } from './shopping/shopping/shopping.component';
+import { AdminComponent } from './admin/admin/admin.component';
+import { PermissionsComponent } from './admin/permissions/permissions.component';
+import { EstadisticsComponent } from './admin/estadistics/estadistics.component';
+import { EarningsComponent } from './admin/earnings/earnings.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import { LateralBarComponent } from './dashboard/lateral-bar/lateral-bar.component';
 
 
 
@@ -21,6 +32,17 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     SigninComponent,
     SignupComponent,
     DashboardComponent,
+    ClientsComponent,
+    ProvidersComponent,
+    ProductsComponent,
+    SalesComponent,
+    ShoppingComponent,
+    AdminComponent,
+    PermissionsComponent,
+    EstadisticsComponent,
+    EarningsComponent,
+    ToolbarComponent,
+    LateralBarComponent,
   ],
   imports: [
     ReactiveFormsModule,
