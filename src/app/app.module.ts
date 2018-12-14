@@ -30,6 +30,7 @@ import { DevolutionsRegisterComponent } from './devolutions/devolutions-register
 import { ProductsRegisterComponent } from './products/products-register/products-register.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AddProductComponent } from './dialogs/add-product/add-product.component';
+import { TitleBarComponent } from './title-bar/title-bar.component';
 
 
 
@@ -57,6 +58,7 @@ import { AddProductComponent } from './dialogs/add-product/add-product.component
     ProductsRegisterComponent,
     NotFoundComponent,
     AddProductComponent,
+    TitleBarComponent,
   ],
   imports: [
     ReactiveFormsModule,
