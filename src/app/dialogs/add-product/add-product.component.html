@@ -22,7 +22,7 @@
   <div class="m-c-quantity">
     <label>
       Unidades
-      <input type="number" #quanity>
+      <input [disabled]="!product" type="number" #quantity>
     </label>
   </div>
 
@@ -36,7 +36,7 @@
       [disabled]="code.value.length === 0 || !product"
       color="warn"
       class="btn-selected"
-      [mat-dialog-close]="product"
+      [mat-dialog-close]="genProd(quantity.value)"
       >
       <!-- cdkFocusInitial -->
       Agregar

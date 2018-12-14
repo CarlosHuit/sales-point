@@ -26,27 +26,27 @@
             <table mat-table [dataSource]="dataSource">
   
               <!-- Position Column -->
-              <ng-container matColumnDef="position">
-                <th mat-header-cell *matHeaderCellDef> No. </th>
-                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+              <ng-container matColumnDef="sku">
+                <th mat-header-cell *matHeaderCellDef> Sku </th>
+                <td mat-cell *matCellDef="let element"> {{element.sku}} </td>
               </ng-container>
   
               <!-- Name Column -->
-              <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef> Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+              <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef> Descripción </th>
+                <td mat-cell *matCellDef="let element"> {{element.description}} </td>
               </ng-container>
   
               <!-- Weight Column -->
-              <ng-container matColumnDef="weight">
-                <th mat-header-cell *matHeaderCellDef> Weight </th>
-                <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+              <ng-container matColumnDef="quantity">
+                <th mat-header-cell *matHeaderCellDef> Cant. </th>
+                <td mat-cell *matCellDef="let element" style="text-align: center" > {{element.quantity}} </td>
               </ng-container>
   
               <!-- Symbol Column -->
-              <ng-container matColumnDef="symbol">
-                <th mat-header-cell *matHeaderCellDef> Symbol </th>
-                <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+              <ng-container matColumnDef="total">
+                <th mat-header-cell *matHeaderCellDef> Total </th>
+                <td mat-cell *matCellDef="let element"> {{element.total | currency:2:'Q'}} </td>
               </ng-container>
   
               <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
@@ -55,7 +55,7 @@
           </div>
 
           <div class="m-c-total">
-            <h1>Total: {{ total | currency:0:'Q' }}</h1>
+            <h1>Total: {{ genTotal() | currency:0:'Q' }}</h1>
           </div>
 
         </div>
@@ -66,7 +66,13 @@
           </button>
         </div>
 
-        <button mat-fab color="accent" (click)="openDialog()" class="float-button">+</button>
+        <button
+          mat-fab color="accent"
+          (click)="openDialog()"
+          class="float-button"
+          >
+          +
+        </button>
 
 
       </div>

@@ -109,6 +109,21 @@ tr.mat-row {
   height: 30px;
 }
 
+td.mat-cell{
+  padding: 10px 0;
+}
+
+td.mat-cell:first-of-type, th.mat-header-cell:first-of-type {
+  padding: 5px;
+  text-align: center;
+}
+
+td.mat-cell:last-of-type,  th.mat-header-cell:last-of-type {
+  padding-right: 0;
+  padding: 0 5px;
+  text-align: center;
+}
+
 .pair {
   background: #37a7e74a;
 }

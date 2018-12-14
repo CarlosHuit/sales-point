@@ -6,6 +6,7 @@ class Product {
     public code:        string,
     public sku:         string,
     public description: string,
+    public price:       number,
   ) {}
 }
 
@@ -17,12 +18,12 @@ class Product {
 export class AddProductComponent {
 
   products = [
-    new Product('1010', '14585', 'DETERGENTE BLANCA NIEVES BOLSA 250 GRS.'),
-    new Product('1011', '12810', 'ACEITE PATRONA BOTELLITA 175 ML.'       ),
-    new Product('1012', '16588', 'SALSA NATURAS RANCHERA SOBRE 106 GRS.'  ),
+    new Product('1010', '14585', 'DETERGENTE BLANCA NIEVES BOLSA 250 GRS.', 20),
+    new Product('1011', '12810', 'ACEITE PATRONA BOTELLITA 175 ML.',        11),
+    new Product('1012', '16588', 'SALSA NATURAS RANCHERA SOBRE 106 GRS.',   12),
   ];
 
-  product: {};
+  product: Product;
 
   constructor(
     public  dialogRef: MatDialogRef<AddProductComponent>,
@@ -56,6 +57,14 @@ export class AddProductComponent {
 
     }
 
+  }
+
+  genProd = (quantity: number) => {
+    if (this.product) {
+      this.product['quantity'] = quantity;
+      this.product['total']    = quantity * this.product.price;
+      return this.product;
+    }
   }
 
 
