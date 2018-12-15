@@ -17,4 +17,4 @@ const PreviousPrices = new Schema({
 
 });
 
-export default mongoose.model('Previos_Prices', PreviousPrices)
+export default mongoose.model('Previous_Prices', PreviousPrices)

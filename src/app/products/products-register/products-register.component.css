@@ -18,14 +18,86 @@
 .m-c-register-content {
   height: calc(100% - 45px);
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.form-product-register {
+  background: #eaecee;
+  border: 1px solid rgba(0, 0, 0, .2);
+  margin-bottom: 45px;
+  padding: 30px 10px;
+  border-radius: 5px;
+}
+
+.form-product-register div{
+  width: 100%;
+  margin: 15px 0;
+}
+
+.form-product-register div label{
+  width: 100%;
+  padding-left: 10px;
+  font-weight: 500;
+}
+
+.form-product-register div label input{
+  width: 100%;
+  box-sizing: border-box;
+  height: 40px;
+  border: none;
+  border-radius: 6px;
+  padding: 3px 10px 0 10px;
+  border: 1px solid rgba(0,0,0,.2);
+  font-size: 16px;
+  outline: none;
+  margin-top: 3px;
+}
+
+.m-c-btn-save {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 30px 0 0 0 !important;
+}
+
+.m-c-btn-save button {
+  width: 180px;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+}
 
 @media (max-width: 480px) {
   .card-register-form{
-    width: 98%;
+    width: 96%;
     height: 98%;
-    margin: 1%;
+    margin: 1% auto;
     box-sizing: border-box;
+  }
+}
+
+@media (max-height: 720px) {
+
+  .container-product-register {
+    display: block;
+  }
+
+  .card-register-form {
+    min-height: 650px;
+    margin: 10px auto;
+  }
+}
+
+
+@media (min-width: 1240px) {
+  .card-register-form{
+    height: 720px;
+    width: 640px;
+  }
+
+  .form-product-register {
+    padding: 50px 30px;
   }
 }

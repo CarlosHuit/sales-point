@@ -1,7 +1,8 @@
 import Debug from 'debug'
 import { nameProject } from '../config'
 import { User      } from '../models'
-import { Products  } from '../models'
+import { Products, PreviousPrices } from '../models'
+import mongoose from 'mongoose'
 
 export const get_products = async ( req, res, next) => {
 
@@ -20,7 +21,32 @@ export const get_product = async (req, res, next) => {
 export const save_product = async (req, res, next) => {
   
   const debug = new Debug(`${nameProject}: products:save-one`)
-  res.send('guardar un producto')
+
+  try {
+
+    const { registerBy, barcode, sku, description } = req.body.product
+
+    const idProduct   = new mongoose.Types.ObjectId()
+    const idPrice     = new mongoose.Types.ObjectId()
+    const newProduct  = new Products({_id: idProduct, registerBy, barcode, sku, description, price: idPrice})
+    const saveProduct = await newProduct.save()
+
+
+    const newHistorialPrices = new PreviousPrices({product: idProduct, historial: []})
+    const savePrevPricesHis  = await newHistorialPrices.save()
+
+    debug('Producto Guardado')
+    req.product_id = idProduct
+    req.price_id   = idPrice
+    next()
+
+  } catch (error) {
+    debug(error)    
+    const err = 'Ha ocurrido un error'
+    debug(err)
+    res.status(400).json({message: err, error: err}) 
+  }
+
 
 }
 
