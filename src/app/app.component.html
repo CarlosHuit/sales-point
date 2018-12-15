@@ -1,11 +1,12 @@
 <app-toolbar
   (evsMenu)="toggleMenu($event)"
   [title]="title"
+  *ngIf="isLoggedIn()"
   >
 </app-toolbar>
 
 
-<div class="container">
+<div class="container" *ngIf="isLoggedIn()" >
   <mat-drawer-container class="example-container">
 
 
@@ -36,5 +37,6 @@
   </mat-drawer-container>
 </div>
 
+<router-outlet *ngIf="!isLoggedIn()" ></router-outlet>
 
 

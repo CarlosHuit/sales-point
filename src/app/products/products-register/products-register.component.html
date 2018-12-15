@@ -12,45 +12,41 @@
         <div>
           <label>
             Ingresa el código de barras
-            <input type="text" formControlName="barCode" placeholder="Código de barras">
+            <input type="text" formControlName="barCode" autofocus>
           </label>
         </div>
 
         <div>
           <label>
             Ingresa el nuevo Sku:
-            <input type="text" placeholder="Sku"
-            formControlName="sku" >
+            <input type="text" formControlName="sku" >
           </label>
         </div>
         
         <div>
           <label>
             Ingresa la descripción:
-            <input type="text" placeholder="Descripción"
-            formControlName="description" >
+            <input type="text" formControlName="description" >
           </label>
         </div>
 
         <div>
           <label>
             Ingresa el precio costo:
-            <input type="number" placeholder="Precio Costo por unidad"
-            formControlName="costPrice" >
+            <input type="number" formControlName="costPrice" >
           </label>
         </div>
 
         <div>
           <label>
             Ingresa el precio para la venta:
-            <input type="number" placeholder="Precio para la venta en unida"
-            formControlName="salePrice" >
+            <input type="number" formControlName="salePrice" >
           </label>
         </div>
     
 
         <div class="m-c-btn-save" >
-          <button type="submit" mat-raised-button color="accent">
+          <button type="submit" mat-raised-button color="warn">
             Guardar
           </button>
         </div>

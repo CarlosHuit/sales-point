@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -10,12 +11,25 @@ export class ToolbarComponent implements OnInit {
 
   @Input() title: string;
   @Output() evsMenu = new EventEmitter<boolean>();
+  fullName: string;
 
   constructor(
-    private _router: Router
+    private _router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
+    this.fullName = this.authService.currentUser.fullName().toString();
+  }
+
+  isLoggedIn = () => {
+
+    return this.authService.isLoggedIn();
+
+  }
+
+  logout = () => {
+    return this.authService.logout();
   }
 
   toggleLateralBar = () => {

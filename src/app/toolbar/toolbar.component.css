@@ -9,9 +9,18 @@
   align-items: center;
   padding: 0 15px;
   box-sizing: border-box;
+  justify-content: space-between;
 }
 
-.toolbar h1{
+
+.icon-logo {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.title {
   color: white;
   margin: 0;
   margin-left: 15px;
@@ -21,19 +30,13 @@
   cursor: pointer;
 }
 
-.icon-menu {
-  width: 35px;
-  height: 35px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+.icon-user {
+  width: 48px;
+  height: 48px;
   cursor: pointer;
-  box-sizing: border-box;
 }
 
-.icon-menu hr {
-  width: 100%;
-  border: none;
-  border-bottom: 4px solid white;
-  margin: 0;
+.icon-menu {
+  width: 48px;
+  height: 48px;
 }

@@ -83,13 +83,6 @@ export class ProductsRegisterComponent implements OnInit {
 
       }
 
-
-    //   this.authService.signup(user)
-    //     .subscribe(
-    //       this.authService.login,
-    //       this.authService.handleError
-    //     );
-    // }
     }
   }
 

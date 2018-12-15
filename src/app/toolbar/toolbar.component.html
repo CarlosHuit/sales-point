@@ -1,8 +1,38 @@
 <div class="toolbar">
-  <div class="icon-menu" (click)="toggleLateralBar()">
-    <hr>
-    <hr>
-    <hr>
+
+
+  <div class="icon-logo">
+    <img 
+      class="icon-menu"
+      (click)="toggleLateralBar()"
+      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgAQAAAADK40qVAAAAAnRSTlMAAHaTzTgAAAAcSURBVHgBYyATjAL+/1DwgZYc8sFoGIyGwSgAADYo1ymiOUUYAAAAAElFTkSuQmCC"
+      >
+    <h1 class="title" (click)="goToDashBoard()" >{{title}}</h1>
   </div>
-  <h1 (click)="goToDashBoard()" >{{title}}</h1>
+
+  <div>
+    <img
+      [matMenuTriggerFor]="menu"
+      class="icon-user"
+      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAQAAABIkb+zAAAEJUlEQVR4Ae3bQ5jlWhDA8WrftvvZtm1zNbY9s3ncPdu2bRurp7HZtjFG8//syU0qObmd+b78so5Vp06VhEKhUChkDgcwgCt5mI+Zyxqa6GEbzRQzl495mCsZwH4SRGQwgueoxokqnmcYmRIUHMUTbEZrI09xtPQvkhjOT3jxEyNIkv5ALtfTjAmN3ECuxBJxTKAdk1qZSJzEBoczFz/M5XDxHwPYgl+2MED8RDy34bfbfXuUiPAJsfApETGPQuYTK/PJE7PYlypiqYx9xRx2oQaddp7lUg4mg0wO4nKepQOdGnY19/CUoFHNtP//XUlmGrVoFFNk5tVdjMaHRKJs6z00Fht4nXkUjYfEBg+g8ah4w/lofEKcgzDkIzQuFPcooBXn6kgTB0ijDudaKBC3eAWNMeIQY9B4WdzhbDQqiVeEJBVonCN6JCp38oAo8CAa5SSJFjPQuUgUuBCdGfrr34DOgaLAgehUkigajEcrSxTIQmucaFCMVoYyDaNVrNn8WehpHyG9M8UpXkbvQlHgApQU/wPS2Ybe/aLA/ehtJV2cYCBuVIoCFbgxUJzgEdwZJQ4xCnceESdYjo4+mKvHneVijzzc+8hROP0J7uWJHc7Di4dUUZDeeeZjIN2Q8kN09DERD+FVNdO3M6hPYTq1ePWQ2OFLTGjnOS7nYDK1aRUbX4odlhFky8QOVQRZldihgyDrEDv0EWS9YodOgqxT7NBGkLWJHSoJssrYfUb7qOFbHuVGbuElfqIJE5b5/SMr4UlmcSmHkLydgdLhDOdpSnDvC7HDw7jRyRuMZFdxhF2ZwQK/QolZ6GziFUaRI2ocymOsR2em2ZxZF89SKB6QyhQacO4CsUM+znRzLzuLAaRxF70Gs08sxV4Nx4lBHE8J9paKBe1rvIZdxTDS+Qg7D5tJqzSxm/iAZGabSauksxVrfZwmPmEvNmFtG+niDC9i7RXxEbdj7UVxijOxdobP9Xdm9kwxVvJ8LmSzUmxqgmOC+IgJWBmvnWKqt3yVjhSfcIRlXryBRNFhFlaqyBEfkE01VmaJFkmswcoCMnyo/V2AlTUkih6nYm02aWIQaczG2iniDi9j7Sd2Mfjt+R5rL3sp9mjBWgcXigEcTCXWWvXFHprRwWNExBNGsZFozve74KmUkzxc+x+UBU96RFhEdL08wz6ixD48TQ/RLSIi3pFPMXZ6eYtTiBNHOJE36cVOMfliBrtSgxPNvMAA8qNu6VqK9WWXsS58reYdrmcmI7iYs39bzmUmL7GaPpypYr8du/S4cEcu/v6EiH+dG7fht9uIEz8xmM2BaoDQ41DfWlAODZuAVBHkDQFrw9IjiZHMxovZjCRJ+hdH8xSbXLUiHiFBQSYjeFbXDBrsdtxP/mrH7aSZYubxCY9wJQM4QIwJhUKhUOhnHWy5OdsM0OcAAAAASUVORK5CYII="
+      >
+  
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item style="text-transform: capitalize;">
+        {{ fullName}}
+      </button>
+      <button mat-menu-item (click)="logout()">
+        Salir
+      </button>
+    </mat-menu>
+  </div>
+  
 </div>
+
+
+
+<!-- <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu> -->
