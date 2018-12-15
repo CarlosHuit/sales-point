@@ -1,0 +1,26 @@
+<div class="container-form">
+
+  <h1>Detalles del producto</h1>
+
+  <div>
+
+    <label>
+      Código de barras:
+      <input type="text" [(ngModel)]="prod.barcode" >
+    </label>
+  
+    <label>
+      SKU:
+      <input type="text" [(ngModel)]="prod.sku" >
+    </label>
+  
+    <label>
+      Descripción:
+      <input type="text" [(ngModel)]="prod.description" >
+    </label>
+
+  </div>
+
+  <button [disabled]="compare()" class="button-update" mat-raised-button color="accent" (click)="update()">ACTUALIZAR</button>
+
+</div>

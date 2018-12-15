@@ -1,21 +1,30 @@
+.card {
+  height: 720px;
+}
+
 .m-c-input-search {
   width: 100%;
-  height: calc(100% - 55px);
+  height: calc(100% - 45px);
   display: flex;
   flex-direction: column;
-  background: #eaecee;
   align-items: center;
-  border: 1px solid rgba(0,0,0,.3);
-  margin: 10px auto;
+  margin: 0px auto;
   box-sizing: border-box;
-  padding: 5px;
 }
 
 
 .form-search {
   width: 100%;
+  height: 200px;
+  margin: 10px;
   display: flex;
   flex-direction: column;
+  padding: 5px 15px 15px 15px;
+  background: #eaecee;
+  border: 1px solid rgba(0,0,0,.3);
+  box-sizing: border-box;
+  max-width: 600px;
+  box-sizing: border-box;
 }
 
 
@@ -53,4 +62,37 @@
   margin: 0 auto;
   max-width: 450px;
   font-size: 22px;
+}
+
+.update-prod-form {
+  width: 100%;
+  padding: 5px 15px 15px 15px;
+  background: #eaecee;
+  border: 1px solid rgba(0,0,0,.3);
+  box-sizing: border-box;
+  max-width: 600px;
+  height: calc(100% - 230px);
+}
+
+@media (min-width: 1024px) {
+  .card {
+    max-width: 864px;
+    max-height: 720px;
+  }
+}
+
+@media (max-width: 460px) {
+  .m-c-input-search label {
+    font-size: 24px;
+  }
+}
+
+@media ( max-height: 820px ) {
+  .app-container.center {
+    display: block !important;
+  }
+
+  .card {
+    margin: 15px auto;
+  }
 }

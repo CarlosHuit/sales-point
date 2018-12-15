@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductsService } from '../../../services/products/products.service';
+import { AuthService } from '../../../auth/auth.service';
+import { Product } from 'src/app/classes/product';
 
 @Component({
   selector: 'app-update-product',
@@ -8,17 +11,82 @@ import { Component, OnInit } from '@angular/core';
 export class UpdateProductComponent implements OnInit {
 
   loading = false;
-
-  constructor() { }
+  product: Product;
+  constructor(
+    private _product: ProductsService,
+    private _auth:    AuthService
+  ) { }
 
   ngOnInit() {
   }
 
-  searchProduct = () => {
-    this.loading = true;
+  searchProduct = (el: HTMLInputElement) => {
+
+    const code = el.value.toLowerCase().trim();
+
+    if (code.length > 0) {
+
+      delete( this.product);
+      this.loading = true;
+      this._product.searchProduct(code)
+        .subscribe(
+          val => this.handleResponse(val, el),
+          err => this.handleError(err, el)
+        );
+
+      } else {
+
+        this._auth.showError('Ingresa un SKU');
+
+      }
+
+  }
+
+  handleError = (error, el: HTMLInputElement) => {
+    setTimeout(() => {
+      el.value = '';
+      el.focus();
+      this.loading = false;
+    }, 1000);
+  }
+
+  handleResponse = (product: Product, el: HTMLInputElement) => {
+    setTimeout(() => {
+      el.value = '';
+      this.product = product;
+      this.loading = false;
+    }, 1000);
+  }
+
+  notLoading = () => {
     setTimeout(() => {
       this.loading = false;
-    }, 5000);
+    }, 1000);
+  }
+
+  update = (product: Product) => {
+    this.loading = true;
+    delete(this.product);
+
+    this._product.updateProduct(product)
+      .subscribe(
+        val => this.updateHandleRes(val),
+        err => this.updateHandleErr(err)
+      );
+  }
+
+  updateHandleRes = (val) => {
+    setTimeout(() => {
+      this.loading = false;
+      this._auth.showError('Producto actualizado');
+    }, 1000);
+  }
+
+  updateHandleErr = (err) => {
+    setTimeout(() => {
+      this.loading = false;
+      this._auth.showError('Error al actualizar');
+    }, 1000);
   }
 
 }

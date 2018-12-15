@@ -12,9 +12,38 @@ export const get_products = async ( req, res, next) => {
 }
 
 export const get_product = async (req, res, next) => {
-  
+
   const debug = new Debug(`${nameProject}: products:get-one`)
-  res.send('Mostrar un solo producto')  
+
+  try {
+    
+    const code = req.params.code
+
+    const prodBySku     = await Products.findOne({sku: code})
+    const prodByBarcode = await Products.findOne({barcode: code})
+
+    if (prodBySku) {
+
+      res.status(200).json(prodBySku)
+
+    } else if ( !prodBySku && prodByBarcode ) {
+
+      res.status(200).json(prodByBarcode)
+
+    } else if ( !prodBySku && !prodByBarcode ) {
+
+      res.status(404).json({
+        message: `El SKU ${code} no esta registrado`
+      })
+
+    }
+
+  } catch (error) {
+    debug(error)    
+    const err = 'Ha ocurrido un error'
+    debug(err)
+    res.status(400).json({message: err, error: err})
+  }
   
 }
 
@@ -44,7 +73,7 @@ export const save_product = async (req, res, next) => {
     debug(error)    
     const err = 'Ha ocurrido un error'
     debug(err)
-    res.status(400).json({message: err, error: err}) 
+    res.status(400).json({message: err, error: err})
   }
 
 
@@ -60,7 +89,24 @@ export const save_products = async (req, res, next) => {
 export const update_product = async (req, res, next) => {
 
   const debug = new Debug(`${nameProject}: products:update`)
-  res.send('actualizar producto')
+
+  try {
+    const product_id = req.params.id
+    const user_id = req.user._id
+    const { _id, barcode, sku, description } = req.body
+
+    const update = await Products.findOneAndUpdate({_id: product_id}, { $set: {registerBy: user_id, barcode, sku, description}}, {new: true} )
+
+    debug('Producto actualizado')
+    res.status(200).json(update)
+
+  } catch (error) {
+    debug(error)    
+    const err = 'Ha ocurrido un error'
+    debug(err)
+    res.status(400).json({message: err, error: err})
+  }
+
 }
 
 

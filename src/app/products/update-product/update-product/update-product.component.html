@@ -9,13 +9,19 @@
       <div class="form-search">
         <label>
           Ingrese el sku del producto:
-          <input type="text" autofocus="true">
+          <input type="text" autofocus="true" #code>
         </label>
-        <button mat-flat-button color="warn" [disabled]="loading" (click)="searchProduct()" >BUSCAR</button>
+        <button mat-flat-button color="warn" [disabled]="loading" (click)="searchProduct(code)">BUSCAR</button>
       </div>
+
 
       <div style="height: 50px; width: 50px; margin-top: 10px" *ngIf="loading" >
         <mat-spinner></mat-spinner>
+      </div>
+
+
+      <div *ngIf="product" class="update-prod-form">
+        <app-update-product-form (evsUpdate)="update($event)" [product]="product" ></app-update-product-form>
       </div>
 
     </div>
