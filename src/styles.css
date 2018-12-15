@@ -43,16 +43,19 @@ body {
   display: none;
 }
 
+
+
+
 .card {
   width: 95%;
   height: 96%;
-  background-color: white;
-  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.8);
-  padding: 0;
-  overflow: auto;
   box-sizing: border-box;
   position: relative;
 }
+
+
+
+
 
 .hide {
   opacity: 0;

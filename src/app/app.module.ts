@@ -31,6 +31,9 @@ import { ProductsRegisterComponent } from './products/products-register/products
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AddProductComponent } from './dialogs/add-product/add-product.component';
 import { TitleBarComponent } from './title-bar/title-bar.component';
+import { UpdatePriceComponent } from './products/update-price/update-price/update-price.component';
+import { UpdateProductComponent } from './products/update-product/update-product/update-product.component';
+import { SearchProductComponent } from './products/search-product/search-product/search-product.component';
 
 
 
@@ -59,6 +62,9 @@ import { TitleBarComponent } from './title-bar/title-bar.component';
     NotFoundComponent,
     AddProductComponent,
     TitleBarComponent,
+    UpdatePriceComponent,
+    UpdateProductComponent,
+    SearchProductComponent,
   ],
   imports: [
     ReactiveFormsModule,

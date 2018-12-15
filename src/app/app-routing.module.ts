@@ -14,6 +14,9 @@ import { DevolutionsRegisterComponent } from './devolutions/devolutions-register
 import { ProductsComponent            } from './products/products/products.component';
 import { ProductsRegisterComponent    } from './products/products-register/products-register.component';
 import { NotFoundComponent            } from './not-found/not-found.component';
+import { UpdateProductComponent } from './products/update-product/update-product/update-product.component';
+import { UpdatePriceComponent } from './products/update-price/update-price/update-price.component';
+import { SearchProductComponent } from './products/search-product/search-product/search-product.component';
 
 
 const routes: Routes = [
@@ -30,6 +33,10 @@ const routes: Routes = [
 
   { path: 'products',               component: ProductsComponent,               canActivate: [AuthGuard]  },
   { path: 'products/register',      component: ProductsRegisterComponent,       canActivate: [AuthGuard]  },
+  { path: 'products/update',        component: UpdateProductComponent,          canActivate: [AuthGuard]  },
+  { path: 'products/update-price',  component: UpdatePriceComponent,            canActivate: [AuthGuard]  },
+  { path: 'products/search',        component: SearchProductComponent,          canActivate: [AuthGuard]  },
+
   { path: '404',                    component: NotFoundComponent,               canActivate: [AuthGuard]  }, // mejorar
 
   { path: '**',                     redirectTo: '404'                   }

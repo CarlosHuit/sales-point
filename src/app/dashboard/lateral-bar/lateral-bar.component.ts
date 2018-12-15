@@ -53,10 +53,10 @@ export class LateralBarComponent implements OnInit {
       title: 'Productos',
       keyword: 'products',
       opts: [
-        new Option('Registrar producto',  'products/register' ),
-        new Option('Modificar producto',  'products/update'   ),
-        new Option('Revisar producto',    'products/check'    ),
-        new Option('Buscar producto',     'products/search'    ),
+        new Option('Registrar producto',  'products/register'     ),
+        new Option('Modificar producto',  'products/update'       ),
+        new Option('Buscar producto',     'products/search'       ),
+        new Option('Actualizar precio',   'products/update-price' ),
       ]
     },
     {
