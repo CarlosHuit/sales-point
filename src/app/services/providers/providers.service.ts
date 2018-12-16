@@ -4,18 +4,17 @@ import { Router            } from '@angular/router';
 import { environment       } from '../../../environments/environment';
 import { GetTokenService   } from '../get-token/get-token.service';
 import { catchError, map, retry   } from 'rxjs/operators';
-import { throwError, Observable, of        } from 'rxjs';
+import { throwError, Observable, of } from 'rxjs';
 import { AuthService       } from '../../auth/auth.service';
 import urljoin from 'url-join';
-import { Product } from '../../classes/product';
-import { Price } from '../../classes/price';
+import { Provider } from '../../classes/providers';
 import { StorageService } from '../storage/storage.service';
 import { Client } from '../../classes/client';
 
 @Injectable({
   providedIn: 'root'
 })
-  export class ClientsService {
+  export class ProvidersService {
 
   apiUrl:      string;
   httpOptions: any;
@@ -28,20 +27,20 @@ import { Client } from '../../classes/client';
     private _storage: StorageService
   ) {
 
-    this.apiUrl = urljoin(environment.apiUrl, 'clients');
+    this.apiUrl = urljoin(environment.apiUrl, 'providers');
 
   }
 
-  saveClient = (client: Client) => {
-    const _id = this._storage.getElement('user')['userId'];
-    const url = urljoin(this.apiUrl, _id);
+  saveProvider = (provider: Provider) => {
+
+    const url = urljoin(this.apiUrl, provider.registerBy);
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
         'Authorization': `${this.getToken.addToken()}`
       })
     };
-    const data = JSON.stringify(client);
+    const data = JSON.stringify(provider);
 
     return this.http.post(url, data, this.httpOptions )
       .pipe(
@@ -64,7 +63,7 @@ import { Client } from '../../classes/client';
       return throwError('Ha ocurrido un error');
     } else {
 
-      this._auth.showError(error.error.message);
+
       return throwError('Ha ocurrido un error');
 
     }

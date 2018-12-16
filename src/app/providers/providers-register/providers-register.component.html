@@ -1,0 +1,44 @@
+<div class="container-product-register">
+
+  <mat-card class="card-register-form">
+
+    <app-title-bar [title]="'Registrar Proveedor'"></app-title-bar>
+
+    <div class="m-c-register-content" >
+
+
+        <div class="form-product-register" >
+
+        <div>
+          <label>
+            Nombre Proveedor:
+            <input type="text" [(ngModel)]="name" #cname autofocus minlength="10" >
+          </label>
+        </div>
+
+        <div>
+          <label>
+            Telefono:
+            <input type="text" [(ngModel)]="tel" #caddress >
+          </label>
+        </div>
+        
+
+        <div class="m-c-btn-save" >
+          <button (click)="saveProvider()" [disabled]="(caddress.value.length === 0 || cname.value.length === 0)" mat-raised-button color="warn">
+            Guardar
+          </button>
+        </div>
+  
+  
+      </div>
+
+
+    </div>
+
+    
+  </mat-card>
+
+  <app-spinner *ngIf="loading" ></app-spinner>
+
+</div>

@@ -20,7 +20,21 @@ export const get_provider = async (req, res, next) => {
 export const save_provider = async (req, res, next) => {
   
   const debug = new Debug(`${nameProject}: providers:save-one`)
-  res.send('Guardar un proveedor')  
+
+  try {
+
+    const { registerBy, name, tel } = req.body
+
+    const newProvider  = new Providers({registerBy, name, tel}) 
+    const saveProvider = await newProvider.save()    
+
+    res.status(200).json({
+      message: 'Proveedor Guardado'
+    })
+
+  } catch (error) {
+    handleError(res, error)
+  }
 
 }
 
@@ -39,11 +53,12 @@ export const update_provider = async (req, res, next) => {
 }
 
 
-const handLoginFailed = (res, message) => {
-  return res.status(401).json({
-    message: 'Login Fallido',
-    error:   message || 'Email y/o password no coinciden.'
-  })
+const handleError = (res, error) => {
+  const debug = new Debug(`${nameProject}: providers:error`)
+  debug(error)    
+  const err = 'Ha ocurrido un error'
+  debug(err)
+  return res.status(400).json({message: err, error: err}) 
 }
 
 

@@ -38,6 +38,8 @@ import { UpdateProductFormComponent } from './products/update-product-form/updat
 import { FormAddProductComponent } from './sales/form-add-product/form-add-product.component';
 import { BillingComponent } from './sales/billing/billing.component';
 import { ClientRegisterComponent } from './clients/client-register/client-register.component';
+import { ProvidersRegisterComponent } from './providers/providers-register/providers-register.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 
 
@@ -73,6 +75,8 @@ import { ClientRegisterComponent } from './clients/client-register/client-regist
     FormAddProductComponent,
     BillingComponent,
     ClientRegisterComponent,
+    ProvidersRegisterComponent,
+    SpinnerComponent,
   ],
   imports: [
     ReactiveFormsModule,
