@@ -36,6 +36,7 @@ export class FormAddProductComponent implements OnInit {
     );
 
     el.value = '';
+    delete(this.product.quantity);
     el.focus();
     this.evsAddProduct.emit(t);
     delete(this.product);

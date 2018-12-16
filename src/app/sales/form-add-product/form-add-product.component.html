@@ -14,7 +14,8 @@
           placeholder="Ingresa código de barras o SKU"
           spellcheck="false"
           (input)="search(code.value)"
-          autofocus #code
+          autofocus
+          #code
           >
       </div>
 
@@ -38,9 +39,9 @@
       </div>
 
       <div class="m-c-quantity">
-        <label>
+        <label *ngIf="product" >
           <input
-            *ngIf="product"
+            
             #quantity
             [disabled]="!product"
             [(ngModel)]="product.quantity"

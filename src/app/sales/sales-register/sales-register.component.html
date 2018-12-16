@@ -20,35 +20,31 @@
         <div class="m-c-table-products">
 
           <div class="m-c-table">
-            <table mat-table [dataSource]="dataSource">
+
+
+            <div class="table-titles">
+              <div class="table-title" *ngFor="let columns of columns" >{{columns}}</div>
+            </div>
+
+            <div class="container-rows">
+
+              <div
+                class="table-rows"
+                *ngFor="let item of dataSource; let i = index"
+                [class.pair]="i % 2 === 0"
+                [class.impair]="i % 2 !== 0"
+                >
   
-              <!-- Position Column -->
-              <ng-container matColumnDef="sku">
-                <th mat-header-cell *matHeaderCellDef> Sku </th>
-                <td mat-cell *matCellDef="let element"> {{element.sku}} </td>
-              </ng-container>
+                <span >{{item.sku}}</span>
+                <span >{{item.description}}</span>
+                <span class="center" >{{item.quantity}}</span>
+                <span >{{item.subTotal() | currency:0:'Q'}}</span>
   
-              <!-- Name Column -->
-              <ng-container matColumnDef="description">
-                <th mat-header-cell *matHeaderCellDef> Descripción </th>
-                <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-              </ng-container>
-  
-              <!-- Weight Column -->
-              <ng-container matColumnDef="quantity">
-                <th mat-header-cell *matHeaderCellDef> Cant. </th>
-                <td mat-cell *matCellDef="let element" style="text-align: center" > {{element.quantity}} </td>
-              </ng-container>
-  
-              <!-- Symbol Column -->
-              <ng-container matColumnDef="total">
-                <th mat-header-cell *matHeaderCellDef> Sub-total </th>
-                <td mat-cell *matCellDef="let element"> {{element.total | currency:2:'Q'}} </td>
-              </ng-container>
-  
-              <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index" [class.pair]="i % 2 !== 0" [class.impair]="(i % 2) === 0"></tr>
-            </table>
+              </div>
+
+            </div>
+
+
           </div>
 
           <div class="m-c-total">
@@ -56,6 +52,8 @@
           </div>
 
         </div>
+
+
 
         <div class="m-c-button-pay">
           <button mat-flat-button color="warn">

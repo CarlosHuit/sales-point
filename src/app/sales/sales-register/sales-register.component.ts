@@ -7,21 +7,6 @@ import { AddProductComponent } from '../../dialogs/add-product/add-product.compo
 import { Product } from '../../classes/product';
 
 
-export class PeriodicElement {
-  constructor(
-    public sku:         number,
-    public description: string,
-    public quantity:    number,
-    public total:       string,
-
-  ) {}
-}
-
-export class Item {
-  constructor() {}
-}
-
-
 @Component({
   selector: 'app-sales-register',
   templateUrl: './sales-register.component.html',
@@ -32,22 +17,13 @@ export class SalesRegisterComponent implements OnInit {
   signinForm: FormGroup;
   imgUrl: string;
 
-  displayedColumns: string[] = ['sku', 'description', 'quantity', 'total'];
+  columns: string[] = ['Sku', 'Descripción', 'U.', 'Sub total'];
   activeDialog:     boolean;
-  dataSource = [
-  ];
+  dataSource = [];
 
-
-  clients = [
-    'carlos',
-    'manuel'
-  ];
-
-  total = 200.00;
 
   constructor(
     private authService: AuthService,
-    private dialog: MatDialog
     ) { }
 
   ngOnInit() {
@@ -73,11 +49,11 @@ export class SalesRegisterComponent implements OnInit {
   }
 
   addProduct = (prod: Product) => {
-    console.log(prod);
+    this.dataSource.push(prod);
   }
 
   genTotal = () => {
-    return this.dataSource.map(p => p.total).reduce((acc, val) => acc + val, 0);
+    return this.dataSource.map(p => p.subTotal()).reduce((acc, val) => acc + val, 0);
   }
 
   onSubmit() {
