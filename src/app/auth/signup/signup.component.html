@@ -1,9 +1,4 @@
-<div class="m-c-banner-title">
-  <span class="logo-title" (click)="goToHome()" >Gestión de inventario</span>
-</div>
-  
-
-<div class="container" [class.mobile]="isMobile()" [class.d-c-signup]="!isMobile()">
+<div class="app-container" [class.mobile]="isMobile()" [class.d-c-signup]="!isMobile()">
 
   <!-- Dektop version -->
   <mat-card *ngIf="!isMobile()" class="d-c-card-signup center" >
@@ -153,14 +148,6 @@
           >
           Registrarse
         </button>
-  
-        <a
-          class="redirect-signup"
-          mat-button color="primary"
-          routerLink="/signin"
-          >
-          Ya tengo una cuenta
-        </a>
   
       </form>
 
@@ -315,15 +302,7 @@
           >
           Registrarse
         </button>
-  
-        <a
-          class="redirect-signup"
-          mat-button color="primary"
-          routerLink="/signin"
-          >
-          Ya tengo una cuenta
-        </a>
-  
+    
       </form>
 
     </div>

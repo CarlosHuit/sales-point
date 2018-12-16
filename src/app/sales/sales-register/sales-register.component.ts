@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { User } from '../../classes/user';
 import { MatDialog } from '@angular/material';
 import { AddProductComponent } from '../../dialogs/add-product/add-product.component';
+import { Product } from '../../classes/product';
 
 
 export class PeriodicElement {
@@ -14,6 +15,10 @@ export class PeriodicElement {
     public total:       string,
 
   ) {}
+}
+
+export class Item {
+  constructor() {}
 }
 
 
@@ -28,7 +33,7 @@ export class SalesRegisterComponent implements OnInit {
   imgUrl: string;
 
   displayedColumns: string[] = ['sku', 'description', 'quantity', 'total'];
-
+  activeDialog:     boolean;
   dataSource = [
   ];
 
@@ -48,7 +53,6 @@ export class SalesRegisterComponent implements OnInit {
   ngOnInit() {
     this.signinForm = new FormGroup({
       'client':   new    FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
-
     });
   }
 
@@ -56,29 +60,20 @@ export class SalesRegisterComponent implements OnInit {
     const t = {position: 11, name: 'Carlos', weight: 1.0, symbol: 'HP'};
     const x = [...this.dataSource];
 
-    // x.unshift(t);
     this.dataSource = x;
 
   }
 
-  openDialog = (id: string) => {
-
-    const dialogRef = this.dialog.open( AddProductComponent, { disableClose: false });
-
-    dialogRef.afterClosed()
-      .subscribe(
-        (ev) => ev !== undefined ? this.addProd(ev) : null
-      );
-
+  openDialog = () => {
+    this.activeDialog = true;
   }
 
-  addProd = (prod) => {
+  closeDialog = (ev) => {
+    this.activeDialog = false;
+  }
+
+  addProduct = (prod: Product) => {
     console.log(prod);
-    const x = [...this.dataSource];
-    const el = new PeriodicElement(prod.sku, prod.description, prod.quantity, prod.total );
-
-    x.push(el);
-    this.dataSource = x;
   }
 
   genTotal = () => {
@@ -107,3 +102,26 @@ export class SalesRegisterComponent implements OnInit {
   }
 
 }
+
+
+/*
+
+------> Orders <-----
+{
+  user_id: user_id,
+  client:  client_id,
+  date:    new Date(),
+  articles: [
+    {
+      product_id: product_id,
+      quantity:   number,
+      price:      string
+    }
+
+  ]
+}
+
+
+
+
+*/

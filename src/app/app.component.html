@@ -1,18 +1,17 @@
 <app-toolbar
   (evsMenu)="toggleMenu($event)"
   [title]="title"
-  *ngIf="isLoggedIn()"
   >
 </app-toolbar>
 
 
-<div class="container" *ngIf="isLoggedIn()" >
+<div class="container">
   <mat-drawer-container class="example-container">
 
 
     <mat-drawer
       class="menu"
-      [opened]="show || !mobileQuery.matches"
+      [opened]="(show || !mobileQuery.matches) && isLoggedIn()"
       [mode]="mobileQuery.matches ? 'over' : 'side'"
       >
       <app-lateral-bar
@@ -36,7 +35,4 @@
 
   </mat-drawer-container>
 </div>
-
-<router-outlet *ngIf="!isLoggedIn()" ></router-outlet>
-
 

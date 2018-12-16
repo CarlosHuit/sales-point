@@ -11,16 +11,13 @@ export class ToolbarComponent implements OnInit {
 
   @Input() title: string;
   @Output() evsMenu = new EventEmitter<boolean>();
-  fullName: string;
 
   constructor(
     private _router: Router,
     private authService: AuthService
   ) { }
 
-  ngOnInit() {
-    this.fullName = this.authService.currentUser.fullName().toString();
-  }
+  ngOnInit() { }
 
   isLoggedIn = () => {
 
@@ -30,6 +27,10 @@ export class ToolbarComponent implements OnInit {
 
   logout = () => {
     return this.authService.logout();
+  }
+
+  fullName = () => {
+    return this.authService.currentUser.fullName().toString();
   }
 
   toggleLateralBar = () => {
