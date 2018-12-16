@@ -28,6 +28,7 @@ export const save_provider = async (req, res, next) => {
     const newProvider  = new Providers({registerBy, name, tel}) 
     const saveProvider = await newProvider.save()    
 
+    debug('Guardando Cliente')
     res.status(200).json({
       message: 'Proveedor Guardado'
     })

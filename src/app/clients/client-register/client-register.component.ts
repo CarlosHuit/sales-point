@@ -12,6 +12,7 @@ export class ClientRegisterComponent implements OnInit {
 
   name = '';
   address = '';
+  loading: boolean;
 
   constructor(private _clients: ClientsService, private _auth: AuthService) { }
 
@@ -20,6 +21,7 @@ export class ClientRegisterComponent implements OnInit {
 
   saveClient = () => {
 
+    this.loading  = true;
     const name = this.name.trim();
     const address = this.address.trim();
 
@@ -28,18 +30,28 @@ export class ClientRegisterComponent implements OnInit {
       const client = new Client(name, address);
       this._clients.saveClient(client)
         .subscribe(
-          val => {
-            this._auth.showError(val['message']);
-            this.name = '';
-            this.address = '';
-          },
-          err => {
-            this._auth.showError(err);
-          }
+          val => this.handleReqSucces(val),
+          err => this.handleError(err)
         );
 
     }
 
+  }
+
+  handleReqSucces = (res) => {
+    setTimeout(() => {
+      this.name = '';
+      this.address = '';
+      this.loading = false;
+      this._auth.showError(res['message']);
+    }, 1000);
+  }
+
+  handleError = (err) => {
+    delete(this.address);
+    delete(this.name);
+    this.loading = false;
+    this._auth.showError(err);
   }
 
 }

@@ -25,7 +25,7 @@ export const save_client = async (req, res, next) => {
 
     const user_id = req.params.id
     const {name, address} = req.body
-    debug(req.body)
+
     const newCLient = new Clients({registerBy: user_id, name, address})
     const save = await newCLient.save()
 
