@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Product } from '../../classes/product';
+import { Article } from '../../classes/order';
 
 
 @Component({
@@ -9,13 +10,13 @@ import { Product } from '../../classes/product';
 })
 export class FormAddProductComponent implements OnInit {
 
-  @Output() evsAddProduct  = new EventEmitter<Product>();
+  @Output() evsAddProduct  = new EventEmitter<{product: Product, article: Article}>();
   @Output() evsCloseDialog = new EventEmitter<boolean>();
   product: Product;
   products = [
-    new Product(null, '1010', '14585', 'DETERGENTE BLANCA NIEVES BOLSA 250 GRS.', 10),
-    new Product(null, '1011', '12810', 'ACEITE PATRONA BOTELLITA 175 ML.',        11),
-    new Product(null, '1012', '16588', 'SALSA NATURAS RANCHERA SOBRE 106 GRS.',   12),
+    new Product(null, '1010', '14585', 'DETERGENTE BLANCA NIEVES BOLSA 250 GRS.', 10, null, '1234567890'),
+    new Product(null, '1011', '12810', 'ACEITE PATRONA BOTELLITA 175 ML.',        11, null, '1234567890'),
+    new Product(null, '1012', '16588', 'SALSA NATURAS RANCHERA SOBRE 106 GRS.',   12, null, '1234567890'),
   ];
   constructor() { }
 
@@ -26,7 +27,7 @@ export class FormAddProductComponent implements OnInit {
 
 
 
-    const t = new Product(
+    const product = new Product(
       null,
       this.product.barcode,
       this.product.sku,
@@ -35,10 +36,14 @@ export class FormAddProductComponent implements OnInit {
       this.product.quantity
     );
 
+    const article = new Article(this.product.product_id, this.product.quantity, new Date(), this.product.unitPrice);
+    const data = {product, article};
+
     el.value = '';
     delete(this.product.quantity);
     el.focus();
-    this.evsAddProduct.emit(t);
+
+    this.evsAddProduct.emit(data);
     delete(this.product);
 
   }

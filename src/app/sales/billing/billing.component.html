@@ -1,0 +1,28 @@
+<div class="container-bill center">
+  <mat-card>
+
+    <div class="add-bord" >
+      <h2>Total: </h2>
+      <h1> {{total | currency:2:'Q'}} </h1>
+    </div>
+
+    <div class="add-bord" >
+      <h2>Recibido: </h2>
+        <input type="number" autofocus #received (input)="in()" >
+    </div>
+
+
+    <div class="m-c-total" >
+      <h1>Cambio: </h1>
+      <h1 style="color: #f44336" >{{ received.value - total | currency:2:'Q' }}</h1>
+    </div>
+
+    <div class="m-c-button">
+      <button mat-raised-button color="accent" (click)="bill(received)" [disabled]="total > received.value" > Cobrar </button>
+    </div>
+    <div class="m-c-button">
+      <button mat-button color="primary" (click)="cancel()" > Cancelar </button>
+    </div>
+
+  </mat-card>
+</div>

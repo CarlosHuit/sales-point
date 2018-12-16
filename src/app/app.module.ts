@@ -36,6 +36,7 @@ import { UpdateProductComponent } from './products/update-product/update-product
 import { SearchProductComponent } from './products/search-product/search-product/search-product.component';
 import { UpdateProductFormComponent } from './products/update-product-form/update-product-form/update-product-form.component';
 import { FormAddProductComponent } from './sales/form-add-product/form-add-product.component';
+import { BillingComponent } from './sales/billing/billing.component';
 
 
 
@@ -69,6 +70,7 @@ import { FormAddProductComponent } from './sales/form-add-product/form-add-produ
     SearchProductComponent,
     UpdateProductFormComponent,
     FormAddProductComponent,
+    BillingComponent,
   ],
   imports: [
     ReactiveFormsModule,

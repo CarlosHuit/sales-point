@@ -8,7 +8,7 @@ export class Product {
     public description: string,
     public unitPrice?:  number,
     public quantity?:   number,
-    public product_id?: number,
+    public product_id?: string,
   ) { }
 
   subTotal () {

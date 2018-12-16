@@ -5,6 +5,8 @@ import { User } from '../../classes/user';
 import { MatDialog } from '@angular/material';
 import { AddProductComponent } from '../../dialogs/add-product/add-product.component';
 import { Product } from '../../classes/product';
+import { Article, Order } from '../../classes/order';
+import { StorageService } from '../../services/storage/storage.service';
 
 
 @Component({
@@ -14,22 +16,30 @@ import { Product } from '../../classes/product';
 })
 export class SalesRegisterComponent implements OnInit {
 
-  signinForm: FormGroup;
-  imgUrl: string;
 
-  columns: string[] = ['Sku', 'Descripción', 'U.', 'Sub total'];
-  activeDialog:     boolean;
-  dataSource = [];
+  signinForm:   FormGroup;
+  imgUrl:       string;
+  columns:      string[] = ['Sku', 'Descripción', 'U.', 'Sub total'];
+  activeDialog: boolean;
+  dataSource =  [];
+  order:        Order;
 
+  bill: boolean;
 
   constructor(
     private authService: AuthService,
+    private _storage:    StorageService,
+    private dialog: MatDialog
+
     ) { }
 
   ngOnInit() {
-    this.signinForm = new FormGroup({
-      'client':   new    FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
-    });
+    const user_id = this._storage.getElement('user')['userId'];
+    this.order = new Order(user_id, '10100101', null, [], 0, 0);
+  }
+
+  billing = () => {
+    this.bill = true;
   }
 
   insert = () => {
@@ -48,56 +58,29 @@ export class SalesRegisterComponent implements OnInit {
     this.activeDialog = false;
   }
 
-  addProduct = (prod: Product) => {
-    this.dataSource.push(prod);
+  addProduct = (data: {product: Product, article: Article}) => {
+    this.dataSource.push(data.product);
+    this.order.articles.push(data.article);
   }
 
   genTotal = () => {
     return this.dataSource.map(p => p.subTotal()).reduce((acc, val) => acc + val, 0);
   }
 
-  onSubmit() {
-
-
-    if (!this.signinForm.valid) {
-      this.authService.showError('Los datos ingresados no son válidos. Verifica y vuelve a intentarlo.');
-    }
-
-    if (this.signinForm.valid) {
-
-      const { email, password } = this.signinForm.value;
-      console.log(email, password);
-      // const user = new User(email, password);
-
-      // this.authService.signin(user)
-      //   .subscribe(
-      //     this.authService.login,
-      //     this.authService.handleError
-      //   );
-    }
+  closeDialogBill = (state) => {
+    this.bill = false;
   }
 
+  registerSale = (ev: {date: Date, received: number}) => {
+
+    this.order.received = ev.received;
+    this.order.billing_date = ev.date;
+    console.log(this.order);
+
+    this.dataSource = [];
+    this.bill = false;
+
+  }
+
+
 }
-
-
-/*
-
-------> Orders <-----
-{
-  user_id: user_id,
-  client:  client_id,
-  date:    new Date(),
-  articles: [
-    {
-      product_id: product_id,
-      quantity:   number,
-      price:      string
-    }
-
-  ]
-}
-
-
-
-
-*/

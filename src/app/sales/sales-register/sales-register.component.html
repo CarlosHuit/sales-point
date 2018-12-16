@@ -56,7 +56,7 @@
 
 
         <div class="m-c-button-pay">
-          <button mat-flat-button color="warn">
+          <button mat-flat-button color="warn" [disabled]="!genTotal()" (click)="billing()" >
             Facturar
           </button>
         </div>
@@ -80,6 +80,13 @@
     (evsCloseDialog)="closeDialog($event)"
     >
   </app-form-add-product>
+
+  <app-billing
+    (evsClose)="closeDialogBill($event)"
+    (evsPay)="registerSale($event)"
+    *ngIf="bill"
+    [total]="genTotal()"
+    ></app-billing>
 
 </div>
 
