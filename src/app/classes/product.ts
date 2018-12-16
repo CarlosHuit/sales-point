@@ -1,4 +1,5 @@
 import { User } from './user';
+import { Price } from './price';
 
 export class Product {
   constructor(
@@ -6,13 +7,13 @@ export class Product {
     public barcode:     string,
     public sku:         string,
     public description: string,
-    public unitPrice?:  number,
+    public price?:      Price | number,
     public quantity?:   number,
-    public product_id?: string,
+    public _id?: string,
   ) { }
 
   subTotal () {
-    return this.quantity * this.unitPrice;
+    return this.quantity * this.price['salesPrice'];
   }
 
 }

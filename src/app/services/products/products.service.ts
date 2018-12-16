@@ -3,12 +3,13 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Router            } from '@angular/router';
 import { environment       } from '../../../environments/environment';
 import { GetTokenService   } from '../get-token/get-token.service';
-import { catchError, map   } from 'rxjs/operators';
-import { throwError, Observable        } from 'rxjs';
+import { catchError, map, retry   } from 'rxjs/operators';
+import { throwError, Observable, of        } from 'rxjs';
 import { AuthService       } from '../../auth/auth.service';
 import urljoin from 'url-join';
 import { Product } from '../../classes/product';
 import { Price } from '../../classes/price';
+import { StorageService } from '../storage/storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,11 +23,19 @@ import { Price } from '../../classes/price';
     private http: HttpClient,
     private _auth: AuthService,
     private _router: Router,
-    private getToken: GetTokenService
+    private getToken: GetTokenService,
+    private _storage: StorageService
   ) {
 
     this.apiUrl = urljoin(environment.apiUrl, 'products');
 
+  }
+
+  getProduct = (code): Observable<Product | any> => {
+    const t = this._storage.getElement(`${code}`);
+    if (t) {
+      return of(t);
+    }
   }
 
   saveProduct = (product: Product, price: Price) => {
@@ -45,6 +54,33 @@ import { Price } from '../../classes/price';
         catchError(this.handleError)
       );
 
+  }
+
+  saveData = (x) => {
+    const t = x as Product[];
+    console.log('o');
+
+    t.forEach(product => {
+      this._storage.saveElement(`${product.sku}`, product);
+      this._storage.saveElement(`${product.barcode}`, product);
+    });
+
+    return x;
+  }
+
+  getProducts = (): Observable<Product[] | any> => {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': `${this.getToken.addToken()}`
+      })
+    };
+
+    return this.http.get(this.apiUrl, this.httpOptions)
+      .pipe(
+        map(x => this.saveData(x)),
+        catchError(this.handleError)
+      );
   }
 
   searchProduct = (code: string): Observable<Product  | any> => {

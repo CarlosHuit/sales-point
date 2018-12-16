@@ -61,6 +61,7 @@ export class SalesRegisterComponent implements OnInit {
   addProduct = (data: {product: Product, article: Article}) => {
     this.dataSource.push(data.product);
     this.order.articles.push(data.article);
+    console.log(this.dataSource);
   }
 
   genTotal = () => {

@@ -29,11 +29,11 @@
         <small>Sub-Total</small>
 
         <div class="add-borders center">
-          <h2 *ngIf="product">{{product.unitPrice | currency:2:'Q'}}</h2>
+          <h2 *ngIf="product">{{product.price.salesPrice | currency:2:'Q'}}</h2>
         </div>
 
         <div class="add-borders center">
-          <h2 *ngIf="product">{{product.unitPrice * product.quantity | currency:2:'Q'}}</h2>
+          <h2 *ngIf="product">{{product.price.salesPrice * product.quantity | currency:2:'Q'}}</h2>
         </div>
 
       </div>

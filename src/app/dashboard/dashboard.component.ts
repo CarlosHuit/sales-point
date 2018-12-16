@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { DetectMobileService } from '../services/detect-mobile/detect-mobile.service';
+import { ProductsService } from '../services/products/products.service';
 
 class ItemOpt  {
   constructor(
@@ -36,7 +37,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private _router: Router,
     public  changeDetectorRef:  ChangeDetectorRef,
     public  media:              MediaMatcher,
-    private _mobile: DetectMobileService
+    private _mobile:            DetectMobileService,
+    private _product:           ProductsService
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 864px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -44,6 +46,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this._product.getProducts()
+    .subscribe(
+      val => console.log(val),
+      err => console.log(err)
+    );
   }
 
   ngOnDestroy(): void {

@@ -7,7 +7,25 @@ import mongoose from 'mongoose'
 export const get_products = async ( req, res, next) => {
 
   const debug = new Debug(`${nameProject}: products:get-all`)
-  res.send('Mostrar todos los productos')
+
+
+  try {
+
+    const products  = await Products.find({}, {__v: 0}).populate('price', {salesPrice: 1})
+
+    if (products) {
+      res.status(200).json(products)
+    } else {
+      res.status(200).json([])
+    }
+
+  } catch (error) {
+    debug(error)    
+    const err = 'Ha ocurrido un error'
+    debug(err)
+    res.status(400).json({message: err, error: err}) 
+  }
+
 
 }
 

@@ -15,7 +15,7 @@ import { validateUser, verifyToken, validateSKU } from '../middleware'
 const app = express.Router()
 
 app.get('/:code',       verifyToken, validateUser, get_product  )
-app.get('/',            get_products )
+app.get('/',            verifyToken, validateUser, get_products )
 
 app.post('/',           verifyToken, validateUser, validateSKU, save_product, save_price, save_prev_price  )
 app.post('/save-many',  save_products )
