@@ -51,7 +51,7 @@ import { StorageService } from '../storage/storage.service';
 
     return this.http.post(this.apiUrl, data, this.httpOptions)
       .pipe(
-        catchError(this.handleError)
+        catchError(this.handleErr)
       );
 
   }
@@ -84,6 +84,27 @@ import { StorageService } from '../storage/storage.service';
   }
 
   searchProduct = (code: string): Observable<Product  | any> => {
+
+    const prodStorage = this._storage.getElement(code);
+
+    if (prodStorage) {
+      return this.searchInStorage(code);
+    }
+
+    if (!prodStorage) {
+      return this.searchInServer(code);
+    }
+
+  }
+
+
+  searchInStorage = (code: string) => {
+    const prod = this._storage.getElement(code);
+    return of(prod);
+  }
+
+  searchInServer = (code: string) => {
+
     const url = urljoin(this.apiUrl, code);
     this.httpOptions = {
       headers: new HttpHeaders({
@@ -96,8 +117,8 @@ import { StorageService } from '../storage/storage.service';
       .pipe(
         catchError(this.handleError)
       );
-
   }
+
 
   updateProduct = (product: Product) => {
 
@@ -138,6 +159,9 @@ import { StorageService } from '../storage/storage.service';
 
   }
 
+  handleErr = (error: HttpErrorResponse) => {
+    return throwError(error.error.message);
+  }
 
 
 }

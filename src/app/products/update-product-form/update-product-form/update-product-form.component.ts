@@ -9,7 +9,6 @@ import { Product } from '../../../classes/product';
 export class UpdateProductFormComponent implements OnInit {
 
   @Input() product: Product;
-  @Output() evsUpdate = new EventEmitter<Product>();
 
   prod: Product;
 
@@ -17,12 +16,6 @@ export class UpdateProductFormComponent implements OnInit {
 
   ngOnInit() {
     this.prod = Object.assign({}, this.product);
-  }
-
-  update = () => {
-    if (!this.compare()) {
-      this.evsUpdate.emit(this.prod);
-    }
   }
 
   compare = () => {

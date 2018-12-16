@@ -1,0 +1,29 @@
+<div class="container-form">
+
+    <h1>Detalles del producto</h1>
+  
+    <div>
+  
+      <label>
+        Código de barras:
+        <input type="text" [(ngModel)]="product.barcode" readonly >
+      </label>
+    
+      <label>
+        SKU:
+        <input type="text" [(ngModel)]="product.sku" readonly>
+      </label>
+    
+      <label>
+        Descripción:
+        <textarea class="description" readonly cols="30" >{{product.description}}</textarea>
+      </label>
+
+      <label>
+        Precio de venta:
+        <input type="text" [ngModel]="product.price.salesPrice | currency:2:'Q'" readonly>
+      </label>
+  
+    </div>
+  
+</div>

@@ -1,3 +1,35 @@
-<p>
-  search-product works!
-</p>
+<div class="app-container center">
+
+  <mat-card class="card">
+    <app-title-bar [title]="'Buscar Producto'" ></app-title-bar>
+
+    <div class="container-search-product" >
+
+      <div class="form-search">
+        <label>
+          Ingrese el sku del producto:
+        <input type="text" class="code" [(ngModel)]="code" autofocus="true">
+        </label>
+        <button mat-flat-button color="warn" [disabled]="loading" (click)="searchProduct()">BUSCAR</button>
+      </div>
+
+
+      <div *ngIf="product" class="container-details">
+        
+        <app-product-detail [product]="product" > </app-product-detail>
+
+      </div>
+
+      <div style="height: 50px; width: 50px; margin-top: 10px" *ngIf="loading" >
+        <mat-spinner></mat-spinner>
+      </div>
+
+
+    </div>
+
+
+
+    
+  </mat-card>
+
+</div>

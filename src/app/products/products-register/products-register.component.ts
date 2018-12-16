@@ -18,8 +18,7 @@ import { ProductsService } from '../../services/products/products.service';
 export class ProductsRegisterComponent implements OnInit {
 
   registerForm: FormGroup;
-  avatar:     string;
-  // x = new Product()
+  loading: boolean;
 
   constructor(
     private fb:           FormBuilder,
@@ -69,21 +68,34 @@ export class ProductsRegisterComponent implements OnInit {
 
       if ( costPrice < salePrice ) {
 
-        const product = new Product(user_id, barCode, sku, description);
+        this.loading = true;
+        const prod = description.toUpperCase();
+        const product = new Product(user_id, barCode, sku, prod );
         const price   = new Price(user_id, null, new Date(), costPrice, salePrice );
 
         this._products.saveProduct(product, price)
           .subscribe(
-            val => {
-              this.registerForm.reset();
-              this.authService.showError('Guardado Correctamente');
-            },
-            err => console.log(err)
+            val => this.handleReqSucces(),
+            err => this.handleError(err)
           );
 
       }
 
     }
+  }
+
+  handleReqSucces = () => {
+    setTimeout(() => {
+      this.registerForm.reset();
+      this.authService.showError('Guardado Correctamente');
+      this.loading = false;
+    }, 1000);
+  }
+  handleError = (err) => {
+    setTimeout(() => {
+      this.authService.showError(err);
+      this.loading = false;
+    }, 1000);
   }
 
 }
