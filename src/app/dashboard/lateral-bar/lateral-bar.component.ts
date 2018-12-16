@@ -63,8 +63,8 @@ export class LateralBarComponent implements OnInit {
       title: 'Clientes',
       keyword: 'clients',
       opts: [
-        new Option('Registrar cliente',  'client/register' ),
-        new Option('Modificar cliente',  'client/update'   ),
+        new Option('Registrar cliente',  'clients/register' ),
+        new Option('Modificar cliente',  'clients/update'   ),
       ]
     },
     {

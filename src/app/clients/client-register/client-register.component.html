@@ -1,0 +1,41 @@
+<div class="container-product-register">
+
+    <mat-card class="card-register-form">
+  
+      <app-title-bar [title]="'Registrar Cliente'"></app-title-bar>
+  
+      <div class="m-c-register-content" >
+  
+  
+          <div class="form-product-register" >
+  
+          <div>
+            <label>
+              Nombre Cliente:
+              <input type="text" [(ngModel)]="name" #cname autofocus>
+            </label>
+          </div>
+  
+          <div>
+            <label>
+              Dirección:
+              <input type="text" [(ngModel)]="address" #caddress >
+            </label>
+          </div>
+          
+  
+          <div class="m-c-btn-save" >
+            <button (click)="saveClient()" [disabled]="(caddress.value.length === 0 || cname.value.length === 0)" mat-raised-button color="warn">
+              Guardar
+            </button>
+          </div>
+    
+    
+        </div>
+  
+  
+      </div>
+  
+    </mat-card>
+  
+  </div>

@@ -76,6 +76,7 @@ export class SalesRegisterComponent implements OnInit {
 
     this.order.received = ev.received;
     this.order.billing_date = ev.date;
+    this.order.total = this.genTotal();
     console.log(this.order);
 
     this.dataSource = [];

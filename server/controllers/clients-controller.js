@@ -20,7 +20,27 @@ export const get_client = async (req, res, next) => {
 export const save_client = async (req, res, next) => {
   
   const debug = new Debug(`${nameProject}: clients:save-one`)
-  res.send('Guardar un solo cliente');
+
+  try {
+
+    const user_id = req.params.id
+    const {name, address} = req.body
+    debug(req.body)
+    const newCLient = new Clients({registerBy: user_id, name, address})
+    const save = await newCLient.save()
+
+    debug('Guardando cliente')
+    res.status(200).json({
+      message: 'Cliente Guardado'
+    })
+    
+  } catch (error) {
+    debug(error)    
+    const err = 'Ha ocurrido un error'
+    debug(err)
+    res.status(400).json({message: err, error: err}) 
+  }
+
 
 }
 
