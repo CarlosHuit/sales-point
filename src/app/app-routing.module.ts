@@ -19,6 +19,7 @@ import { UpdatePriceComponent         } from './products/update-price/update-pri
 import { SearchProductComponent       } from './products/search-product/search-product/search-product.component';
 import { ClientRegisterComponent      } from './clients/client-register/client-register.component';
 import { ProvidersRegisterComponent   } from './providers/providers-register/providers-register.component';
+import { UpdateClientComponent } from './clients/update-client/update-client.component';
 
 
 const routes: Routes = [
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: 'products/update-price',  component: UpdatePriceComponent,            canActivate: [AuthGuard]  },
   { path: 'products/search',        component: SearchProductComponent,          canActivate: [AuthGuard]  },
   { path: 'clients/register',       component: ClientRegisterComponent,         canActivate: [AuthGuard]  },
+  { path: 'clients/update',         component: UpdateClientComponent,           canActivate: [AuthGuard]  },
   { path: 'providers/register',     component: ProvidersRegisterComponent,      canActivate: [AuthGuard]  },
 
   { path: '404',                    component: NotFoundComponent,               canActivate: [AuthGuard]  }, // mejorar

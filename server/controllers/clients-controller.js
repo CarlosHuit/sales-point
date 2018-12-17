@@ -6,7 +6,20 @@ import { Clients } from '../models'
 export const get_clients = async ( req, res, next) => {
 
   const debug = new Debug(`${nameProject}: clients:get-all`)
-  res.send('Mostrar todos los clientes');
+
+  try {
+
+    const clients = await Clients.find({}, {__v: 0})
+
+    debug('Mostrando todos los clientes')
+    res.status(200).json(clients)
+
+  } catch (error) {
+    debug(error)    
+    const err = 'Ha ocurrido un error'
+    debug(err)
+    res.status(400).json({message: err, error: err}) 
+  }
 
 }
 

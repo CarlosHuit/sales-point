@@ -30,7 +30,6 @@ export class UpdateProductFormComponent implements OnInit {
 
   update = () => {
     if ( this.compare ) {
-      console.log('update');
       this.evsUpdateProduct.emit(this.prod);
     }
   }

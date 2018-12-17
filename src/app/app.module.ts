@@ -41,6 +41,7 @@ import { ClientRegisterComponent } from './clients/client-register/client-regist
 import { ProvidersRegisterComponent } from './providers/providers-register/providers-register.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail/product-detail.component';
+import { UpdateClientComponent } from './clients/update-client/update-client.component';
 
 
 
@@ -79,6 +80,7 @@ import { ProductDetailComponent } from './products/product-detail/product-detail
     ProvidersRegisterComponent,
     SpinnerComponent,
     ProductDetailComponent,
+    UpdateClientComponent,
   ],
   imports: [
     ReactiveFormsModule,

@@ -32,6 +32,22 @@ import { Client } from '../../classes/client';
 
   }
 
+  getClients = (): Observable<Client[] | any> => {
+
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': `${this.getToken.addToken()}`
+      })
+    };
+
+    return this.http.get<Client[]>(this.apiUrl, this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+
+  }
+
   saveClient = (client: Client) => {
     const _id = this._storage.getElement('user')['userId'];
     const url = urljoin(this.apiUrl, _id);

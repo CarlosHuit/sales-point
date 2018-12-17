@@ -1,0 +1,69 @@
+<div class="app-container center">
+  <mat-card class="card">
+
+    <app-title-bar
+      [title]="'Actualizar Producto'"
+      >
+    </app-title-bar>
+
+    <div class="m-c-input-search">
+
+
+
+      <div class="form-search center">
+
+        <h2>Selecciona un cliente</h2>
+
+        <div class="m-c-select-client" >
+          <mat-form-field class="mat-form-field" *ngIf="!loadingClients">
+            <mat-select placeholder="Clientes">
+              <mat-option *ngFor="let client of clients" (click)="changeClient(client)" [value]="client.name">
+                {{client.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+      </div>
+
+
+      <div *ngIf="currentClient" class="update-prod-form center">
+
+        <h2 style="text-align: center">Datos del Cliente</h2>
+
+        <label>
+          Nombre Cliente:
+          <input type="text" [(ngModel)]="currentClient.name" >
+        </label>
+        <label>
+          Direccion Cliente:
+          <input type="text" [(ngModel)]="currentClient.address" >
+        </label>
+
+        <div class="center" style="width: 100%">
+          <button
+            mat-raised-button
+            color="accent"
+            (click)="update()"
+            [disabled]="
+              currentClient.name === copyClient.name &&
+              currentClient.address === copyClient.address
+            "
+            >
+            ACTUALIZAR
+          </button>
+        </div>
+
+
+      </div>
+
+      
+    </div>
+
+    <div style="height: 50px; width: 50px; margin-top: 10px" *ngIf="loading">
+      <mat-spinner></mat-spinner>
+    </div>
+
+  </mat-card>
+</div>
+
