@@ -25,7 +25,7 @@ const routes: Routes = [
 
   { path: '',                       component: DashboardComponent,              canActivate: [AuthGuard]        },
   { path: 'signin',                 component: SigninComponent,                 canActivate: [IsLoggedInGuard]  },
-  { path: 'signup',                 component: SignupComponent,                 canActivate: [AuthGuard]  },
+  { path: 'signup',                 component: SignupComponent,                 canActivate: [IsLoggedInGuard]  },
   { path: 'sales',                  component: SalesComponent,                  canActivate: [AuthGuard]  },
   { path: 'sales/register',         component: SalesRegisterComponent,          canActivate: [AuthGuard]  },
   { path: 'purchases',              component: PurchasesComponent,              canActivate: [AuthGuard]  },
