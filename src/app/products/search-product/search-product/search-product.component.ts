@@ -11,7 +11,7 @@ import { AuthService } from '../../../auth/auth.service';
 export class SearchProductComponent implements OnInit {
 
   code: string;
-  product: Product;
+  product: Product | any;
   loading: boolean;
 
   constructor(private _product: ProductsService, private _auth: AuthService) { }
