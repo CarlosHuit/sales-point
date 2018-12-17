@@ -12,12 +12,14 @@ async function  start() {
 
   try {
   
+    debug('hola')
     await mongoose.connect( mongoURL, { useNewUrlParser: true } )
     
     app.listen( port, () => debug(`Servidor escuchando en el puerto: ${ port }`))
     
   } catch (error) {
 
+    debug('error')
     debug(error)
     
   }
