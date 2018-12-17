@@ -58,7 +58,6 @@ import { StorageService } from '../storage/storage.service';
 
   saveData = (x) => {
     const t = x as Product[];
-    console.log('o');
 
     t.forEach(product => {
       this._storage.saveElement(`${product.sku}`, product);

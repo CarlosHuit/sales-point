@@ -80,15 +80,6 @@
 
 @media (max-height: 720px) {
 
-  .container-product-register {
-    display: block;
-  }
-
-  .card-register-form {
-    min-height: 650px;
-    margin: 10px auto;
-  }
-
   .form-product-register{
     margin-bottom: 0;
   }

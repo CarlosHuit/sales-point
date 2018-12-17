@@ -93,5 +93,29 @@
     font-size: 42px;
   }
 
+
 }
 
+@media (max-width: 420px) {
+
+  .container-cards {
+    display: block;
+    width: 100%;
+  }
+
+  .item-card:hover {
+    transform: scale(1);
+  }
+
+  .item-card {
+    box-sizing: border-box;
+    width: 95%;
+    margin: 10px auto;
+  }
+
+  .item-card .title {
+    margin: 5px auto;
+    font-size: 46px;
+  }
+
+}

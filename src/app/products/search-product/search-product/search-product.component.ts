@@ -37,7 +37,6 @@ export class SearchProductComponent implements OnInit {
   handleReqSuccess = (res: Product) => {
     setTimeout(() => {
       this.product = res;
-      console.log(res);
       this.loading = false;
     }, 1000);
   }

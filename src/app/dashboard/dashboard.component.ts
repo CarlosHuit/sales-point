@@ -48,8 +48,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this._product.getProducts()
     .subscribe(
-      val => console.log(val),
-      err => console.log(err)
+      val => {},
+      err => {}
     );
   }
 

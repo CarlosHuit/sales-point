@@ -9,6 +9,7 @@ import { Product } from '../../../classes/product';
 export class UpdateProductFormComponent implements OnInit {
 
   @Input() product: Product;
+  @Output() evsUpdateProduct = new EventEmitter<Product>();
 
   prod: Product;
 
@@ -25,5 +26,14 @@ export class UpdateProductFormComponent implements OnInit {
 
     return vSku && vBarcode && vDesc ? true : false;
   }
+
+
+  update = () => {
+    if ( this.compare ) {
+      console.log('update');
+      this.evsUpdateProduct.emit(this.prod);
+    }
+  }
+
 
 }

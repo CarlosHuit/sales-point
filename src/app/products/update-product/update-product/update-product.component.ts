@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../../services/products/products.service';
 import { AuthService } from '../../../auth/auth.service';
 import { Product } from 'src/app/classes/product';
+import { StorageService } from '../../../services/storage/storage.service';
 
 @Component({
   selector: 'app-update-product',
@@ -14,7 +15,8 @@ export class UpdateProductComponent implements OnInit {
   product: Product;
   constructor(
     private _product: ProductsService,
-    private _auth:    AuthService
+    private _auth:    AuthService,
+    private _storage: StorageService
   ) { }
 
   ngOnInit() {
@@ -75,8 +77,10 @@ export class UpdateProductComponent implements OnInit {
       );
   }
 
-  updateHandleRes = (val) => {
+  updateHandleRes = (product) => {
     setTimeout(() => {
+      this._storage.saveElement(product['sku'], product);
+      this._storage.saveElement(product['barcode'], product);
       this.loading = false;
       this._auth.showError('Producto actualizado');
     }, 1000);
