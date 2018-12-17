@@ -34,6 +34,21 @@ import { Client } from '../../classes/client';
 
   getClients = (): Observable<Client[] | any> => {
 
+    const clients = this._storage.getElement('clients');
+
+    if (clients) {
+      console.log('storage');
+      return this.getClientsOfStorage();
+    }
+
+    if (!clients) {
+      console.log('server ');
+      return this.getClientesOfServer();
+    }
+
+  }
+
+  getClientesOfServer = (): Observable<Client[] | any> => {
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
@@ -45,7 +60,25 @@ import { Client } from '../../classes/client';
       .pipe(
         catchError(this.handleError)
       );
+  }
 
+  getClientsOfStorage = (): Observable<Client[]> => {
+    const clients = this._storage.getElement('clients');
+    return of(clients);
+  }
+
+  updateClient = (client: Client) => {
+    const url = urljoin(this.apiUrl, client._id);
+    const data = JSON.stringify(client);
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': `${this.getToken.addToken()}`
+      })
+    };
+
+    return this.http.put(url, data, this.httpOptions)
+      .pipe( catchError(this.handleError) );
   }
 
   saveClient = (client: Client) => {

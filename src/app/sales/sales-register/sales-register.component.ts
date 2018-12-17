@@ -7,6 +7,8 @@ import { AddProductComponent } from '../../dialogs/add-product/add-product.compo
 import { Product } from '../../classes/product';
 import { Article, Order } from '../../classes/order';
 import { StorageService } from '../../services/storage/storage.service';
+import { ClientsService } from '../../services/clients/clients.service';
+import { Client } from 'src/app/classes/client';
 
 
 @Component({
@@ -25,15 +27,17 @@ export class SalesRegisterComponent implements OnInit {
   order:        Order;
 
   bill: boolean;
+  clients: Client[];
 
   constructor(
-    private authService: AuthService,
-    private _storage:    StorageService,
-    private dialog: MatDialog
-
+    private authService:  AuthService,
+    private _storage:     StorageService,
+    private dialog:       MatDialog,
+    private _client:      ClientsService
     ) { }
 
   ngOnInit() {
+    this.getClients();
     const user_id = this._storage.getElement('user')['userId'];
     this.order = new Order(user_id, '10100101', null, [], 0, 0);
   }
@@ -80,6 +84,22 @@ export class SalesRegisterComponent implements OnInit {
     this.dataSource = [];
     this.bill = false;
 
+  }
+
+  getClients = () => {
+    this._client.getClients()
+      .subscribe(
+        clients => {
+          const index       = clients.findIndex(cl => cl.name.toLowerCase() === 'cliente gérico');
+          this.order.client = clients[index];
+          this.clients      = clients;
+        },
+        err => this.authService.showError('No se puede obtener los clientes')
+      );
+  }
+
+  changeClient = (client: Client) => {
+    this.order.client = client;
   }
 
 

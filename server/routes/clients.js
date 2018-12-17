@@ -10,6 +10,6 @@ app.post('/',    save_clients  )
 app.get('/:id',  get_client    )
 app.get('/',     verifyToken, validateUser, get_clients   )
 
-app.put('/:id',  update_client )
+app.put('/:id',  verifyToken, validateUser, update_client )
 
 export default app

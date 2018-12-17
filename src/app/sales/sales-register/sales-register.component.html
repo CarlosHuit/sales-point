@@ -1,4 +1,4 @@
-<div class="app-container">
+<div class="app-container" *ngIf="clients" >
 
   <div class="container-sale-register">
     <mat-card class="card-sale-reg">
@@ -9,10 +9,17 @@
 
         <div class="m-c-clients-detail">
 
-          <label>
-            Cliente: 
-            <input type="text" value="Cliente genérico" placeholder="Cliente genérico" readonly>
-          </label>
+          <span>Cliente: </span>
+
+          <mat-form-field>
+
+            <mat-select [value]="order.client.name">
+              <mat-option (click)="changeClient(client)" *ngFor="let client of clients" [value]="client.name">
+                {{client.name}}
+              </mat-option>
+            </mat-select>
+
+          </mat-form-field>
         </div>
 
 

@@ -67,7 +67,28 @@ export const save_clients = async (req, res, next) => {
 export const update_client = async (req, res, next) => {
 
   const debug = new Debug(`${nameProject}: clients:update`)
-  res.send('Actualizar datos de cliente')
+
+  try {
+
+    const user_id = req.user._id
+    const {name, address} = req.body
+    const _id = req.params.id
+
+    const update = await Clients.findByIdAndUpdate( _id, { $set: { registerBy: user_id, name, address }}, { new: true })
+    
+    debug('Cliente Actualizado')
+    res.status(200).json({
+      _id: update._id,
+      name: update.name,
+      address: update.address
+    })
+
+  } catch (error) {
+    debug(error)    
+    const err = 'Ha ocurrido un error'
+    debug(err)
+    res.status(400).json({message: err, error: err}) 
+  }
 
 }
 

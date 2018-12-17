@@ -4,15 +4,16 @@
   height: 100%;
   justify-content: center;
   align-items: center;
+  position: relative;
 
 }
 
 .card-register-form {
   width: 80%;
-    height: 90%;
-    display: flex;
-    flex-direction: column;
-    position: relative;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 .m-c-register-content {
@@ -29,26 +30,26 @@
   padding: 30px 20px;
 }
 
-.form-product-register div{
+.form-product-register div {
   width: 100%;
   margin: 15px 0;
 }
 
-.form-product-register div label{
+.form-product-register div label {
   width: 100%;
   padding-left: 10px;
   font-weight: 500;
   color: rgba(0, 0, 0, .6)
 }
 
-.form-product-register div label input{
+.form-product-register div label input {
   width: 100%;
   box-sizing: border-box;
   height: 40px;
   border: none;
   border-radius: 50px;
   padding: 3px 10px 0 10px;
-  border: 1px solid rgba(0,0,0,.2);
+  border: 1px solid rgba(0, 0, 0, .2);
   font-size: 16px;
   outline: none;
   margin-top: 5px;
@@ -70,7 +71,7 @@
 }
 
 @media (max-width: 480px) {
-  .card-register-form{
+  .card-register-form {
     width: 96%;
     height: 98%;
     margin: 1% auto;
@@ -89,14 +90,14 @@
     margin: 10px auto;
   }
 
-  .form-product-register{
+  .form-product-register {
     margin-bottom: 0;
   }
 }
 
 
 @media (min-width: 1240px) {
-  .card-register-form{
+  .card-register-form {
     height: 720px;
     width: 640px;
   }
