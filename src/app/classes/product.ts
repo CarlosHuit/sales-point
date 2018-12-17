@@ -7,7 +7,7 @@ export class Product {
     public barcode:     string,
     public sku:         string,
     public description: string,
-    public price?:      Price | number,
+    public price?:      Price | any | number,
     public quantity?:   number,
     public _id?: string,
   ) { }
