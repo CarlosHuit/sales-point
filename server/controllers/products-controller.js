@@ -11,7 +11,7 @@ export const get_products = async ( req, res, next) => {
 
   try {
 
-    const products  = await Products.find({}, {__v: 0}).populate('price', {salesPrice: 1})
+    const products  = await Products.find({}, {__v: 0}).populate('price', {salesPrice: 1, costPrice: 1})
 
     if (products) {
       res.status(200).json(products)
@@ -37,8 +37,8 @@ export const get_product = async (req, res, next) => {
     
     const code = req.params.code
 
-    const prodBySku     = await Products.findOne({sku: code}, {__v: 0}).populate('price', {salesPrice: 1})
-    const prodByBarcode = await Products.findOne({barcode: code}, {__v: 0}).populate('price', {salesPrice: 1})
+    const prodBySku     = await Products.findOne({sku: code}, {__v: 0}).populate('price', {salesPrice: 1, costPrice: 1})
+    const prodByBarcode = await Products.findOne({barcode: code}, {__v: 0}).populate('price', {salesPrice: 1, costPrice: 1})
 
     if (prodBySku) {
 

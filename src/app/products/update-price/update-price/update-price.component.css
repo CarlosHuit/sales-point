@@ -1,0 +1,183 @@
+.card {
+  max-width: 720px;
+  height: 720px;
+}
+
+.container-search-product {
+  width: 100%;
+  height: calc(100% - 45px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px auto;
+  box-sizing: border-box;
+}
+
+
+
+.form-search {
+  width: 100%;
+  height: 200px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 5px 15px 15px 15px;
+  background: #eaecee;
+  border: 1px solid rgba(0,0,0,.3);
+  box-sizing: border-box;
+  max-width: 600px;
+  box-sizing: border-box;
+}
+
+
+.form-search label {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 28px;
+  box-sizing: border-box;
+  padding-top: 15px;
+}
+
+.form-search label input{
+  width: 100%;
+  box-sizing: border-box;
+  height: 50px;
+  border-radius: 50px;
+  border: 1px solid rgba(0,0,0,.3);
+  margin: 10px auto;
+  outline: none;
+  padding: 5px 20px;
+  font-size: 28px;
+  margin: 20px 0;
+}
+
+.form-search label input:focus {
+  border-color: #1c97d4;
+  border-width: 2px;
+}
+
+button{
+  width: 100%;
+  height: 40px;
+  margin: 0 auto;
+  max-width: 450px;
+  font-size: 22px;
+  color: white;
+}
+
+.input-price {
+  color: #f44336;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  font-size: 30px !important;
+  text-align: center;
+  height: auto !important;
+  width: 100% !important;
+  border-radius: 5px !important;
+  padding: 10px 5px !important
+}
+
+.button-update {
+  margin: 20px auto; 
+  background: #239B56;
+  margin-bottom: 0px;
+}
+
+
+.label-prices {
+  font-size: 21px;
+  margin-top: 10px;
+  font-weight: 500;
+  text-align: center;
+  width: 95%;
+  margin: 0 auto;
+}
+
+
+.container-details {
+  width: 100%;
+  padding: 5px 15px 15px 15px;
+  background: #eaecee;
+  border: 1px solid rgba(0,0,0,.3);
+  box-sizing: border-box;
+  max-width: 600px;
+  height: calc(100% - 230px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+
+.container-details label {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-details label input {
+  width: 100%;
+  box-sizing: border-box;
+  height: 45px;
+  border-radius: 50px;
+  border: 1px solid rgba(0,0,0,.3);
+  margin: 10px auto;
+  outline: none;
+  padding: 10px 20px;
+  font-size: 24px;
+}
+
+.container-details label textarea {
+  width:          100%;
+  font-family:    'Roboto', sans-serif;
+  border-radius:  10px;
+  font-size:      24px;
+  padding:        5px 20px;
+  box-sizing:     border-box;
+  resize:         none;
+  outline:        none;
+  margin:         10px auto
+}
+
+@media (max-height: 790px) {
+  .app-container.center {
+    display: block !important;
+  }
+
+  .card {
+    margin: 5px auto;
+  }
+}
+
+@media (max-width: 460px ) {
+  .form-search label {
+    font-size: 24px;
+    font-weight: 500;
+  }
+  .form-search label input {
+    font-size: 22px;
+  }
+  .container-details label input{
+    font-size: 16px;
+    height: 38px;
+  }
+  .container-details label textarea {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 460px ) {
+  .label-prices {
+    font-size: 16px !important;
+  }
+
+  .input-price {
+    font-size: 24px !important;
+  }
+} 

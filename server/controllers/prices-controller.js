@@ -54,7 +54,27 @@ export const save_prices = async (req, res, next) => {
 export const update_price = async (req, res, next) => {
 
   const debug = new Debug(`${nameProject}: prices:update`)
-  res.send('actualizar precio')
+  
+  try {
+
+    const id_price_doc = req.params.id_price_doc
+    const { changedBy, product, date, costPrice, salesPrice } = req.body
+    const user_id = req.user._id
+
+    const update = await Prices.findOneAndUpdate({_id: id_price_doc}, { $set: {changedBy: user_id, date, costPrice, salesPrice}}, {new: true} )
+    const price  = await Prices.findById(id_price_doc, {costPrice: 1, salesPrice: 1})
+    res.status(200).json({
+      message: 'Precio actualizado',
+      price
+    })
+    
+  } catch (error) {
+    debug(error)    
+    const err = 'Ha ocurrido un error'
+    debug(err)
+    res.status(400).json({message: err, error: err}) 
+  }
+
 
 }
 

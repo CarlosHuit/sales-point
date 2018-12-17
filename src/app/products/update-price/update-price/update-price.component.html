@@ -1,3 +1,60 @@
-<p>
-  update-price works!
-</p>
+<div class="app-container center">
+
+  <mat-card class="card">
+    <app-title-bar [title]="'Actualizar Precio'"></app-title-bar>
+
+    <div class="container-search-product">
+
+      <div class="form-search">
+        <label>
+          Ingrese el sku del producto:
+          <input type="text" class="code" [(ngModel)]="code" autofocus="true">
+        </label>
+        <button mat-flat-button color="warn" [disabled]="loading" (click)="searchProduct()">BUSCAR</button>
+      </div>
+
+
+      <div *ngIf="product && !loading" class="container-details">
+
+        <label>
+          Sku:
+          <input type="text" [value]="product.sku" readonly>
+        </label>
+        <label>
+          Descripción:
+          <textarea readonly >{{product.description}}</textarea>
+        </label>
+
+
+        <div style="display: grid; grid-template-columns: 50% 50%" >
+          <label class="label-prices" >
+            Cambiar Precio Costo:
+            <input class="input-price" type="number" #costPrice [(ngModel)]="product.price.costPrice" autofocus>
+          </label>
+          <label class="label-prices" >
+            Cambiar Precio Venta:
+            <input class="input-price" type="number" #salePrice [(ngModel)]="product.price.salesPrice" autofocus >
+          </label>
+        </div>
+
+        <button (click)="updatePriceSale(costPrice, salePrice)" class="button-update" mat-flat-button >ACTUALIZAR</button>
+
+      </div>
+
+
+
+
+      <div style="height: 50px; width: 50px; margin-top: 10px" *ngIf="loading">
+        <mat-spinner></mat-spinner>
+      </div>
+
+
+    </div>
+
+
+
+
+  </mat-card>
+
+
+</div>

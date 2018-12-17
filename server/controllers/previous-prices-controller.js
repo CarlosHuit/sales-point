@@ -40,6 +40,34 @@ export const save_prev_price = async (req, res, next) => {
 
 }
 
+export const add_prev_price = async (req, res, next) => {
+  
+  const debug = new Debug(`${nameProject}: prices:save-previous-price`)
+
+  try {
+
+    const { changedBy, product, date, costPrice, salesPrice } = req.body
+
+    const newPrice    = {changedBy, product, date, costPrice, salesPrice}
+    const addnewPrice = await PreviousPrices.findOneAndUpdate({product: product}, {$push: {historial: newPrice}})
+
+    debug('Prev Preci added')
+    next()
+
+  } catch (error) {
+
+    debug(error)    
+    const err = 'Ha ocurrido un error'
+    debug(err)
+    res.status(400).json({message: err, error: err})   
+
+  }
+
+
+}
+
+
+
 const handLoginFailed = (res, message) => {
   return res.status(401).json({
     message: 'Login Fallido',
