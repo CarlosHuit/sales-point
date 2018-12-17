@@ -46,14 +46,6 @@ export class SalesRegisterComponent implements OnInit {
     this.bill = true;
   }
 
-  insert = () => {
-    const t = {position: 11, name: 'Carlos', weight: 1.0, symbol: 'HP'};
-    const x = [...this.dataSource];
-
-    this.dataSource = x;
-
-  }
-
   openDialog = () => {
     this.activeDialog = true;
   }
@@ -83,6 +75,7 @@ export class SalesRegisterComponent implements OnInit {
 
     this.dataSource = [];
     this.bill = false;
+    console.log(this.order);
 
   }
 

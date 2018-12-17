@@ -68,4 +68,11 @@ h2, h1 {
   padding: 10px 0px 10px 15px;
   border: 2px solid #F44336;
   border-radius: 12px;
+  flex-direction: column !important;
+  align-items: center !important;
+  padding: 10px 0;
+}
+
+.m-c-total .title {
+  margin: 0;
 }
