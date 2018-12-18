@@ -19,7 +19,8 @@ import { UpdatePriceComponent         } from './products/update-price/update-pri
 import { SearchProductComponent       } from './products/search-product/search-product/search-product.component';
 import { ClientRegisterComponent      } from './clients/client-register/client-register.component';
 import { ProvidersRegisterComponent   } from './providers/providers-register/providers-register.component';
-import { UpdateClientComponent } from './clients/update-client/update-client.component';
+import { UpdateClientComponent        } from './clients/update-client/update-client.component';
+import { OrdersComponent              } from './sales/orders/orders.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,8 @@ const routes: Routes = [
   { path: 'signup',                 component: SignupComponent,                 canActivate: [AuthGuard]  },
   { path: 'sales',                  component: SalesComponent,                  canActivate: [AuthGuard]  },
   { path: 'sales/register',         component: SalesRegisterComponent,          canActivate: [AuthGuard]  },
+  { path: 'sales/orders',           component: OrdersComponent,                 canActivate: [AuthGuard]  },
+
   { path: 'purchases',              component: PurchasesComponent,              canActivate: [AuthGuard]  },
   { path: 'purchases/register',     component: PurchasesRegisterComponent,      canActivate: [AuthGuard]  },
   { path: 'devolutions',            component: DevolutionsComponent,            canActivate: [AuthGuard]  },

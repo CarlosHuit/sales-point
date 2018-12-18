@@ -8,7 +8,7 @@ import { ServiceWorkerModule              } from '@angular/service-worker';
 import { environment                      } from '../environments/environment';
 import { BrowserAnimationsModule          } from '@angular/platform-browser/animations';
 import { MaterialModule                   } from './material';
-import { GestureConfig                    } from '@angular/material';
+import { GestureConfig, MAT_DATE_LOCALE                    } from '@angular/material';
 import { SigninComponent                  } from './auth/signin/signin.component';
 import { SignupComponent                  } from './auth/signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -42,6 +42,8 @@ import { ProvidersRegisterComponent } from './providers/providers-register/provi
 import { SpinnerComponent } from './spinner/spinner.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail/product-detail.component';
 import { UpdateClientComponent } from './clients/update-client/update-client.component';
+import { OrdersComponent } from './sales/orders/orders.component';
+import { DatesSelectorComponent } from './dates-selector/dates-selector.component';
 
 
 
@@ -81,6 +83,8 @@ import { UpdateClientComponent } from './clients/update-client/update-client.com
     SpinnerComponent,
     ProductDetailComponent,
     UpdateClientComponent,
+    OrdersComponent,
+    DatesSelectorComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -97,7 +101,8 @@ import { UpdateClientComponent } from './clients/update-client/update-client.com
     // DeleteCommentDialogComponent
   ],
   providers: [
-    {provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig}
+    {provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig},
+
   ],
   bootstrap: [AppComponent]
 })

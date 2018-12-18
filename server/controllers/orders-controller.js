@@ -28,7 +28,7 @@ export const save_order = async (req, res, next) => {
     const newOrder  = new Orders({billedBy, client: client._id, dateBilled, total, received, articles})
     const saveOrder = await newOrder.save();
     
-    debug(saveOrder)
+    debug('Pedido Guardado')
     res.status(200).json({
       message: 'Pedido Facturado'
     })

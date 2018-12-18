@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { Product } from '../../classes/product';
 import { Article } from '../../classes/order';
 import { ProductsService } from '../../services/products/products.service';
@@ -15,7 +15,12 @@ export class FormAddProductComponent implements OnInit {
 
   @Output() evsAddProduct  = new EventEmitter<{product: Product, article: Article}>();
   @Output() evsCloseDialog = new EventEmitter<boolean>();
+
+
+  @ViewChild('code') code: ElementRef;
+
   product: Product;
+  inputCode: HTMLInputElement;
   constructor(
     private _product: ProductsService,
     private _storage: StorageService,
@@ -23,6 +28,8 @@ export class FormAddProductComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    this.inputCode = this.code.nativeElement as HTMLInputElement;
+    this.inputCode.focus();
   }
 
   addProduct = (el: HTMLInputElement) => {
@@ -48,6 +55,7 @@ export class FormAddProductComponent implements OnInit {
     this.evsAddProduct.emit(data);
     delete(this.product);
 
+    this.inputCode.focus();
     this._auth.showError('Producto Agregado', 500);
 
   }

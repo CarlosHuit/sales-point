@@ -1,0 +1,64 @@
+<div class="container-dates-selector">
+
+  <div class="selectors">
+    <mat-form-field (click)="fechaInicial.open()" >
+      <input
+        disabled
+        matInput
+        [max]="maxInitalDate"
+        placeholder="Fecha Inicial"
+        
+        [matDatepicker]="fechaInicial"
+        (dateInput)="addInitialDate($event)"
+        >
+  
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="fechaInicial"
+        >
+      </mat-datepicker-toggle>
+  
+      <mat-datepicker
+        #fechaInicial
+        disabled="false"
+        [touchUi]="mobileQuery.matches"
+        >
+      </mat-datepicker>
+  
+    </mat-form-field>
+  
+  
+    <mat-form-field (click)="fechaFinal.open()" >
+  
+      <input  
+        matInput
+        [max]="maxFinalDate"
+        [matDatepicker]="fechaFinal"
+        placeholder="Fecha Final"
+        (dateInput)="addFinalDate($event)"
+        disabled
+        >
+  
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="fechaFinal"
+        >
+      </mat-datepicker-toggle>
+  
+      <mat-datepicker
+        #fechaFinal
+        disabled="false"
+        [touchUi]="mobileQuery.matches"
+        >
+      </mat-datepicker>
+  
+    </mat-form-field>
+  </div>
+
+  <div class="btn-search">
+    <button mat-raised-button [disabled]="fechaFinal.value || fechaInicial.value" color="warn">BUSCAR</button>
+  </div>
+
+</div>
+  
+      
