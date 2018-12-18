@@ -2,7 +2,7 @@ import express from 'express'
 import compression from 'compression'
 import bodyParser from 'body-parser'
 import path from 'path'
-import { auth, clients, providers, prices, products } from './routes'
+import { auth, clients, providers, prices, products, orders } from './routes'
 
 
 const app = express()
@@ -35,6 +35,7 @@ app.use('/api/clients',     clients   )
 app.use('/api/providers',   providers )
 app.use('/api/prices',      prices    )
 app.use('/api/products',    products  )
+app.use('/api/orders',      orders    )
 
 
 export default app

@@ -8,7 +8,8 @@ import { Product } from '../../classes/product';
 import { Article, Order } from '../../classes/order';
 import { StorageService } from '../../services/storage/storage.service';
 import { ClientsService } from '../../services/clients/clients.service';
-import { Client } from 'src/app/classes/client';
+import { Client         } from 'src/app/classes/client';
+import { OrdersService  } from '../../services/orders/orders.service';
 
 
 @Component({
@@ -19,64 +20,62 @@ import { Client } from 'src/app/classes/client';
 export class SalesRegisterComponent implements OnInit {
 
 
-  signinForm:   FormGroup;
-  imgUrl:       string;
-  columns:      string[] = ['Sku', 'Descripción', 'U.', 'Sub total'];
-  activeDialog: boolean;
-  dataSource =  [];
-  order:        Order;
+  signinForm:     FormGroup;
+  clients:        Client[];
+  order:          Order;
+  columns:        string[] = ['Sku', 'Descripción', 'U.', 'Sub total'];
+  activeDialog:   boolean;
+  bill:           boolean;
+  dataSource =    [];
 
-  bill: boolean;
-  clients: Client[];
 
   constructor(
     private authService:  AuthService,
     private _storage:     StorageService,
-    private dialog:       MatDialog,
-    private _client:      ClientsService
+    private _client:      ClientsService,
+    private _orders:      OrdersService,
     ) { }
 
   ngOnInit() {
-    this.getClients();
     const user_id = this._storage.getElement('user')['userId'];
-    this.order = new Order(user_id, '10100101', null, [], 0, 0);
+    this.order    = new Order(user_id, null, null, [], 0, 0, null);
+    this.getClients();
   }
 
-  billing = () => {
-    this.bill = true;
-  }
+  billing     = () => this.bill = true;
+  openDialog  = () => this.activeDialog = true;
+  closeDialog = ev => this.activeDialog = false;
+  genTotal    = () => this.dataSource.map(p => p.subTotal()).reduce((acc, val) => acc + val, 0);
 
-  openDialog = () => {
-    this.activeDialog = true;
-  }
 
-  closeDialog = (ev) => {
-    this.activeDialog = false;
-  }
 
-  addProduct = (data: {product: Product, article: Article}) => {
-    this.dataSource.push(data.product);
-    this.order.articles.push(data.article);
-  }
 
-  genTotal = () => {
-    return this.dataSource.map(p => p.subTotal()).reduce((acc, val) => acc + val, 0);
-  }
+  closeDialogBill = (state) => this.bill = false;
 
-  closeDialogBill = (state) => {
-    this.bill = false;
-  }
+    addProduct = (data: {product: Product, article: Article}) => {
+      this.dataSource.push(data.product);
+      this.order.articles.push(data.article);
+    }
 
   registerSale = (ev: {date: Date, received: number}) => {
 
-    this.order.received = ev.received;
-    this.order.billing_date = ev.date;
-    this.order.total = this.genTotal();
+    this.order.received   = ev.received;
+    this.order.dateBilled = ev.date;
+    this.order.total      = this.genTotal();
 
     this.dataSource = [];
     this.bill = false;
-    console.log(this.order);
 
+    this._orders.saveOrder(this.order).subscribe( this.handleSuccesSave, this.handleErrorSave );
+
+  }
+
+  handleSuccesSave = (res) => {
+    this.authService.showError(res.message);
+  }
+
+  handleErrorSave = (err) => {
+    this.authService.showError(err);
   }
 
   getClients = () => {
@@ -91,9 +90,7 @@ export class SalesRegisterComponent implements OnInit {
       );
   }
 
-  changeClient = (client: Client) => {
-    this.order.client = client;
-  }
+  changeClient = (client: Client) => this.order.client = client;
 
 
 }

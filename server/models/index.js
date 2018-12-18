@@ -5,4 +5,5 @@ export { default as Providers      } from './providers'
 export { default as Prices         } from './prices'
 export { default as PreviousPrices } from './previous_prices'
 export { default as Sale           } from './sale'
+export { default as Orders         } from './orders'
 
