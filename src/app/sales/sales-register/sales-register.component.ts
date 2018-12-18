@@ -104,9 +104,9 @@ export class SalesRegisterComponent implements OnInit {
           const index       = clients.findIndex(cl => cl.name.toLowerCase() === 'cliente gérico');
           this.order.client = clients[index];
           this.clients      = clients;
-          setTimeout(() => {
-            this.loadingClients = false;
-          }, 1000);
+          console.log(this.clients);
+          console.log(this.order);
+          this.loadingClients = false;
         },
         err => this.authService.showError('No se puede obtener los clientes')
       );

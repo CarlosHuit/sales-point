@@ -11,7 +11,7 @@
 
           <span>Cliente: </span>
 
-          <!-- <mat-form-field>
+          <mat-form-field>
 
             <mat-select [value]="order.client.name">
               <mat-option (click)="changeClient(client)" *ngFor="let client of clients" [value]="client.name">
@@ -19,7 +19,8 @@
               </mat-option>
             </mat-select>
 
-          </mat-form-field> -->
+          </mat-form-field>
+
         </div>
 
 
@@ -96,7 +97,10 @@
     >
   </app-billing>
 
-  <app-spinner *ngIf="awaitBill"></app-spinner>  
+  <app-spinner
+    *ngIf="awaitBill"
+    >
+  </app-spinner>  
 
 </div>
 
