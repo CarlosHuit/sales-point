@@ -38,7 +38,7 @@ export class SalesRegisterComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.restartData();
+    this.getClients();
   }
 
   billing     = () => this.bill = true;
@@ -49,8 +49,7 @@ export class SalesRegisterComponent implements OnInit {
 
 
   restartData = () => {
-    const user_id = this._storage.getElement('user')['userId'];
-    this.order    = new Order(user_id, null, null, [], 0, 0, null);
+
     this.getClients();
   }
 
@@ -98,6 +97,9 @@ export class SalesRegisterComponent implements OnInit {
     this._client.getClients()
       .subscribe(
         clients => {
+          const user_id = this._storage.getElement('user')['userId'];
+          this.order    = new Order(user_id, null, null, [], 0, 0, null);
+
           const index       = clients.findIndex(cl => cl.name.toLowerCase() === 'cliente gérico');
           this.order.client = clients[index];
           this.clients      = clients;
