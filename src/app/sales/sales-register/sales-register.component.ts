@@ -46,7 +46,7 @@ export class SalesRegisterComponent implements OnInit {
   openDialog  = () => this.activeDialog = true;
   closeDialog = ev => this.activeDialog = false;
   genTotal    = () => this.dataSource.map(p => p.subTotal()).reduce((acc, val) => acc + val, 0);
-  closeDialogBill = (state) => this.bill = false;
+  closeDialogBill = (state: EventListener) => this.bill = false;
 
 
   restartData = () => {
@@ -62,36 +62,38 @@ export class SalesRegisterComponent implements OnInit {
 
   registerSale = (ev: {date: Date, received: number}) => {
 
-    this.awaitBill = true;
+    this.awaitBill        = true;
     this.order.received   = ev.received;
     this.order.dateBilled = ev.date;
     this.order.total      = this.genTotal();
+    this.bill             = false;
 
-    // this.dataSource = [];
-    this.bill       = false;
-
-    this._orders.saveOrder(this.order).subscribe( this.handleSuccesSave, this.handleErrorSave );
+    this._orders.saveOrder(this.order)
+      .subscribe(
+        this.handleSuccesSave,
+        this.handleErrorSave
+        );
 
   }
 
   handleSuccesSave = (res) => {
     setTimeout(() => {
-      this.dataSource = [];
-      // this.restartData();
-      this.order.articles = [];
+      this.dataSource       = [];
+      this.order.articles   = [];
       this.order.dateBilled = null;
-      this.order.received = null;
-      this.order.total = null;
-      this.awaitBill = false;
+      this.order.received   = null;
+      this.order.total      = null;
+      this.awaitBill        = false;
+
       this.authService.showError(res.message);
+
     }, 1000);
   }
 
   handleErrorSave = (err) => {
-    setTimeout(() => {
-      this.awaitBill = false;
-      this.authService.showError(err);
-    }, 1000);
+
+    setTimeout(() => (this.awaitBill = false, this.authService.showError(err)), 1000);
+
   }
 
   getClients = () => {
@@ -100,12 +102,9 @@ export class SalesRegisterComponent implements OnInit {
         clients => {
           const user_id = this._storage.getElement('user')['userId'];
           this.order    = new Order(user_id, null, null, [], 0, 0, null);
-
           const index       = clients.findIndex(cl => cl.name.toLowerCase() === 'cliente genérico');
           this.order.client = clients[index];
           this.clients      = clients;
-          console.log(this.clients);
-          console.log(this.order);
           this.loadingClients = false;
         },
         err => this.authService.showError('No se puede obtener los clientes')

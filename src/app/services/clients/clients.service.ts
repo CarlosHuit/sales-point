@@ -58,8 +58,22 @@ import { Client } from '../../classes/client';
 
     return this.http.get<Client[]>(this.apiUrl, this.httpOptions)
       .pipe(
+        map( this.saveClientsOnStorage ),
         catchError(this.handleError)
       );
+  }
+
+  saveClientsOnStorage = ( x: any ) => {
+
+
+    const clients = x as Client[];
+
+    clients.forEach( c => c.name = `${c.name[0].toUpperCase()}${c.name.slice(1)}` );
+    clients.sort( (a, b) => a.name > b.name ? 1 : a.name < b.name ? -1 : 0);
+    this._storage.saveElement('clients', clients);
+
+    return clients;
+
   }
 
   getClientsOfStorage = (): Observable<Client[]> => {
