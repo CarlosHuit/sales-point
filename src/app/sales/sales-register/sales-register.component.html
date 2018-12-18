@@ -93,7 +93,10 @@
     (evsPay)="registerSale($event)"
     *ngIf="bill"
     [total]="genTotal()"
-    ></app-billing>
+    >
+  </app-billing>
+
+  <app-spinner *ngIf="awaitBill"></app-spinner>  
 
 </div>
 

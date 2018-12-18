@@ -27,6 +27,7 @@ export class SalesRegisterComponent implements OnInit {
   activeDialog:   boolean;
   bill:           boolean;
   dataSource =    [];
+  awaitBill:      boolean;
 
 
   constructor(
@@ -37,45 +38,60 @@ export class SalesRegisterComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    const user_id = this._storage.getElement('user')['userId'];
-    this.order    = new Order(user_id, null, null, [], 0, 0, null);
-    this.getClients();
+    this.restartData();
   }
 
   billing     = () => this.bill = true;
   openDialog  = () => this.activeDialog = true;
   closeDialog = ev => this.activeDialog = false;
   genTotal    = () => this.dataSource.map(p => p.subTotal()).reduce((acc, val) => acc + val, 0);
-
-
-
-
   closeDialogBill = (state) => this.bill = false;
 
-    addProduct = (data: {product: Product, article: Article}) => {
-      this.dataSource.push(data.product);
-      this.order.articles.push(data.article);
-    }
+
+  restartData = () => {
+    const user_id = this._storage.getElement('user')['userId'];
+    this.order    = new Order(user_id, null, null, [], 0, 0, null);
+    this.getClients();
+  }
+
+
+  addProduct = (data: {product: Product, article: Article}) => {
+    this.dataSource.push(data.product);
+    this.order.articles.push(data.article);
+  }
 
   registerSale = (ev: {date: Date, received: number}) => {
 
+    this.awaitBill = true;
     this.order.received   = ev.received;
     this.order.dateBilled = ev.date;
     this.order.total      = this.genTotal();
 
-    this.dataSource = [];
-    this.bill = false;
+    // this.dataSource = [];
+    this.bill       = false;
 
     this._orders.saveOrder(this.order).subscribe( this.handleSuccesSave, this.handleErrorSave );
 
   }
 
   handleSuccesSave = (res) => {
-    this.authService.showError(res.message);
+    setTimeout(() => {
+      this.dataSource = [];
+      // this.restartData();
+      this.order.articles = [];
+      this.order.dateBilled = null;
+      this.order.received = null;
+      this.order.total = null;
+      this.awaitBill = false;
+      this.authService.showError(res.message);
+    }, 1000);
   }
 
   handleErrorSave = (err) => {
-    this.authService.showError(err);
+    setTimeout(() => {
+      this.awaitBill = false;
+      this.authService.showError(err);
+    }, 1000);
   }
 
   getClients = () => {
