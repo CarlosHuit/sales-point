@@ -1,6 +1,6 @@
-<div class="app-container" *ngIf="clients" >
+<div class="app-container" >
 
-  <div class="container-sale-register">
+  <div class="container-sale-register" *ngIf="!loadingClients" >
     <mat-card class="card-sale-reg">
       <div class="container-card-el">
 

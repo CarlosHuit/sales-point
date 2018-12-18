@@ -28,6 +28,7 @@ export class SalesRegisterComponent implements OnInit {
   bill:           boolean;
   dataSource =    [];
   awaitBill:      boolean;
+  loadingClients = true;
 
 
   constructor(
@@ -103,6 +104,9 @@ export class SalesRegisterComponent implements OnInit {
           const index       = clients.findIndex(cl => cl.name.toLowerCase() === 'cliente gérico');
           this.order.client = clients[index];
           this.clients      = clients;
+          setTimeout(() => {
+            this.loadingClients = false;
+          }, 1000);
         },
         err => this.authService.showError('No se puede obtener los clientes')
       );
