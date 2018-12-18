@@ -5,14 +5,19 @@
   background: rgba(0, 0, 0, 0.3);
   left:       0;
   top:        0;
+  animation: show .5s 1;
+}
+
+@keyframes show {
+  from { opacity: 0; }
+  to    { opacity: 1; }
 }
 
 mat-card {
  box-sizing:  border-box;
  max-width:   96%;
  width:       400px;
- padding:     35px 20px;
- padding-top: 50px;
+ padding:     20px;
 }
 
 mat-card div {
@@ -30,13 +35,16 @@ h1 {
 
 
 input {
-  border:         none;
-  outline:        none;
-  font-size:      34px;
-  font-weight:    bold;
-  text-align:     right;
-  width:          150px;
-  border-bottom:  1px solid #0089ff
+  border: none;
+  outline: none;
+  font-size: 34px;
+  font-weight: bold;
+  text-align: right;
+  width: 150px;
+  border: 2px solid #1b7fb9;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding-right: 10px;
 }
 
 h2, h1 {
@@ -65,9 +73,8 @@ h2, h1 {
 
 .m-c-total {
   margin:                 25px 0;
-  padding:                10px 0px 10px 15px;
   border:                 2px solid #F44336;
-  border-radius:          12px;
+  border-radius:          5px;
   flex-direction: column  !important;
   align-items: center     !important;
   padding:                3px 0;

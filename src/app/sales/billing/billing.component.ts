@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-billing',
@@ -11,9 +11,15 @@ export class BillingComponent implements OnInit {
   @Output() evsClose = new EventEmitter<boolean>();
   @Output() evsPay   = new EventEmitter<{date: Date, received: number}>();
 
+  @ViewChild('received') received: ElementRef;
+
   constructor() { }
 
   ngOnInit() {
+
+    const t = this.received.nativeElement as HTMLInputElement;
+    t.focus();
+
   }
 
   in = () => {};
