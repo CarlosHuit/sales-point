@@ -9,9 +9,9 @@ import { MediaMatcher } from '@angular/cdk/layout';
 })
 export class DatesSelectorComponent implements OnInit, OnDestroy {
 
-  initialDate = new Date;
-  finalDate =   new Date;
-  maxFinalDate = new Date();
+  initialDate:    Date;
+  finalDate:      Date;
+  maxFinalDate  = new Date();
   maxInitalDate = new Date(new Date().getTime() - 86400000);
 
   @ViewChild(MatDatepicker) datepicker: MatDatepicker<Date>;
@@ -36,22 +36,12 @@ export class DatesSelectorComponent implements OnInit, OnDestroy {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-  french() {
-    this.adapter.setLocale('fr');
-  }
-
-  addEvent(event: MatDatepickerInputEvent<Date>) {
-    console.log(event.value['_d']);
-  }
-
   addInitialDate = (event: MatDatepickerInputEvent<Date>) => {
-    console.log(event);
-    // console.log(`${typeof(event)}: ${event.value._d}`);
+    this.initialDate = event.value['_d'];
   }
 
   addFinalDate = (event: MatDatepickerInputEvent<Date>) => {
-    // console.log(`${typeof(event)}: ${event}`);
-    console.log(event);
+    this.finalDate = event.value['_d'];
   }
 
 }
