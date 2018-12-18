@@ -101,7 +101,7 @@ export class SalesRegisterComponent implements OnInit {
           const user_id = this._storage.getElement('user')['userId'];
           this.order    = new Order(user_id, null, null, [], 0, 0, null);
 
-          const index       = clients.findIndex(cl => cl.name.toLowerCase() === 'cliente gérico');
+          const index       = clients.findIndex(cl => cl.name.toLowerCase() === 'cliente génerico');
           this.order.client = clients[index];
           this.clients      = clients;
           console.log(this.clients);
