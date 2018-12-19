@@ -13,7 +13,44 @@ export const get_order = async (req, res, next) => {
 export const get_orders = async (req, res, next) => {
   
   const debug = new Debug(`${nameProject}: prices:get-orders`)
-  
+
+  try {
+
+    const user_id = req.user._id
+    const { initialDate, finalDate } = req.query
+    const ins = initialDate;
+
+    const orders = await Orders.find({
+      dateBilled: {
+        '$gte': new Date(initialDate).toISOString(),
+        '$lt':  new Date(finalDate).toISOString() 
+      }
+    }).populate('client', {__v: 0})
+
+    if (orders.length > 0) {
+      debug('Mostrando ventas')
+      res.status(200).json({
+        message: 'Hola mundo',
+        orders
+      })
+    } else {
+
+      debug('No hay ventas registradas en el rango de fechas seleccionado')
+      res.status(200).json({
+        message:  'No hay ventas registradas en el rango de fechas seleccionado',
+        orders:   []
+      })
+
+    }
+
+  } catch (error) {
+
+    debug(error)    
+    const err = 'Ha ocurrido un error'
+    debug(err)
+    res.status(500).json({message: err, error: err}) 
+
+  }
 }
 
 export const save_order = async (req, res, next) => {
@@ -54,12 +91,4 @@ export const update_order = async (req, res, next) => {
 
 
 }
-
-const handLoginFailed = (res, message) => {
-  return res.status(401).json({
-    message: 'Login Fallido',
-    error:   message || 'Email y/o password no coinciden.'
-  })
-}
-
 

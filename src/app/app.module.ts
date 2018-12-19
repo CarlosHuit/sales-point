@@ -44,7 +44,8 @@ import { ProductDetailComponent } from './products/product-detail/product-detail
 import { UpdateClientComponent } from './clients/update-client/update-client.component';
 import { OrdersComponent } from './sales/orders/orders.component';
 import { DatesSelectorComponent } from './dates-selector/dates-selector.component';
-
+import { OrdersListComponent } from './sales/orders-list/orders-list.component';
+import { MomentModule } from 'angular2-moment';
 
 
 @NgModule({
@@ -85,6 +86,7 @@ import { DatesSelectorComponent } from './dates-selector/dates-selector.componen
     UpdateClientComponent,
     OrdersComponent,
     DatesSelectorComponent,
+    OrdersListComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -95,6 +97,7 @@ import { DatesSelectorComponent } from './dates-selector/dates-selector.componen
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     BrowserAnimationsModule,
     MaterialModule,
+    MomentModule
   ],
   entryComponents: [
     AddProductComponent,

@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Router            } from '@angular/router';
-import { environment       } from '../../../environments/environment';
-import { GetTokenService   } from '../get-token/get-token.service';
-import { catchError, map, retry   } from 'rxjs/operators';
-import { throwError, Observable, of        } from 'rxjs';
-import { AuthService       } from '../../auth/auth.service';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import urljoin from 'url-join';
-import { Product } from '../../classes/product';
-import { Price } from '../../classes/price';
-import { StorageService } from '../storage/storage.service';
-import { Order } from '../../classes/order';
+import { catchError, map, retry   } from 'rxjs/operators';
+import { throwError, Observable   } from 'rxjs';
+import { Router             } from '@angular/router';
+import { environment        } from '../../../environments/environment';
+import { GetTokenService    } from '../get-token/get-token.service';
+import { AuthService        } from '../../auth/auth.service';
+import { Product            } from '../../classes/product';
+import { StorageService     } from '../storage/storage.service';
+import { Order              } from '../../classes/order';
+import { TimeInterval       } from '../../classes/time-interval';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +21,9 @@ import { Order } from '../../classes/order';
   httpOptions: any;
 
   constructor(
-    private http: HttpClient,
-    private _auth: AuthService,
-    private _router: Router,
+    private http:     HttpClient,
+    private _auth:    AuthService,
+    private _router:  Router,
     private getToken: GetTokenService,
     private _storage: StorageService
   ) {
@@ -32,13 +32,16 @@ import { Order } from '../../classes/order';
 
   }
 
-  getOrders = (): Observable<Order[] | any> => {
+  getOrders = (timeInterval: TimeInterval): Observable<Order[] | any> => {
 
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
         'Authorization': `${this.getToken.addToken()}`
-      })
+      }),
+      params: new HttpParams()
+        .set('initialDate',  timeInterval.initialDate.toString() )
+        .set('finalDate',    timeInterval.finalDate.toString()   )
     };
 
     return this.http.get<Order[]>(this.apiUrl, this.httpOptions)
@@ -63,6 +66,7 @@ import { Order } from '../../classes/order';
   }
 
   saveOrder = (order: Order) => {
+
     const _id = this._storage.getElement('user')['userId'];
     const url = urljoin( this.apiUrl, _id);
     const data = JSON.stringify(order);

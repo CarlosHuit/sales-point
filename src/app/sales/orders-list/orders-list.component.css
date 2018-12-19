@@ -1,0 +1,145 @@
+.container-order-list {
+  width: 100%;
+  height: 100%;
+}
+
+.info-dates {
+  display: grid;
+  grid-template-columns: 140px 140px;
+  grid-auto-rows: 20px;
+  margin-bottom: 8px;
+  text-transform: capitalize; 
+}
+
+.m-c-table-orders {
+  width: 100%;
+  height: calc(100% - 28px);
+}
+
+.m-c-table {
+  max-height: calc(100% - 55px);
+  box-sizing: border-box;
+  display: flex;
+  margin-bottom: 5px;
+  overflow: auto;
+  flex-direction: column;
+}
+
+.table-titles {
+  width: 100%;
+  background: #1e5372;
+  display: grid;
+
+  grid-template-rows: 45px;
+  border-radius: 5px 5px 0 0;
+}
+
+.table-titles .table-title {
+  color: white;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  border-right: 1px solid rgba(255, 255, 255, .8);
+  box-sizing: border-box;
+  padding-left: 10px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.table-titles .table-title:last-child {
+  border-right: none !important;
+  text-align: right;
+  padding-right: 10px;
+  justify-content: flex-end;
+}
+
+.table-titles, .table-rows {
+  grid-template-columns: 15% 15% 50% 20%;
+}
+
+
+
+
+
+
+
+.container-rows {
+  width: 100%;
+  overflow: auto;
+}
+
+.container-rows::-webkit-scrollbar {
+  width: 2px;
+}
+.container-rows::-webkit-scrollbar-track {
+  background: #81D4FA
+}
+.container-rows::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, .4);
+  background: #F44336;
+}
+
+.table-rows {
+  width: 100%;
+  display: grid;
+  border-bottom: 1px solid rgba(0, 0, 0, .25);
+  grid-auto-rows: 35px;
+  align-items: center;
+}
+
+.table-rows span {
+  padding: 0 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  box-sizing: border-box;
+  vertical-align: bottom;
+  padding:  0 10px;
+}
+
+.table-rows span:last-child {
+  text-align: right;
+  padding-right: 10px;
+}
+
+@media (max-width: 480px) {
+  .table-rows, .table-titles {
+    grid-template-columns: 40px 70px calc(100% - 200px) 90px;
+  }
+
+  .table-rows {
+    grid-auto-rows: 30px;
+  }
+
+  .table-rows span {
+    font-size: 14px;
+  }
+}
+
+
+.m-c-total {
+  height: 50px;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, .05);
+  border: 1px solid rgba(0, 0, 0, .1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.m-c-total h1{
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  margin: 0;
+  color: #f44336;
+  font-weight: bold;
+  font-size: 34px;
+}
+
+.pair {
+  background: #37a7e74a;
+}
+
+.impair {
+  background: skyblue;
+}
