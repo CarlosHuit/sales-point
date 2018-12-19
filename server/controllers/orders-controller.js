@@ -25,7 +25,10 @@ export const get_orders = async (req, res, next) => {
         '$gte': new Date(initialDate).toISOString(),
         '$lt':  new Date(finalDate).toISOString() 
       }
-    }).populate('client', {__v: 0})
+    })
+    .populate('client', {__v: 0})
+    .populate('articles.product', { __v: 0, _d: 0 })
+    .populate('billedBy', {firstName:1 , lastName: 1})
 
     if (orders.length > 0) {
       debug('Mostrando ventas')

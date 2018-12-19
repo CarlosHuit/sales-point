@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Order } from '../../classes/order';
 import { TimeInterval } from '../../classes/time-interval';
 
@@ -13,15 +13,19 @@ export class OrdersListComponent implements OnInit {
 
   @Input() orders: Order[];
   @Input() timeInterval: TimeInterval[];
+  @Output() evShowDetail = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit() {
-    console.log(this.timeInterval);
   }
 
   getTotal = () => {
     return this.orders.map(p => p.total).reduce((acc, val) => acc + val, 0);
+  }
+
+  showDetail = (id: string) => {
+    this.evShowDetail.emit(id);
   }
 
 }

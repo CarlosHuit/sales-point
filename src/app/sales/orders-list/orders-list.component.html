@@ -20,6 +20,7 @@
       <div class="container-rows">
         <div 
           class="table-rows"
+          (click)="showDetail(order._id)"
           *ngFor="let order of orders; let i = index"
           [class.pair]="i % 2 === 0"
           [class.impair]="i % 2 !== 0"

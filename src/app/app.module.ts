@@ -46,6 +46,7 @@ import { OrdersComponent } from './sales/orders/orders.component';
 import { DatesSelectorComponent } from './dates-selector/dates-selector.component';
 import { OrdersListComponent } from './sales/orders-list/orders-list.component';
 import { MomentModule } from 'angular2-moment';
+import { OrderDetailComponent } from './sales/order-detail/order-detail.component';
 
 
 @NgModule({
@@ -87,6 +88,7 @@ import { MomentModule } from 'angular2-moment';
     OrdersComponent,
     DatesSelectorComponent,
     OrdersListComponent,
+    OrderDetailComponent,
   ],
   imports: [
     ReactiveFormsModule,

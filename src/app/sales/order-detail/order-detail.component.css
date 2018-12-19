@@ -1,0 +1,64 @@
+.app-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, .3);
+  opacity: 1;
+  animation: show .5s 1;
+  overflow: hidden;
+}
+
+@keyframes show {
+  from  { opacity: 0;}
+  to    { opacity: 1; }
+}
+
+.hide-container {
+  animation: hide .28s 1;
+}
+
+@keyframes hide {
+  from  { opacity: 1;}
+  to    { opacity: 0; }
+}
+
+.icon-close {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f44336;
+  border-radius: 50%;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.card {
+  border-radius: 0;
+  max-width: 720px;
+  animation: showSheet .28s 1;
+  position: relative;
+  transition: .28s
+}
+
+@keyframes showSheet {
+  from { transform: translateY(100%) }
+  to { transform: translateY(0)}
+}
+
+
+@keyframes hide {
+  from  { opacity: 1;}
+  to    { opacity: 0; }
+}
+@keyframes hide {
+  from  { opacity: 1;}
+  to    { opacity: 0; }
+}.quitSheet {
+  transform: translateY(100%);
+}

@@ -13,8 +13,9 @@ import { Order } from '../../classes/order';
 export class OrdersComponent implements OnInit {
 
   loadingSales: boolean;
-  orders: Order[];
+  orders:       Order[];
   timeInterval: TimeInterval;
+  order:        Order;
 
   constructor(
     private _orders:  OrdersService,
@@ -56,5 +57,15 @@ export class OrdersComponent implements OnInit {
     }, 1000);
   }
 
+  showDetail = (id: string) => {
+    const index = this.orders.findIndex(order => order._id === id);
+    const el = this.orders[index];
+    this.order = el;
+    console.log(el);
+  }
+
+  closeOrderDetail = () => {
+    delete(this.order);
+  }
 
 }

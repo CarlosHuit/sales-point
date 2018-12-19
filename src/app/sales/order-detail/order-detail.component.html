@@ -1,0 +1,21 @@
+<div
+  class="app-container center"
+  [class.hide-container]="hideSheet"
+  >
+
+  <mat-card class="card" [class.quit-sheet]="hideSheet" >
+
+    <span class="icon-close" (click)="close()">x</span>
+
+    <div class="sale-info">
+      <p> Cliente: {{order.client.name}}</p>
+      <p> Fecha: {{order.dateBilled | amLocale: 'es' | amDateFormat: ' DD MMMM YYYY'}}</p>
+      <p> Vendedor: {{ billedBy() }} </p>
+    </div>
+
+    <div class="sale-articles" >
+
+    </div>
+    
+  </mat-card>
+</div>
