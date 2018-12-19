@@ -239,4 +239,12 @@ body {
   background: #239B56;
 }
 
+.mat-form-field-appearance-legacy .mat-form-field-label {
+  color: #3f51b5 !important
+}
+
+.mat-input-element:disabled {
+  color: #404040 !important;
+}
+
 @media (min-width: 320px) and (orientation: landscape) {}

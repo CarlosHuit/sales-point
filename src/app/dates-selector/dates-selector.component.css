@@ -37,3 +37,7 @@
     grid-template-columns: 100%
   } 
 }
+
+.mat-form-field-appearance-legacy .mat-form-field-label {
+  color: #3f51b5 !important
+}

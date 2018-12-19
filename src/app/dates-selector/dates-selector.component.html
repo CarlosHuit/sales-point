@@ -56,7 +56,7 @@
   </div>
 
   <div class="btn-search">
-    <button mat-raised-button [disabled]="!initialDate || !finalDate" color="warn">BUSCAR</button>
+    <button mat-raised-button [disabled]="!initialDate || !finalDate" (click)="search()" color="warn">BUSCAR</button>
   </div>
 
 </div>

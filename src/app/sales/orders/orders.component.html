@@ -4,7 +4,7 @@
     <app-title-bar title="Consultar ventas" ></app-title-bar>
 
     <div class="container-selectors">
-      <app-dates-selector></app-dates-selector>
+      <app-dates-selector (evsDatesSelector)="search($event)" ></app-dates-selector>
     </div>
 
   </mat-card>

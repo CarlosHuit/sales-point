@@ -1,5 +1,5 @@
 import {Component, ViewChild, OnInit} from '@angular/core';
-import { DateAdapter, MatDatepicker, MatDatepickerInputEvent } from '@angular/material';
+import { TimeInterval } from '../../classes/time-interval';
 
 @Component({
   selector: 'app-orders',
@@ -9,28 +9,14 @@ import { DateAdapter, MatDatepicker, MatDatepickerInputEvent } from '@angular/ma
 
 export class OrdersComponent implements OnInit {
 
-  initialDate = new Date;
-  finalDate =   new Date;
-  maxFinalDate = new Date();
-  maxInitalDate = new Date(new Date().getTime() - 86400000);
-
-  @ViewChild(MatDatepicker) datepicker: MatDatepicker<Date>;
-
-
-  constructor(private adapter: DateAdapter<any>) {
-    const day = 1000 * 60 * 60 * 24;
-    const today = new Date(new Date().getTime() - 86400000);
+  constructor() {
   }
 
   ngOnInit () {
   }
 
-  french() {
-    this.adapter.setLocale('fr');
-  }
-
-  addEvent(event: MatDatepickerInputEvent<Date>) {
-    console.log(event.value['_d']);
+  search = (dates: TimeInterval) => {
+    console.log(dates);
   }
 
 }

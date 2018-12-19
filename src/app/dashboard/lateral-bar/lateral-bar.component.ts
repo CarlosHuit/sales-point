@@ -27,7 +27,7 @@ export class LateralBarComponent implements OnInit {
       keyword: 'sales',
       opts: [
         new Option('Registrar venta', 'sales/register' ),
-        new Option('Ver ventas',      'sales/orders'  ),
+        new Option('Consultar ventas',      'sales/orders'  ),
         new Option('Modificar venta', 'sales/update'   ),
       ]
     },
