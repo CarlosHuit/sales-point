@@ -3,7 +3,7 @@
 }
 
 .container-selectors {
-  height: 150px;
+  height: 200px;
 }
 
 @media(max-width: 640px) {
@@ -15,7 +15,7 @@
 }
 @media(max-width: 420px) {
   .container-selectors {
-    height: 220px;
+    height: 250px;
   }
 }
 

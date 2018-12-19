@@ -9,14 +9,17 @@ import { TimeInterval } from '../../classes/time-interval';
 
 export class OrdersComponent implements OnInit {
 
-  constructor() {
-  }
+  loadingSales: boolean;
 
-  ngOnInit () {
-  }
+  constructor() { }
 
-  search = (dates: TimeInterval) => {
+  ngOnInit () { }
+
+
+  searchByInterval = (dates: TimeInterval) => {
+    this.loadingSales = true;
     console.log(dates);
   }
+
 
 }

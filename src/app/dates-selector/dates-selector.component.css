@@ -23,12 +23,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 .btn-search button{
-  min-width: 200px;
+  min-width: 225px;
   height: 38px;
   font-size: 22px;
+}
+
+.btn-search-today {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-search-today button{
+  min-width: 225px;
+  height: 38px;
 }
 
 @media (max-width: 420px) {

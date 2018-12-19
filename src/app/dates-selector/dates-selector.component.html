@@ -56,7 +56,24 @@
   </div>
 
   <div class="btn-search">
-    <button mat-raised-button [disabled]="!initialDate || !finalDate" (click)="search()" color="warn">BUSCAR</button>
+    <button
+      color="warn"
+      (click)="searchByInterval()"
+      mat-raised-button
+      [disabled]="!initialDate || !finalDate"
+      >
+      BUSCAR
+    </button>
+  </div>
+
+  <div class="btn-search-today" >
+      <button
+        mat-button
+        color="warn"
+        (click)="searchToday()"
+        >
+        Ventas de HOY
+      </button>
   </div>
 
 </div>

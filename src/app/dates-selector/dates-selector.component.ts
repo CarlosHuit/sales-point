@@ -12,7 +12,7 @@ import { AuthService  } from '../auth/auth.service';
 export class DatesSelectorComponent implements OnInit, OnDestroy {
 
   @ViewChild(MatDatepicker) datepicker: MatDatepicker<Date>;
-  @Output() evsDatesSelector =          new EventEmitter<TimeInterval>();
+  @Output() evSearchByInterval =        new EventEmitter<TimeInterval>();
 
   initialDate:    Date;
   finalDate:      Date;
@@ -49,15 +49,20 @@ export class DatesSelectorComponent implements OnInit, OnDestroy {
     this.finalDate = event.value['_d'];
   }
 
-  search = () => {
+  searchByInterval = () => {
 
     if (this.validation()) {
 
-      const dates = new TimeInterval(this.initialDate, this.finalDate);
-      this.evsDatesSelector.emit(dates);
+      const dates = new TimeInterval( this.transformIData(this.initialDate), this.transformFData(this.finalDate));
+      this.evSearchByInterval.emit(dates);
 
     }
 
+  }
+
+  searchToday = () => {
+    const date = new TimeInterval(this.generateIDate(), this.generateFDate());
+    this.evSearchByInterval.emit(date);
   }
 
   validation = () => {
@@ -79,5 +84,49 @@ export class DatesSelectorComponent implements OnInit, OnDestroy {
 
     }
   }
+
+  generateIDate = () => {
+
+    const date  = new Date();
+    const year  = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day   = date.getDate();
+
+    return new Date(`${year}/${month}/${day} 00:00:00`);
+
+  }
+
+  generateFDate = () => {
+
+    const date  = new Date();
+    const year  = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day   = date.getDate();
+
+    return new Date(`${year}/${month}/${day} 23:59:59`);
+
+  }
+
+  transformIData = (originalDate: Date) => {
+
+    const date  = originalDate;
+    const year  = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day   = date.getDate();
+
+    return new Date(`${year}/${month}/${day} 00:00:00`);
+  }
+
+  transformFData = (originalDate: Date) => {
+
+    const date  = originalDate;
+    const year  = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day   = date.getDate();
+
+    return new Date(`${year}/${month}/${day} 23:59:59`);
+  }
+
+
 
 }
