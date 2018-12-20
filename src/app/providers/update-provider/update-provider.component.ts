@@ -16,7 +16,7 @@ export class UpdateProviderComponent implements OnInit {
 
   loading: boolean;
 
-  loadingProviders: boolean;
+  loadingProviders = true;
   currentProvider:  Provider;
   copyProvider:    Provider;
   providers:        Provider[];
