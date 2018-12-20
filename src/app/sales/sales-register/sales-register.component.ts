@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/auth/auth.service';
-import { User } from '../../classes/user';
-import { MatDialog } from '@angular/material';
-import { AddProductComponent } from '../../dialogs/add-product/add-product.component';
-import { Product } from '../../classes/product';
-import { Article, Order } from '../../classes/order';
-import { StorageService } from '../../services/storage/storage.service';
-import { ClientsService } from '../../services/clients/clients.service';
-import { Client         } from 'src/app/classes/client';
-import { OrdersService  } from '../../services/orders/orders.service';
-
+import { FormGroup} from '@angular/forms';
+import { AuthService } from '../../auth/auth.service';
+import { MatDialog            } from '@angular/material';
+import { AddProductComponent  } from '../../dialogs/add-product/add-product.component';
+import { Product              } from '../../classes/product';
+import { Article, Order       } from '../../classes/order';
+import { StorageService       } from '../../services/storage/storage.service';
+import { ClientsService       } from '../../services/clients/clients.service';
+import { Client               } from 'src/app/classes/client';
+import { OrdersService        } from '../../services/orders/orders.service';
+import { RemoveArticleComponent } from '../../dialogs/remove-article/remove-article.component';
 
 @Component({
   selector: 'app-sales-register',
@@ -36,6 +35,7 @@ export class SalesRegisterComponent implements OnInit {
     private _storage:     StorageService,
     private _client:      ClientsService,
     private _orders:      OrdersService,
+    private dialog:       MatDialog
     ) { }
 
   ngOnInit() {
@@ -54,6 +54,20 @@ export class SalesRegisterComponent implements OnInit {
     this.getClients();
   }
 
+  openDialogDelete = (i: number) => {
+
+    const dialogRef = this.dialog.open(
+      RemoveArticleComponent,
+      {
+        disableClose: true,
+        data: this.dataSource[i]
+      }
+    );
+
+    dialogRef.afterClosed()
+      .subscribe( ev => ev === true ? this.deleteArticle(i) : null );
+
+  }
 
   addProduct = (data: {product: Product, article: Article}) => {
     this.dataSource.push(data.product);
@@ -113,5 +127,10 @@ export class SalesRegisterComponent implements OnInit {
 
   changeClient = (client: Client) => this.order.client = client;
 
+  deleteArticle = (i: number) => {
+    this.dataSource.splice(i, 1);
+    this.order.articles.splice(i, 1);
+    this.authService.showError('Producto Eliminado');
+  }
 
 }

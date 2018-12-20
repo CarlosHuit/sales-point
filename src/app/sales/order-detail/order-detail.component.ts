@@ -17,9 +17,7 @@ export class OrderDetailComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    console.log(this.order.billedBy);
-  }
+  ngOnInit() { }
 
   billedBy = () => {
     const t: User = this.order.billedBy as User;

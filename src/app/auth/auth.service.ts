@@ -112,7 +112,6 @@ export class AuthService {
 
   public handleError = (response: HttpErrorResponse) => {
 
-    console.error(response.error.error);
     this.showError(response.error.error);
 
     return response;

@@ -46,6 +46,7 @@
                 *ngFor="let item of dataSource; let i = index"
                 [class.pair]="i % 2 === 0"
                 [class.impair]="i % 2 !== 0"
+                (click)="openDialogDelete(i)"
                 >
   
                 <span >{{item.sku}}</span>

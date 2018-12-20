@@ -37,12 +37,10 @@ import { Client } from '../../classes/client';
     const clients = this._storage.getElement('clients');
 
     if (clients) {
-      console.log('storage');
       return this.getClientsOfStorage();
     }
 
     if (!clients) {
-      console.log('server ');
       return this.getClientesOfServer();
     }
 

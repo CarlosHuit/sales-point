@@ -1,0 +1,33 @@
+<h1 mat-dialog-title class="title" >Quieres quitar este Producto?</h1>
+
+<div mat-dialog-content>
+
+  <p class="description">
+    {{data.description}}
+  </p>
+
+</div>
+
+
+ <div mat-dialog-actions class="dialog-buttons">
+
+  <button
+    color="warn"
+    mat-flat-button
+    class="btn-selected"
+    [mat-dialog-close]="true"
+    >
+    <!-- cdkFocusInitial -->
+    Quitar
+  </button>
+
+  <button
+    mat-button
+    color="primary"
+    (click)="onNoClick()"
+    >
+    Cancelar
+  </button>
+
+
+</div>

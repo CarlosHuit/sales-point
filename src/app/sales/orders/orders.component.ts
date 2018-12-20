@@ -34,7 +34,6 @@ export class OrdersComponent implements OnInit {
 
   getOrdersSucces = (res: any) => {
     setTimeout(() => {
-      console.log(res);
 
       if (res.orders.length > 0) {
         this.orders = res.orders;
@@ -53,7 +52,6 @@ export class OrdersComponent implements OnInit {
     setTimeout(() => {
       this.loadingSales = false;
       this._auth.showError(err);
-      console.log(err);
     }, 1000);
   }
 
@@ -61,7 +59,6 @@ export class OrdersComponent implements OnInit {
     const index = this.orders.findIndex(order => order._id === id);
     const el = this.orders[index];
     this.order = el;
-    console.log(el);
   }
 
   closeOrderDetail = () => {
