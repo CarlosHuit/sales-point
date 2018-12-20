@@ -3,6 +3,7 @@ import { TimeInterval  } from '../../classes/time-interval';
 import { OrdersService } from '../../services/orders/orders.service';
 import { AuthService   } from '../../auth/auth.service';
 import { Order } from '../../classes/order';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-orders',
@@ -20,6 +21,7 @@ export class OrdersComponent implements OnInit {
   constructor(
     private _orders:  OrdersService,
     private _auth:    AuthService,
+    private _router:  Router
     ) { }
 
   ngOnInit () { }
@@ -49,10 +51,10 @@ export class OrdersComponent implements OnInit {
   }
 
   getOrdersError = (err: string) => {
-    setTimeout(() => {
-      this.loadingSales = false;
-      this._auth.showError(err);
-    }, 1000);
+    setTimeout(
+      () => (this.loadingSales = false, this._auth.showError(err)),
+      1000
+    );
   }
 
   showDetail = (id: string) => {
@@ -63,6 +65,10 @@ export class OrdersComponent implements OnInit {
 
   closeOrderDetail = () => {
     delete(this.order);
+  }
+
+  restart = () => {
+    delete(this.orders);
   }
 
 }

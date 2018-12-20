@@ -1,7 +1,12 @@
 <div class="app-container center">
 
   <mat-card class="card">
-    <app-title-bar title="Consultar ventas" ></app-title-bar>
+
+
+    <div class="container-title" (click)="restart()" >
+      <app-title-bar title="Consultar ventas">
+      </app-title-bar>
+    </div>
 
 
     <div class="container-selectors" *ngIf="!loadingSales && !orders" >
@@ -10,12 +15,10 @@
 
 
     <div class="container-orders" *ngIf="!loadingSales && orders">
-      <app-orders-list
-        [timeInterval]="timeInterval"
-        (evShowDetail)="showDetail($event)"
-        [orders]="orders"
-        >
+
+      <app-orders-list [timeInterval]="timeInterval" (evShowDetail)="showDetail($event)" [orders]="orders">
       </app-orders-list>
+
     </div>
 
     <!-- <app-order-detail *ngIf="order"></app-order-detail> -->

@@ -54,3 +54,7 @@
 .mat-form-field-appearance-legacy .mat-form-field-label {
   color: #3f51b5 !important
 }
+
+.mat-form-field {
+  cursor: pointer !important;
+}

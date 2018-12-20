@@ -72,9 +72,9 @@ export class DatesSelectorComponent implements OnInit, OnDestroy {
       const iDate = this.initialDate.getTime();
       const fDate = this.finalDate.getTime();
 
-      if (iDate >= fDate) {
+      if (iDate > fDate) {
 
-        const msg = 'La fecha inicial debe ser MENOR a la fecha final.';
+        const msg = 'La fecha inicial NO puede ser MAYOR a la fecha final.';
         this._auth.showError(msg, 3000);
         return false;
 
