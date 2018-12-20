@@ -30,6 +30,7 @@ export class UpdateProductFormComponent implements OnInit {
 
   update = () => {
     if ( this.compare ) {
+      this.prod.description.toUpperCase();
       this.evsUpdateProduct.emit(this.prod);
     }
   }
