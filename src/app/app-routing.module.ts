@@ -22,6 +22,8 @@ import { ProvidersRegisterComponent   } from './providers/providers-register/pro
 import { UpdateClientComponent        } from './clients/update-client/update-client.component';
 import { OrdersComponent              } from './sales/orders/orders.component';
 import { UpdateProviderComponent } from './providers/update-provider/update-provider.component';
+import { QueryExistenceComponent } from './inventory/query-existence/query-existence.component';
+import { InventoryComponent } from './inventory/inventory/inventory.component';
 
 
 const routes: Routes = [
@@ -57,6 +59,9 @@ const routes: Routes = [
 
   { path: 'providers/register',     component: ProvidersRegisterComponent,      canActivate: [AuthGuard]  },
   { path: 'providers/update',       component: UpdateProviderComponent,         canActivate: [AuthGuard]  },
+
+  { path: 'inventory/query',        component: QueryExistenceComponent,         canActivate: [AuthGuard]  },
+  { path: 'inventory/existences',   component: InventoryComponent,              canActivate: [AuthGuard]  },
 
 
   { path: '404',                    component: NotFoundComponent,               canActivate: [AuthGuard]  },

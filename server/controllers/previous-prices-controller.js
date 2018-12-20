@@ -1,7 +1,7 @@
 import Debug from 'debug'
 import { nameProject } from '../config'
 import { User      } from '../models'
-import { PreviousPrices, Prices } from '../models'
+import { PreviousPrices, Prices, Products } from '../models'
 
 
 export const get_prev_prices = async (req, res, next) => {
@@ -24,9 +24,11 @@ export const save_prev_price = async (req, res, next) => {
     const newPrice    = {changedBy, product: product_id, date, costPrice, salesPrice}
     const addnewPrice = await PreviousPrices.findOneAndUpdate({product: product_id}, {$push: {historial: newPrice}})
 
+    const prod = await Products.findById(product_id).populate('price', {salesPrice: 1, costPrice: 1})
 
-    debug('Precio Guardado correctament')
-    res.status(200).json(req.product)
+
+    debug('Precio Guardado correctamente')
+    res.status(200).json(prod)
 
   } catch (error) {
 

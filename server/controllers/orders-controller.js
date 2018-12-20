@@ -69,9 +69,9 @@ export const save_order = async (req, res, next) => {
     const saveOrder = await newOrder.save();
     
     debug('Pedido Guardado')
-    res.status(200).json({
-      message: 'Pedido Facturado'
-    })
+    req.order = saveOrder
+
+    next()
 
   } catch (error) {
     debug(error)    

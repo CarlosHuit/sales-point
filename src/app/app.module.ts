@@ -49,6 +49,9 @@ import { MomentModule } from 'angular2-moment';
 import { OrderDetailComponent } from './sales/order-detail/order-detail.component';
 import { RemoveArticleComponent } from './dialogs/remove-article/remove-article.component';
 import { UpdateProviderComponent } from './providers/update-provider/update-provider.component';
+import { InventoryComponent } from './inventory/inventory/inventory.component';
+import { QueryExistenceComponent } from './inventory/query-existence/query-existence.component';
+import { ExistenceComponent } from './classes/existence/existence.component';
 
 
 @NgModule({
@@ -93,6 +96,9 @@ import { UpdateProviderComponent } from './providers/update-provider/update-prov
     OrderDetailComponent,
     RemoveArticleComponent,
     UpdateProviderComponent,
+    InventoryComponent,
+    QueryExistenceComponent,
+    ExistenceComponent,
   ],
   imports: [
     ReactiveFormsModule,

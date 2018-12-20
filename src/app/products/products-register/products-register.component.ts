@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from '../../auth/auth.service';
-import { Router } from '@angular/router';
-import { Product } from '../../classes/product';
-import { User    } from '../../classes/user';
-import { StorageService } from '../../services/storage/storage.service';
-import { Price } from 'src/app/classes/price';
-import { ProductsService } from '../../services/products/products.service';
+import { AuthService      } from '../../auth/auth.service';
+import { Router           } from '@angular/router';
+import { Product          } from '../../classes/product';
+import { StorageService   } from '../../services/storage/storage.service';
+import { Price            } from '../../classes/price';
+import { ProductsService  } from '../../services/products/products.service';
 
 
 

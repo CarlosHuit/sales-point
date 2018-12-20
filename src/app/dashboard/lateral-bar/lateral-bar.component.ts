@@ -78,8 +78,8 @@ export class LateralBarComponent implements OnInit {
       title: 'Existencias',
       keyword: 'inventory',
       opts: [
-        new Option('Consultar existencias',  'inventory/existences' ),
-        new Option('Inventario general',     'inventory/to-require' ),
+        new Option('Consultar existencias',  'inventory/query' ),
+        new Option('Inventario general',     'inventory/existences' ),
       ]
     },
   ];

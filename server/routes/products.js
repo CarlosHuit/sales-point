@@ -14,7 +14,7 @@ import {
 
 import { save_price             } from '../controllers/prices-controller'
 import { save_prev_price        } from '../controllers/previous-prices-controller'
-import { initialize_existences  } from '../controllers/existences-controller'
+import { initialize_existences  } from '../controllers/inventory-controller'
 
 const app = express.Router()
 

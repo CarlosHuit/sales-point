@@ -78,7 +78,6 @@ export const save_product = async (req, res, next) => {
     const newProduct  = new Products({_id: idProduct, registerBy, barcode, sku, description, price: idPrice})
     const saveProduct = await newProduct.save()
 
-
     const newHistorialPrices = new PreviousPrices({product: idProduct, historial: []})
     const savePrevPricesHis  = await newHistorialPrices.save()
 
