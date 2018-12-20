@@ -11,8 +11,7 @@ const TransactionsSchema = new Schema(
 const ExistencesSchema = new Schema(
   {
     product:        { type: Schema.Types.ObjectId,  ref: 'Product'  },
-    client:         { type: Schema.Types.ObjectId,  ref: 'Client'   },
-    existence:      { type: Number, min: 0,         required: true  },
+    existences:     { type: Number, min: 0,         required: true  },
     transactions:   [ TransactionsSchema ],
   }
 );
