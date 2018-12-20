@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClientsService    } from '../../services/clients/clients.service';
 import { Client } from '../../classes/client';
 import { AuthService } from '../../auth/auth.service';
+import { StorageService } from '../../services/storage/storage.service';
 
 @Component({
   selector: 'app-client-register',
@@ -14,7 +15,11 @@ export class ClientRegisterComponent implements OnInit {
   address = '';
   loading: boolean;
 
-  constructor(private _clients: ClientsService, private _auth: AuthService) { }
+  constructor(
+    private _clients: ClientsService,
+    private _auth: AuthService,
+    private _storage: StorageService
+    ) { }
 
   ngOnInit() {
   }
@@ -38,8 +43,9 @@ export class ClientRegisterComponent implements OnInit {
 
   }
 
-  handleReqSucces = (res) => {
+  handleReqSucces = (res: any) => {
     setTimeout(() => {
+      this.saveClientOnStorage(res.client);
       this.name = '';
       this.address = '';
       this.loading = false;
@@ -52,6 +58,28 @@ export class ClientRegisterComponent implements OnInit {
     delete(this.name);
     this.loading = false;
     this._auth.showError(err);
+  }
+
+  saveClientOnStorage = (client: Client) => {
+
+    const clients: Client[] = this._storage.getElement('clients');
+    if ( clients) {
+
+      const index = clients.findIndex( c => c._id === client._id  );
+
+      if (index !== -1) {
+        clients[index] = client;
+      } else {
+        clients.push(client);
+      }
+
+      this._storage.saveElement('clients', clients);
+    }
+
+    if (!clients) {
+      this._storage.saveElement('clients', [client]);
+    }
+
   }
 
 }

@@ -40,11 +40,12 @@ export const save_client = async (req, res, next) => {
     const {name, address} = req.body
 
     const newCLient = new Clients({registerBy: user_id, name, address})
-    const save = await newCLient.save()
+    const clientSaved = await newCLient.save()
 
     debug('Guardando cliente')
     res.status(200).json({
-      message: 'Cliente Guardado'
+      message: 'Cliente Guardado',
+      client: clientSaved
     })
     
   } catch (error) {
@@ -77,11 +78,7 @@ export const update_client = async (req, res, next) => {
     const update = await Clients.findByIdAndUpdate( _id, { $set: { registerBy: user_id, name, address }}, { new: true })
     
     debug('Cliente Actualizado')
-    res.status(200).json({
-      _id: update._id,
-      name: update.name,
-      address: update.address
-    })
+    res.status(200).json(update)
 
   } catch (error) {
     debug(error)    
