@@ -247,4 +247,16 @@ body {
   color: #404040 !important;
 }
 
+
+.animation-show {
+  animation: show 0.28s 1;
+}
+
+
+@keyframes show {
+  from { opacity: 0 }
+  to   { opacity: 1 }
+}
+
+
 @media (min-width: 320px) and (orientation: landscape) {}

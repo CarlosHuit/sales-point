@@ -9,10 +9,12 @@
 
 .card-register-form {
   width: 80%;
-    height: 90%;
-    display: flex;
-    flex-direction: column;
-    position: relative;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  max-width: 720px;
+  max-height: 720px;
 }
 
 .m-c-register-content {
