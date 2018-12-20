@@ -83,6 +83,7 @@ export const save_product = async (req, res, next) => {
     const savePrevPricesHis  = await newHistorialPrices.save()
 
     debug('Producto Guardado')
+    req.product    = saveProduct
     req.product_id = idProduct
     req.price_id   = idPrice
     next()

@@ -16,6 +16,7 @@ export const save_prev_price = async (req, res, next) => {
   const debug = new Debug(`${nameProject}: prices:save-previous-price`)
 
   try {
+
     const product_id = req.product_id
     const price_id   = req.price_id
     const { changedBy, product, date, costPrice, salesPrice } = req.body.price
@@ -23,10 +24,9 @@ export const save_prev_price = async (req, res, next) => {
     const newPrice    = {changedBy, product: product_id, date, costPrice, salesPrice}
     const addnewPrice = await PreviousPrices.findOneAndUpdate({product: product_id}, {$push: {historial: newPrice}})
 
+
     debug('Precio Guardado correctament')
-    res.status(200).json({
-      message: 'Producto Guardado'
-    })
+    res.status(200).json(req.product)
 
   } catch (error) {
 

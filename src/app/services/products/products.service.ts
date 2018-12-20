@@ -38,7 +38,7 @@ import { StorageService } from '../storage/storage.service';
     }
   }
 
-  saveProduct = (product: Product, price: Price) => {
+  saveProduct = (product: Product, price: Price): Observable<Product | any> => {
 
     const newProd = { product, price };
     const data    = JSON.stringify(newProd);

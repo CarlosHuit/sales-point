@@ -31,6 +31,8 @@ import { Client } from '../../classes/client';
 
   }
 
+
+
   saveProvider = (provider: Provider) => {
 
     const url = urljoin(this.apiUrl, provider.registerBy);
@@ -47,6 +49,9 @@ import { Client } from '../../classes/client';
         catchError( this.handleError )
       );
   }
+
+
+
 
   updateProvider = (provider: Provider) => {
 
@@ -65,7 +70,26 @@ import { Client } from '../../classes/client';
       );
   }
 
-  getProviders = (): Observable<Provider[] | any> => {
+
+  getProviders = (): Observable<Provider[]> => {
+
+    const providers = this._storage.getElement('providers');
+
+    if ( providers ) {
+      console.log('-- Storage --');
+      return this.getStorageProviders();
+    }
+
+    if ( !providers ) {
+      console.log('-- Server --');
+      return this.getServerProviders();
+    }
+
+
+  }
+
+
+  getServerProviders = (): Observable<Provider[] | any> => {
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
@@ -79,6 +103,15 @@ import { Client } from '../../classes/client';
         catchError( this.handleError )
       );
   }
+
+
+  getStorageProviders = (): Observable<Provider[]> => {
+
+    const providers = this._storage.getElement('providers');
+    return of(providers);
+
+  }
+
 
   saveProvidersOnStorage = ( x: any ) => {
 

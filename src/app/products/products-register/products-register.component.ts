@@ -75,7 +75,7 @@ export class ProductsRegisterComponent implements OnInit {
 
         this._products.saveProduct(product, price)
           .subscribe(
-            val => this.handleReqSucces(),
+            this.handleReqSucces,
             err => this.handleError(err)
           );
 
@@ -84,18 +84,26 @@ export class ProductsRegisterComponent implements OnInit {
     }
   }
 
-  handleReqSucces = () => {
+  handleReqSucces = (prod: Product) => {
     setTimeout(() => {
+      this.saveProductOnStorage(prod);
       this.registerForm.reset();
       this.authService.showError('Guardado Correctamente');
       this.loading = false;
     }, 1000);
   }
-  handleError = (err) => {
+  handleError = (err: string) => {
     setTimeout(() => {
       this.authService.showError(err);
       this.loading = false;
     }, 1000);
+  }
+
+  saveProductOnStorage = (product: Product) => {
+
+    this._storage.saveElement(`${product.barcode}`, product);
+    this._storage.saveElement(`${product.sku}`, product);
+
   }
 
 }
