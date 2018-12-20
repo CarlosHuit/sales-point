@@ -45,8 +45,9 @@ export class ProvidersRegisterComponent implements OnInit {
 
   }
 
-  handleReqSuccess = (res) => {
+  handleReqSuccess = (res: any) => {
     setTimeout(() => {
+      this.saveProviderOnStorage(res.provider);
       this._auth.showError(res.message);
       delete(this.name);
       delete(this.tel);
@@ -61,6 +62,29 @@ export class ProvidersRegisterComponent implements OnInit {
       this._auth.showError(err);
       this.loading = false;
     }, 1000);
+  }
+
+  saveProviderOnStorage = (provider: Provider) => {
+
+    const providers: Provider[] = this._storage.getElement('providers');
+
+    if ( providers) {
+
+      const index = providers.findIndex( c => c._id === provider._id  );
+
+      if (index !== -1) {
+        providers[index] = provider;
+      } else {
+        providers.push(provider);
+      }
+
+      this._storage.saveElement('providers', providers);
+    }
+
+    if (!providers) {
+      this._storage.saveElement('providers', [provider]);
+    }
+
   }
 
 }

@@ -1,0 +1,73 @@
+<div class="app-container center">
+    <mat-card class="card">
+  
+      <app-title-bar
+        [title]="'Actualizar Proveedor'"
+        >
+      </app-title-bar>
+  
+      <div class="m-c-input-search" *ngIf="!loadingProviders" >
+  
+  
+  
+        <div class="form-search center">
+  
+          <h2>Selecciona un proveedor</h2>
+  
+          <div class="m-c-select-client" >
+            <mat-form-field class="mat-form-field" *ngIf="!loadingProviders">
+              <mat-select placeholder="Proveedores">
+                <mat-option *ngFor="let provider of providers" (click)="changeProvider(provider)" [value]="provider.name">
+                  {{provider.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+  
+        </div>
+  
+  
+        <div *ngIf="currentProvider" class="update-prod-form center">
+  
+          <h2 style="text-align: center">Datos del Proveedor</h2>
+  
+          <label>
+            Nombre Proveedor:
+            <input type="text" [(ngModel)]="currentProvider.name" >
+          </label>
+          <label>
+            Telefono Proveedor:
+            <input type="number" [(ngModel)]="currentProvider.tel" >
+          </label>
+  
+          <div class="center" style="width: 100%">
+            <button
+              mat-raised-button
+              color="accent"
+              (click)="update()"
+              [disabled]="
+                currentProvider.name === copyProvider.name &&
+                currentProvider.tel === copyProvider.tel
+              "
+              >
+              ACTUALIZAR
+            </button>
+          </div>
+  
+  
+        </div>
+  
+        
+        <div style="height: 50px; width: 50px; margin-top: 10px" *ngIf="loading">
+          <mat-spinner></mat-spinner>
+        </div>
+      </div>
+  
+      <div style="height: 50px; width: 50px; margin-top: 10px" *ngIf="loadingProviders">
+        <mat-spinner></mat-spinner>
+      </div>
+  
+    </mat-card>
+  </div>
+  
+  

@@ -48,6 +48,7 @@ import { OrdersListComponent } from './sales/orders-list/orders-list.component';
 import { MomentModule } from 'angular2-moment';
 import { OrderDetailComponent } from './sales/order-detail/order-detail.component';
 import { RemoveArticleComponent } from './dialogs/remove-article/remove-article.component';
+import { UpdateProviderComponent } from './providers/update-provider/update-provider.component';
 
 
 @NgModule({
@@ -91,6 +92,7 @@ import { RemoveArticleComponent } from './dialogs/remove-article/remove-article.
     OrdersListComponent,
     OrderDetailComponent,
     RemoveArticleComponent,
+    UpdateProviderComponent,
   ],
   imports: [
     ReactiveFormsModule,

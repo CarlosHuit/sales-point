@@ -6,11 +6,11 @@ const app = express.Router()
 
 
 app.get('/:id',  get_provider    )
-app.get('/',     get_providers   )
+app.get('/',     verifyToken, validateUser,  get_providers   )
 
 app.post('/:id', verifyToken, validateUser, save_provider   )
 app.post('/',    save_providers  )
 
-app.put('/:id',  update_provider )
+app.put('/:id',  verifyToken, validateUser, update_provider )
 
 export default app

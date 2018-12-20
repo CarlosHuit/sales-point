@@ -48,6 +48,50 @@ import { Client } from '../../classes/client';
       );
   }
 
+  updateProvider = (provider: Provider) => {
+
+    const url = urljoin(this.apiUrl, provider._id);
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': `${this.getToken.addToken()}`
+      })
+    };
+    const data = JSON.stringify(provider);
+
+    return this.http.put(url, data, this.httpOptions )
+      .pipe(
+        catchError( this.handleError )
+      );
+  }
+
+  getProviders = (): Observable<Provider[] | any> => {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': `${this.getToken.addToken()}`
+      })
+    };
+
+    return this.http.get<Provider[]>(this.apiUrl, this.httpOptions )
+      .pipe(
+        map( this.saveProvidersOnStorage ),
+        catchError( this.handleError )
+      );
+  }
+
+  saveProvidersOnStorage = ( x: any ) => {
+
+
+    const clients = x as Provider[];
+
+    clients.sort( (a, b) => a.name > b.name ? 1 : a.name < b.name ? -1 : 0);
+    this._storage.saveElement('providers', clients);
+
+    return clients;
+
+  }
+
 
   handleError = (error: HttpErrorResponse) => {
     if (error.status === 401) {

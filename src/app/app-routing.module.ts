@@ -21,6 +21,7 @@ import { ClientRegisterComponent      } from './clients/client-register/client-r
 import { ProvidersRegisterComponent   } from './providers/providers-register/providers-register.component';
 import { UpdateClientComponent        } from './clients/update-client/update-client.component';
 import { OrdersComponent              } from './sales/orders/orders.component';
+import { UpdateProviderComponent } from './providers/update-provider/update-provider.component';
 
 
 const routes: Routes = [
@@ -28,27 +29,39 @@ const routes: Routes = [
   { path: '',                       component: DashboardComponent,              canActivate: [AuthGuard]        },
   { path: 'signin',                 component: SigninComponent,                 canActivate: [IsLoggedInGuard]  },
   { path: 'signup',                 component: SignupComponent,                 canActivate: [AuthGuard]  },
+
+
   { path: 'sales',                  component: SalesComponent,                  canActivate: [AuthGuard]  },
   { path: 'sales/register',         component: SalesRegisterComponent,          canActivate: [AuthGuard]  },
   { path: 'sales/orders',           component: OrdersComponent,                 canActivate: [AuthGuard]  },
 
+
   { path: 'purchases',              component: PurchasesComponent,              canActivate: [AuthGuard]  },
   { path: 'purchases/register',     component: PurchasesRegisterComponent,      canActivate: [AuthGuard]  },
+
+
   { path: 'devolutions',            component: DevolutionsComponent,            canActivate: [AuthGuard]  },
   { path: 'devolutions/register',   component: DevolutionsRegisterComponent,    canActivate: [AuthGuard]  },
+
 
   { path: 'products',               component: ProductsComponent,               canActivate: [AuthGuard]  },
   { path: 'products/register',      component: ProductsRegisterComponent,       canActivate: [AuthGuard]  },
   { path: 'products/update',        component: UpdateProductComponent,          canActivate: [AuthGuard]  },
   { path: 'products/update-price',  component: UpdatePriceComponent,            canActivate: [AuthGuard]  },
   { path: 'products/search',        component: SearchProductComponent,          canActivate: [AuthGuard]  },
+
+
   { path: 'clients/register',       component: ClientRegisterComponent,         canActivate: [AuthGuard]  },
   { path: 'clients/update',         component: UpdateClientComponent,           canActivate: [AuthGuard]  },
+
+
   { path: 'providers/register',     component: ProvidersRegisterComponent,      canActivate: [AuthGuard]  },
+  { path: 'providers/update',       component: UpdateProviderComponent,         canActivate: [AuthGuard]  },
 
-  { path: '404',                    component: NotFoundComponent,               canActivate: [AuthGuard]  }, // mejorar
 
+  { path: '404',                    component: NotFoundComponent,               canActivate: [AuthGuard]  },
   { path: '**',                     redirectTo: '404'                   }
+
 
 
 ];
