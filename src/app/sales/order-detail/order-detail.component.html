@@ -21,7 +21,7 @@
       <div class="sale-info">
   
         <span class="bold">Cliente: </span>
-        <span>{{order.client.name}}</span>
+        <span>{{order.client['name']}}</span>
   
         <span class="bold">Fecha: </span>
         <span>{{order.dateBilled | amLocale: 'es' | amDateFormat: ' DD MMMM YYYY'}}</span>

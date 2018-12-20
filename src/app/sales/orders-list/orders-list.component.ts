@@ -12,7 +12,7 @@ export class OrdersListComponent implements OnInit {
   columns = ['No.', 'Fecha', 'Cliente', 'Total Venta'];
 
   @Input() orders: Order[];
-  @Input() timeInterval: TimeInterval[];
+  @Input() timeInterval: TimeInterval[] | any;
   @Output() evShowDetail = new EventEmitter<string>();
 
   constructor() { }

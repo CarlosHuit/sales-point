@@ -10,7 +10,7 @@ import { User } from 'src/app/classes/user';
 
 export class OrderDetailComponent implements OnInit {
 
-  @Input()  order:               Order;
+  @Input()  order:               Order | any;
   @Output() evCloseOrderDetail = new EventEmitter<boolean>();
 
   hideSheet: boolean;
