@@ -31,4 +31,9 @@ export class OrderDetailComponent implements OnInit {
     setTimeout(() => this.evCloseOrderDetail.emit(true), 280);
   }
 
+  totalOrder = () => {
+    return this.order.articles.map(o => o.priceSale * o.quantity)
+      .reduce((acc, val) => acc + val, 0);
+  }
+
 }

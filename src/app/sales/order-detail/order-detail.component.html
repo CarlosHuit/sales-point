@@ -7,15 +7,66 @@
 
     <span class="icon-close" (click)="close()">x</span>
 
-    <div class="sale-info">
-      <p> Cliente: {{order.client.name}}</p>
-      <p> Fecha: {{order.dateBilled | amLocale: 'es' | amDateFormat: ' DD MMMM YYYY'}}</p>
-      <p> Vendedor: {{ billedBy() }} </p>
+
+
+
+    <!------ container details ------>
+    <div class="m-c-order-detail">
+
+      <!----- Title ----->
+      <div class="title-detail">
+        <h3>Detalle Venta</h3>
+      </div>
+  
+      <div class="sale-info">
+  
+        <span class="bold">Cliente: </span>
+        <span>{{order.client.name}}</span>
+  
+        <span class="bold">Fecha: </span>
+        <span>{{order.dateBilled | amLocale: 'es' | amDateFormat: ' DD MMMM YYYY'}}</span>
+  
+        <span class="bold">Vendedor: </span>
+        <span> {{ billedBy() }}</span>
+  
+      </div>
+
     </div>
 
-    <div class="sale-articles" >
+    <!------ container table ------>
+    <div class="m-c-table">
+
+      <div class="column-title">
+
+        <div class="column" >Sku</div>
+        <div class="column" >Descripción</div>
+        <div class="column" >U.</div>
+        <div class="column" >Sub Total</div>
+
+      </div>
+
+      <div class="container-rows">
+
+        <div class="m-c-table-rows">
+          <div class="table-rows" *ngFor="let i of order.articles" >
+            <span>{{i.product.sku}}</span>
+            <span>{{i.product.description}}</span>
+            <span>{{i.quantity}}</span>
+            <span>{{i.quantity * i.priceSale | currency:2:'Q'}}</span>
+          </div>
+        </div>
+
+        <div class="container-total">
+          <span>Total</span>
+          <span> {{totalOrder() | currency:2:'Q'}}</span>
+        </div>
+
+      </div>
 
     </div>
-    
+
+
+
+
   </mat-card>
 </div>
