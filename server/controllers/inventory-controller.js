@@ -81,11 +81,54 @@ export const save_inventory_entry = async ( req, res, next) => {
 }
 
 
+
+
 export const save_inventory_output = async (req, res, next) => {
   
   const debug = new Debug(`${nameProject}: inventory:save-output`)
 
+  try {
+    
+
+    const purchase    = req.purchase
+    const purchase_id = purchase._id
+    const articles = purchase.articles
+
+    for (let i = 0; i < articles.length; i++) {
+
+      const article     = articles[i];
+      const transaction = { purchase: purchase_id, quantity: article.quantity, typeTransaction:  'ENCOM'}
+      const product     = article.product
+      const increment   = article.quantity
+
+      const addT = await Existences.findOneAndUpdate(
+        { product },
+        { $push: { transactions: transaction } }
+      )
+
+      const uE = await Existences.findOneAndUpdate(
+        { product },
+        { $inc: { existences: increment } }
+      )
+
+    }
+
+    debug('Existencias actualizadas')
+    res.status(200).json({
+      message: 'Compra Registrada'
+    })
+
+
+  } catch (error) {
+    debug(error)    
+    const err = 'Error al facturar'
+    debug(err)
+    res.status(400).json({message: err, error: err}) 
+  }
+
 }
+
+
 
 
 export const get_inventory = async (req, res, next) => {

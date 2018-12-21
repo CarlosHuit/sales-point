@@ -64,11 +64,11 @@ export const save_purchase = async (req, res, next) => {
 
     const user_id = req.params.id
     const { registerBy, provider, purchaseDate, total, payment, articles } = req.body
-    const newOrder  = new Purchases({registerBy, provider: provider._id, purchaseDate, total, payment, articles})
-    const saveOrder = await newOrder.save();
+    const newPurchase  = new Purchases({registerBy, provider: provider._id, purchaseDate, total, payment, articles})
+    const savePurchase = await newPurchase.save();
     
     debug('Compra Guardada')
-    req.order = saveOrder
+    req.purchase = savePurchase
 
     next()
 
