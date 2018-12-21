@@ -1,3 +1,113 @@
-<p>
-  purchases-register works!
-</p>
+<div class="app-container" >
+
+    <div class="container-sale-register" *ngIf="!loadingProviders" >
+      <mat-card class="card-sale-reg animation-show">
+        <div class="container-card-el">
+  
+  
+          <div style="width: 100%; height: 45px;">
+            <app-title-bar title="Registrar Compra"></app-title-bar>
+          </div>
+  
+  
+          <!----- List of clients ----->
+          <div class="m-c-clients-detail">
+  
+            <span>Proveedor: </span>
+  
+            <mat-form-field>
+  
+              <mat-select [value]="purchase.provider.name">
+                <mat-option (click)="changeProvider(provider)" *ngFor="let provider of providers" [value]="provider.name">
+                  {{provider.name}}
+                </mat-option>
+              </mat-select>
+  
+            </mat-form-field>
+  
+          </div>
+  
+  
+          <!----- List of products ----->
+          <div class="m-c-table-products">
+  
+            <div class="m-c-table">
+  
+  
+              <div class="table-titles">
+                <div class="table-title" *ngFor="let columns of columns" >{{columns}}</div>
+              </div>
+  
+              <div class="container-rows">
+  
+                <div
+                  class="table-rows"
+                  *ngFor="let item of dataSource; let i = index"
+                  [class.pair]="i % 2 === 0"
+                  [class.impair]="i % 2 !== 0"
+                  (click)="openDialogDelete(i)"
+                  >
+    
+                  <span >{{item.sku}}</span>
+                  <span >{{item.description}}</span>
+                  <span class="center" >{{item.quantity}}</span>
+                  <span >{{item.subTotal() | currency:0:'Q'}}</span>
+    
+                </div>
+  
+              </div>
+  
+  
+            </div>
+  
+            <div class="m-c-total">
+              <h1>Total: {{ genTotal() | currency:0:'Q' }}</h1>
+            </div>
+  
+          </div>
+  
+  
+          <!------ Billing Button ------>
+          <div class="m-c-button-pay">
+            <button mat-flat-button color="warn" [disabled]="!genTotal()" (click)="billing()" >
+              Registrar
+            </button>
+          </div>
+  
+          <!------ Add Product Button ------>
+          <button
+            mat-fab color="accent"
+            (click)="openDialog()"
+            class="float-button"
+            >
+            +
+          </button>
+  
+  
+        </div>
+      </mat-card>
+    </div>
+  
+    <!------ Add Product Component ------>
+    <app-form-add-product
+      *ngIf="activeDialog"
+      (evsAddProduct)="addProduct($event)"
+      (evsCloseDialog)="closeDialog($event)"
+      >
+    </app-form-add-product>
+  
+    <!------ Billing Component ------>
+    <app-billing
+      (evsClose)="closeDialogBill($event)"
+      (evsPay)="registerSale($event)"
+      *ngIf="bill"
+      [total]="genTotal()"
+      >
+    </app-billing>
+  
+    <!------ Animation loading Component ------>
+    <app-spinner *ngIf="awaitBill"></app-spinner>  
+  
+  </div>
+  
+  
