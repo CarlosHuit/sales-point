@@ -33,7 +33,7 @@ import { Purchase } from '../../classes/purchase';
 
   }
 
-  getOrders = (timeInterval: TimeInterval): Observable<Order[] | any> => {
+  getPurchases = (timeInterval: TimeInterval): Observable<Purchase[] | any> => {
 
     this.httpOptions = {
       headers: new HttpHeaders({
@@ -45,11 +45,12 @@ import { Purchase } from '../../classes/purchase';
         .set('finalDate',    timeInterval.finalDate.toString()   )
     };
 
-    return this.http.get<Order[]>(this.apiUrl, this.httpOptions)
+    return this.http.get<Purchase[]>(this.apiUrl, this.httpOptions)
       .pipe(
         catchError(this.handleErr)
       );
   }
+
 
   getOrder = (_id: string): Observable<Order | any> => {
     const url = urljoin( this.apiUrl, _id );

@@ -33,7 +33,7 @@ export const get_orders = async (req, res, next) => {
     if (orders.length > 0) {
       debug('Mostrando ventas')
       res.status(200).json({
-        message: 'Hola mundo',
+        message: 'Mostrando ventas',
         orders
       })
     } else {

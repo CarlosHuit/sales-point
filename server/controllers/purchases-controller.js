@@ -19,28 +19,28 @@ export const get_purchases = async (req, res, next) => {
     const { initialDate, finalDate } = req.query
     const ins = initialDate;
 
-    const orders = await Orders.find({
-      dateBilled: {
+    const purchases = await Purchases.find({
+      purchaseDate: {
         '$gte': new Date(initialDate).toISOString(),
         '$lt':  new Date(finalDate).toISOString() 
       }
     })
-    .populate('client', {__v: 0})
+    .populate('provider', {__v: 0})
     .populate('articles.product', { __v: 0, _d: 0 })
-    .populate('billedBy', {firstName:1 , lastName: 1})
+    .populate('registerBy', {firstName:1 , lastName: 1})
 
-    if (orders.length > 0) {
+    if (purchases.length > 0) {
       debug('Mostrando ventas')
       res.status(200).json({
-        message: 'Hola mundo',
-        orders
+        message: 'Mostrando compras',
+        purchases
       })
     } else {
 
-      debug('No hay ventas registradas en el rango de fechas seleccionado')
+      debug('No hay compras registradas en el rango de fechas seleccionado')
       res.status(200).json({
-        message:  'No hay ventas registradas en el rango de fechas seleccionado',
-        orders:   []
+        message:  'No hay compras registradas en el rango de fechas seleccionado',
+        purchases:   []
       })
 
     }
