@@ -116,7 +116,7 @@
   }
 
   .row, .container-table-title {
-    grid-template-columns: 30px 50px calc(100% - 140px) 60px;
+    grid-template-columns: 30px 65px calc(100% - 155px) 60px;
     font-size: 10px;
     grid-auto-rows: 20px;
   }
