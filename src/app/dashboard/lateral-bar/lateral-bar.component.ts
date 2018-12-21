@@ -43,7 +43,6 @@ export class LateralBarComponent implements OnInit {
       keyword: 'devolutions',
       opts: [
         new Option('Registrar devolución',  'devolutions/register' ),
-        new Option('Modificar devolución',  'devolutions/update'   ),
         new Option('Revisar devoluciónes',  'devolutions/check'    ),
       ]
     },

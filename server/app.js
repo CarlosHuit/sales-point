@@ -10,7 +10,8 @@ import {
   products,
   orders,
   inventory,
-  purchases
+  purchases,
+  devolutions
 } from './routes'
 
 
@@ -47,6 +48,7 @@ app.use('/api/products',    products  )
 app.use('/api/orders',      orders    )
 app.use('/api/inventory',   inventory )
 app.use('/api/purchases',   purchases )
+app.use('/api/devolutions',   devolutions )
 
 
 export default app

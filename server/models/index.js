@@ -8,4 +8,5 @@ export { default as Sale           } from './sale'
 export { default as Orders         } from './orders'
 export { default as Existences     } from './existences'
 export { default as Purchases      } from './purchases'
+export { default as Devolutions    } from './devolutions'
 
