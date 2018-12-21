@@ -20,15 +20,15 @@
         <div class="container-rows">
           <div 
             class="table-rows"
-            (click)="showDetail(order._id)"
-            *ngFor="let order of orders; let i = index"
+            (click)="showDetail(purchase._id)"
+            *ngFor="let purchase of purchases; let i = index"
             [class.pair]="i % 2 === 0"
             [class.impair]="i % 2 !== 0"
             >
             <span >{{i + 1}}</span>
-            <span >{{order.dateBilled | amLocale: 'es' | amDateFormat: 'MMM DD'}}</span>
-            <span >{{order.client.name}}</span>
-            <span >{{order.total | currency:2:'Q'}}</span>
+            <span >{{purchase.purchaseDate | amLocale: 'es' | amDateFormat: 'MMM DD'}}</span>
+            <span >{{purchase.provider.name}}</span>
+            <span >{{purchase.total | currency:2:'Q'}}</span>
           </div>
         </div>
   

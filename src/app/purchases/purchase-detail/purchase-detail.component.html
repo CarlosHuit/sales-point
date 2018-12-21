@@ -1,0 +1,72 @@
+<div
+  class="app-container center"
+  [class.hide-container]="hideSheet"
+  >
+
+  <mat-card class="card" [class.quit-sheet]="hideSheet" >
+
+    <span class="icon-close" (click)="close()">x</span>
+
+
+
+
+    <!------ container details ------>
+    <div class="m-c-order-detail">
+
+      <!----- Title ----->
+      <div class="title-detail">
+        <h3>Detalle Compra</h3>
+      </div>
+  
+      <div class="sale-info">
+  
+        <span class="bold">Cliente: </span>
+        <span>{{purchase.provider['name']}}</span>
+  
+        <span class="bold">Fecha: </span>
+        <span>{{purchase.purchaseDate | amLocale: 'es' | amDateFormat: ' DD MMMM YYYY'}}</span>
+  
+        <span class="bold">Vendedor: </span>
+        <span> {{ billedBy() }}</span>
+  
+      </div>
+
+    </div>
+
+    <!------ container table ------>
+    <div class="m-c-table">
+
+      <div class="column-title">
+
+        <div class="column" >Sku</div>
+        <div class="column" >Descripción</div>
+        <div class="column" >U.</div>
+        <div class="column" >Sub Total</div>
+
+      </div>
+
+      <div class="container-rows">
+
+        <div class="m-c-table-rows">
+          <div class="table-rows" *ngFor="let i of purchase.articles" >
+            <span>{{i.product.sku}}</span>
+            <span>{{i.product.description}}</span>
+            <span>{{i.quantity}}</span>
+            <span>{{i.quantity * i.costPrice | currency:2:'Q'}}</span>
+          </div>
+        </div>
+
+        <div class="container-total">
+          <span>Total</span>
+          <span> {{totalOrder() | currency:2:'Q'}}</span>
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+
+  </mat-card>
+</div>

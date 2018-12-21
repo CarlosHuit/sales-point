@@ -9,15 +9,15 @@
       </div>
   
   
-      <div class="container-selectors" *ngIf="!loadingSales && !orders" >
+      <div class="container-selectors" *ngIf="!loadingSales && !purchases" >
         <app-dates-selector (evSearchByInterval)="searchByInterval($event)"></app-dates-selector>
       </div>
   
   
-      <div class="container-orders" *ngIf="!loadingSales && orders">
+      <div class="container-orders" *ngIf="!loadingSales && purchases">
   
         <app-purchases-list
-          [orders]="orders"
+          [purchases]="purchases"
           [timeInterval]="timeInterval"
           (evShowDetail)="showDetail($event)"
           >
@@ -32,11 +32,11 @@
       
     </mat-card>
   
-    <app-order-detail
-      [order]="order"
-      *ngIf="!loadingSales && order"
+    <app-purchase-detail
+      [purchase]="purchase"
+      *ngIf="!loadingSales && purchase"
       (evCloseOrderDetail)="closeOrderDetail($event)"
       >
-    </app-order-detail>
+    </app-purchase-detail>
   
   </div>

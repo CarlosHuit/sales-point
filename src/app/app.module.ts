@@ -55,6 +55,7 @@ import { ExistenceComponent } from './classes/existence/existence.component';
 import { PurchaseAddProductComponent } from './purchases/purchase-add-product/purchase-add-product.component';
 import { PaymentComponent } from './purchases/payment/payment.component';
 import { PurchasesListComponent } from './purchases/purchases-list/purchases-list.component';
+import { PurchaseDetailComponent } from './purchases/purchase-detail/purchase-detail.component';
 
 
 @NgModule({
@@ -105,6 +106,7 @@ import { PurchasesListComponent } from './purchases/purchases-list/purchases-lis
     PurchaseAddProductComponent,
     PaymentComponent,
     PurchasesListComponent,
+    PurchaseDetailComponent,
   ],
   imports: [
     ReactiveFormsModule,

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Order } from '../../classes/order';
 import { TimeInterval } from '../../classes/time-interval';
+import { Purchase } from '../../classes/purchase';
 
 @Component({
   selector: 'app-purchases-list',
@@ -12,7 +13,7 @@ export class PurchasesListComponent implements OnInit {
 
   columns = ['No.', 'Fecha', 'Proveedor', 'Total Compra'];
 
-  @Input() orders: Order[];
+  @Input() purchases: Purchase[];
   @Input() timeInterval: TimeInterval[] | any;
   @Output() evShowDetail = new EventEmitter<string>();
 
@@ -22,7 +23,7 @@ export class PurchasesListComponent implements OnInit {
   }
 
   getTotal = () => {
-    return this.orders.map(p => p.total).reduce((acc, val) => acc + val, 0);
+    return this.purchases.map(p => p.total).reduce((acc, val) => acc + val, 0);
   }
 
   showDetail = (id: string) => {

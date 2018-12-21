@@ -5,6 +5,7 @@ import { AuthService   } from '../../auth/auth.service';
 import { Order } from '../../classes/order';
 import { Router } from '@angular/router';
 import { PurchasesService } from '../../services/purchases/purchases.service';
+import { Purchase } from '../../classes/purchase';
 
 @Component({
   selector: 'app-purchases',
@@ -14,9 +15,9 @@ import { PurchasesService } from '../../services/purchases/purchases.service';
 export class PurchasesComponent implements OnInit {
 
   loadingSales: boolean;
-  orders:       Order[];
   timeInterval: TimeInterval;
-  order:        Order;
+  purchase:     Purchase;
+  purchases:    Purchase[];
 
   constructor(
     private _orders:    OrdersService,
@@ -31,8 +32,6 @@ export class PurchasesComponent implements OnInit {
   searchByInterval = (dates: TimeInterval) => {
     this.loadingSales = true;
     this.timeInterval = dates;
-    this._orders.getOrders(dates)
-      .subscribe( this.getOrdersSucces, this.getOrdersError );
 
     this._purchases.getPurchases(dates)
       .subscribe(
@@ -44,12 +43,12 @@ export class PurchasesComponent implements OnInit {
   getPurchasesSucces = (res: any) => {
     setTimeout(() => {
 
-      if (res.orders.length > 0) {
-        this.orders = res.purchases;
+      if (res.purchases.length > 0) {
+        this.purchases = res.purchases;
         this.loadingSales = false;
       }
 
-      if (res.orders.length === 0) {
+      if (res.purchases.length === 0) {
         this.loadingSales = false;
         this._auth.showError(res.message);
       }
@@ -64,43 +63,19 @@ export class PurchasesComponent implements OnInit {
     );
   }
 
-  getOrdersSucces = (res: any) => {
-    setTimeout(() => {
-
-      if (res.orders.length > 0) {
-        this.orders = res.orders;
-        this.loadingSales = false;
-      }
-
-      if (res.orders.length === 0) {
-        this.loadingSales = false;
-        this._auth.showError(res.message);
-      }
-
-    }, 1000);
-  }
-
-  getOrdersError = (err: string) => {
-    setTimeout(
-      () => (this.loadingSales = false, this._auth.showError(err)),
-      1000
-    );
-  }
-
-
 
   showDetail = (id: string) => {
-    const index = this.orders.findIndex(order => order._id === id);
-    const el = this.orders[index];
-    this.order = el;
+    const index = this.purchases.findIndex(order => order._id === id);
+    const el = this.purchases[index];
+    this.purchase = el;
   }
 
   closeOrderDetail = () => {
-    delete(this.order);
+    delete(this.purchase);
   }
 
   restart = () => {
-    delete(this.orders);
+    delete(this.purchases);
   }
 
 }
