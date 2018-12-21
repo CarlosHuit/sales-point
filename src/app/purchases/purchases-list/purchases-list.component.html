@@ -1,0 +1,45 @@
+<div class="container-order-list">
+
+
+    <div class="info-dates">
+      <span>De: {{timeInterval['initialDate'] | amLocale: 'es' | amDateFormat: 'MMMM DD'}} </span>
+      <span>A: {{timeInterval['finalDate'] | amLocale: 'es' | amDateFormat: 'MMMM DD'}} </span>
+    </div>
+  
+    
+    <div class="m-c-table-orders">
+      
+      
+      <div class="m-c-table">
+  
+        <!-- table Of products -->
+        <div class="table-titles">
+          <div class="table-title" *ngFor="let column of columns">{{column}}</div>
+        </div>
+  
+        <div class="container-rows">
+          <div 
+            class="table-rows"
+            (click)="showDetail(order._id)"
+            *ngFor="let order of orders; let i = index"
+            [class.pair]="i % 2 === 0"
+            [class.impair]="i % 2 !== 0"
+            >
+            <span >{{i + 1}}</span>
+            <span >{{order.dateBilled | amLocale: 'es' | amDateFormat: 'MMM DD'}}</span>
+            <span >{{order.client.name}}</span>
+            <span >{{order.total | currency:2:'Q'}}</span>
+          </div>
+        </div>
+  
+      </div>
+  
+      <div class="m-c-total">
+        <h1>Total: {{getTotal() | currency:2:'Q'}}</h1>
+      </div>
+  
+  
+    </div>
+  
+  
+  </div>

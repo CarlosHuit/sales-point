@@ -54,6 +54,7 @@ import { QueryExistenceComponent } from './inventory/query-existence/query-exist
 import { ExistenceComponent } from './classes/existence/existence.component';
 import { PurchaseAddProductComponent } from './purchases/purchase-add-product/purchase-add-product.component';
 import { PaymentComponent } from './purchases/payment/payment.component';
+import { PurchasesListComponent } from './purchases/purchases-list/purchases-list.component';
 
 
 @NgModule({
@@ -103,6 +104,7 @@ import { PaymentComponent } from './purchases/payment/payment.component';
     ExistenceComponent,
     PurchaseAddProductComponent,
     PaymentComponent,
+    PurchasesListComponent,
   ],
   imports: [
     ReactiveFormsModule,

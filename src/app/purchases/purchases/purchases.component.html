@@ -1,3 +1,42 @@
-<p>
-  purchases works!
-</p>
+<div class="app-container center">
+
+    <mat-card class="card animation-show">
+  
+  
+      <div class="container-title" (click)="restart()" >
+        <app-title-bar title="Consultar Compras">
+        </app-title-bar>
+      </div>
+  
+  
+      <div class="container-selectors" *ngIf="!loadingSales && !orders" >
+        <app-dates-selector (evSearchByInterval)="searchByInterval($event)"></app-dates-selector>
+      </div>
+  
+  
+      <div class="container-orders" *ngIf="!loadingSales && orders">
+  
+        <app-purchases-list
+          [orders]="orders"
+          [timeInterval]="timeInterval"
+          (evShowDetail)="showDetail($event)"
+          >
+        </app-purchases-list>
+  
+      </div>
+  
+      <!-- <app-order-detail *ngIf="order"></app-order-detail> -->
+      <div style="height: 50px; width: 50px; margin-top: 10px" *ngIf="loadingSales">
+        <mat-spinner></mat-spinner>
+      </div>
+      
+    </mat-card>
+  
+    <app-order-detail
+      [order]="order"
+      *ngIf="!loadingSales && order"
+      (evCloseOrderDetail)="closeOrderDetail($event)"
+      >
+    </app-order-detail>
+  
+  </div>

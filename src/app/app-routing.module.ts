@@ -38,7 +38,7 @@ const routes: Routes = [
   { path: 'sales/orders',           component: OrdersComponent,                 canActivate: [AuthGuard]  },
 
 
-  { path: 'purchases',              component: PurchasesComponent,              canActivate: [AuthGuard]  },
+  { path: 'purchases/query',        component: PurchasesComponent,              canActivate: [AuthGuard]  },
   { path: 'purchases/register',     component: PurchasesRegisterComponent,      canActivate: [AuthGuard]  },
 
 

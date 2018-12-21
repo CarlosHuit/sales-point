@@ -34,9 +34,8 @@ export class LateralBarComponent implements OnInit {
       title: 'Compras',
       keyword: 'purchases',
       opts: [
-        new Option('Registrar compra',  'purchases/register' ),
-        new Option('Actualizar compra', 'purchases/update'   ),
-        new Option('Revisar Ingresos',  'purchases/ckeck'    ),
+        new Option('Registrar compra',    'purchases/register' ),
+        new Option('Consultar Ingresos',  'purchases/query'    ),
       ]
     },
     {
