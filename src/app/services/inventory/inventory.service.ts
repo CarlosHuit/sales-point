@@ -45,6 +45,23 @@ export class InventoryService {
       .pipe( catchError(this.handleErr) );
   }
 
+  queryExistence = (code: string): Observable<Existence | any> => {
+
+    const url = urljoin(this.apiUrl, code);
+
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': `${this.getToken.addToken()}`
+      })
+    };
+
+    return this.http.get(url, this.httpOptions)
+      .pipe(
+        catchError( this.handleErr )
+      );
+  }
+
   handleError = (error: HttpErrorResponse) => {
     if (error.status === 401) {
 

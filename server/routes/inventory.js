@@ -1,12 +1,12 @@
 import express from 'express'
 import { verifyToken, validateUser } from '../middleware'
-import { get_inventory } from '../controllers/inventory-controller'
+import { get_inventory, get_product_existence } from '../controllers/inventory-controller'
 
 const app = express.Router()
 
 
-// app.get('/:id',   verifyToken, validateUser, get_order    )
-app.get('/',      verifyToken, validateUser, get_inventory   )
+app.get('/:id',   verifyToken, validateUser, get_product_existence )
+app.get('/',      verifyToken, validateUser, get_inventory         )
 
 
 // app.post('/:id',  verifyToken, validateUser, save_order   )

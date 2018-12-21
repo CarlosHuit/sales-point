@@ -1,6 +1,6 @@
 import Debug from 'debug'
-import { nameProject  } from '../config'
-import { Existences   } from '../models'
+import { nameProject          } from '../config'
+import { Existences, Products } from '../models'
 
 export const initialize_existences = async (req, res, next) => {
   
@@ -107,6 +107,54 @@ export const get_inventory = async (req, res, next) => {
     res.status(400).json({message: err, error: err}) 
 
   }
+
+}
+
+export const get_product_existence = async (req, res, next) => {
+
+  const debug = new Debug(`${nameProject}: inventory:product-existence`)
+
+
+  try {
+    
+    const code = req.params.id
+    let product;
+    
+
+    product = await Products.findOne({sku: code})
+
+
+    if (!product) {
+      product = await Products.findOne({barcode: code})
+    }
+
+    if ( !product ) {
+
+      debug('No se ha encontrado el producto')
+      res.status(404).json({
+        message: 'Producto No encontrado'
+      })
+
+    }
+
+    if (product) {
+
+      const existences = await Existences.findOne({product: product._id}).populate('product', { sku: 1, description: 1 })
+      res.status(200).json(existences)
+
+    }
+
+    
+
+  } catch (error) {
+
+    debug(error)    
+    const err = 'Error al consultar las existencias'
+    debug(err)
+    res.status(400).json({message: err, error: err}) 
+    
+  }
+
 
 }
 
