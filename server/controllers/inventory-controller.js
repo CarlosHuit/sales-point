@@ -80,8 +80,52 @@ export const save_inventory_entry = async ( req, res, next) => {
 
 }
 
+export const save_inventory_entry_devolution = async ( req, res, next) => {
+
+  const debug = new Debug(`${nameProject}: inventory:save-entry`)
+
+  try {
+    
+//  _id
+// product
+// registerBy
+// dateDevolution
+// quantity
+// observation
+
+    const devolution    = req.devolution
+    const devolution_id = devolution._id
+    const quantity      = devolution.quantity
+    const transaction = { order: devolution_id, quantity, typeTransaction: 'ENDEV' }
+
+    const product   = devolution.product
+    const increment = quantity
+
+    const addT = await Existences.findOneAndUpdate(
+      { product },
+      { $push: { transactions: transaction } }
+    )
+
+    const uE = await Existences.findOneAndUpdate(
+      { product },
+      { $inc: {existences: increment} }
+    )
+
+    debug('Devolución registrada y existencias actualizadas')
+    res.status(200).json({
+      message: 'Devolución registrada'
+    })
 
 
+  } catch (error) {
+    debug(error)    
+    const err = 'Error al facturar'
+    debug(err)
+    res.status(400).json({message: err, error: err}) 
+  }
+
+
+}
 
 export const save_inventory_output = async (req, res, next) => {
   

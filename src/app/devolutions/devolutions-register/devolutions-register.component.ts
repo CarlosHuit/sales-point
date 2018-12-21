@@ -62,7 +62,7 @@ export class DevolutionsRegisterComponent implements OnInit {
 
   registerDevolution = () => {
     const user_id = this._storage.getElement('user')['userId'];
-    const x = new Devolution(this.product['_id'] , this.quantity, this.observations, user_id );
+    const x = new Devolution(this.product['_id'] , this.quantity, this.observations, user_id, new Date);
 
     this._devolutions.saveDevolution(x)
       .subscribe(
