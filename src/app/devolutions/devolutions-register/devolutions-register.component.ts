@@ -55,20 +55,37 @@ export class DevolutionsRegisterComponent implements OnInit {
 
   handleError = (err) => {
     setTimeout(() => {
-      this._auth.showError(err);
       this.loading = false;
-    }, 1000);
+      this._auth.showError(err);
+    }, 500);
   }
 
   registerDevolution = () => {
     const user_id = this._storage.getElement('user')['userId'];
     const x = new Devolution(this.product['_id'] , this.quantity, this.observations, user_id, new Date);
 
+    this.loading = true;
+    delete(this.product);
+
     this._devolutions.saveDevolution(x)
       .subscribe(
-        (res) => console.log(res),
-        (err) => console.log(err),
+        this.devolutionRegistered,
+        this.devolutionNotRegistered,
       );
+  }
+
+  devolutionRegistered = (res: any) => {
+    setTimeout(() => {
+      this.loading = false;
+      this._auth.showError(res.message);
+    }, 500);
+  }
+
+  devolutionNotRegistered = (err: string) => {
+    setTimeout(() => {
+      this.loading = false;
+      this._auth.showError(err);
+    }, 500);
   }
 
 }

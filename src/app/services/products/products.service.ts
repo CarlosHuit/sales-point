@@ -113,9 +113,7 @@ import { StorageService } from '../storage/storage.service';
     };
 
     return this.http.get<Product>(url, this.httpOptions)
-      .pipe(
-        catchError(this.handleError)
-      );
+      .pipe( catchError(this.handleErr) );
   }
 
 
