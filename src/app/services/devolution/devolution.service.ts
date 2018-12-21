@@ -11,6 +11,7 @@ import { Product            } from '../../classes/product';
 import { StorageService     } from '../storage/storage.service';
 import { Existence          } from '../../classes/existence';
 import { Devolution         } from '../../classes/devolution';
+import { TimeInterval       } from '../../classes/time-interval';
 
 @Injectable({
   providedIn: 'root'
@@ -47,35 +48,26 @@ export class DevolutionService {
       .pipe( catchError(this.handleErr) );
   }
 
-  getInventory = (): Observable<Existence[] | any> => {
+  getDevolutions = (timeInterval: TimeInterval): Observable<Devolution[] | any > => {
 
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
         'Authorization': `${this.getToken.addToken()}`
-      })
+      }),
+      params: new HttpParams()
+        .set('initialDate',  timeInterval.initialDate.toString() )
+        .set('finalDate',    timeInterval.finalDate.toString()   )
     };
 
-    return this.http.get<Existence[]>(this.apiUrl, this.httpOptions)
-      .pipe( catchError(this.handleErr) );
-  }
-
-  queryExistence = (code: string): Observable<Existence | any> => {
-
-    const url = urljoin(this.apiUrl, code);
-
-    this.httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Authorization': `${this.getToken.addToken()}`
-      })
-    };
-
-    return this.http.get(url, this.httpOptions)
+    return this.http.get<Devolution[]>(this.apiUrl, this.httpOptions)
       .pipe(
         catchError( this.handleErr )
       );
+
   }
+
+
 
   handleError = (error: HttpErrorResponse) => {
     if (error.status === 401) {

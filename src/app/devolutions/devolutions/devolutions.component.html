@@ -1,5 +1,14 @@
 <div class="app-container center">
   <mat-card class="animation-show card">
-    Hello World
+
+
+    <div class="container-title">
+      <app-title-bar title="Consultar Devoluciones" ></app-title-bar>
+    </div>
+
+    <div class="container-devolutions">
+      <app-dates-selector (evSearchByInterval)="searchByInterval($event)"></app-dates-selector>
+    </div>
+
   </mat-card>
 </div>

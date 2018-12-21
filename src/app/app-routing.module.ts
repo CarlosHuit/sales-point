@@ -42,7 +42,7 @@ const routes: Routes = [
   { path: 'purchases/register',     component: PurchasesRegisterComponent,      canActivate: [AuthGuard]  },
 
 
-  { path: 'devolutions',            component: DevolutionsComponent,            canActivate: [AuthGuard]  },
+  { path: 'devolutions/check',      component: DevolutionsComponent,            canActivate: [AuthGuard]  },
   { path: 'devolutions/register',   component: DevolutionsRegisterComponent,    canActivate: [AuthGuard]  },
 
 
