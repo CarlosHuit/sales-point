@@ -5,7 +5,7 @@ const ArticlesSchema = new Schema(
     product:   { type: Schema.Types.ObjectId,  ref: 'Product' },
     quantity:  { type: Number, required: true },
     date:      { type: Date, required: true },
-    priceSale: { type: Number, required: true },
+    costPrice: { type: Number, required: true },
   }
 )
 

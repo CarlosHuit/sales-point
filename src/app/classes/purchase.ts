@@ -19,6 +19,6 @@ export class Article {
     public product:   Product | string,
     public quantity:  number,
     public date:      Date,
-    public priceSale: number,
+    public costPrice: number,
   ) {}
 }

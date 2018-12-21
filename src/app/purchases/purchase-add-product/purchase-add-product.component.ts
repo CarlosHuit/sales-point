@@ -1,17 +1,16 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { Product } from '../../classes/product';
-import { Article } from '../../classes/order';
+import { Article } from '../../classes/purchase';
 import { ProductsService } from '../../services/products/products.service';
 import { StorageService  } from '../../services/storage/storage.service';
 import { AuthService     } from '../../auth/auth.service';
 
-
 @Component({
-  selector: 'app-form-add-product',
-  templateUrl: './form-add-product.component.html',
-  styleUrls: ['./form-add-product.component.css']
+  selector: 'app-purchase-add-product',
+  templateUrl: './purchase-add-product.component.html',
+  styleUrls: ['./purchase-add-product.component.css']
 })
-export class FormAddProductComponent implements OnInit {
+export class PurchaseAddProductComponent implements OnInit {
 
   @Output() evsAddProduct  = new EventEmitter<{product: Product, article: Article}>();
   @Output() evsCloseDialog = new EventEmitter<boolean>();

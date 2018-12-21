@@ -16,4 +16,8 @@ export class Product {
     return this.quantity * this.price['salesPrice'];
   }
 
+  subTotalCost () {
+    return this.quantity * this.price['costPrice'];
+  }
+
 }

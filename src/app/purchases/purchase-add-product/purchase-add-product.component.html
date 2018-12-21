@@ -1,0 +1,83 @@
+<div class="container-add-product center">
+
+    <mat-card class="card-form">
+      
+      <div class="m-c-title" >
+        <h1 class="title">Agregar Producto</h1>
+      </div>
+  
+      <div class="m-c-content">
+  
+        <div class="m-c-input">
+          <input
+            type="text"
+            placeholder="Ingresa código de barras o SKU"
+            spellcheck="false"
+            (input)="search(code.value)"
+            autofocus
+            #code
+            >
+        </div>
+  
+        <div class="description">
+          <p *ngIf="!product"> Ingresa un código de barras o SKU válido </p>
+          <p *ngIf="product"> {{product.description}} </p>
+        </div>
+  
+        <div class="m-c-prices">
+          <small>U. Precio Costo</small>
+          <small>Sub-Total</small>
+  
+          <div class="add-borders center">
+            <h2 *ngIf="product">{{product.price.costPrice | currency:2:'Q'}}</h2>
+          </div>
+  
+          <div class="add-borders center">
+            <h2 *ngIf="product">{{product.price.costPrice * product.quantity | currency:2:'Q'}}</h2>
+          </div>
+  
+        </div>
+  
+        <div class="m-c-quantity">
+          <label *ngIf="product" >
+            <input
+              
+              #quantity
+              [disabled]="!product"
+              [(ngModel)]="product.quantity"
+              placeholder="Cantidad"
+              type="number" 
+              >
+          </label>
+        </div>
+  
+      </div>
+  
+      <div class="dialog-buttons">
+  
+        <button
+          mat-flat-button
+          style="background: #239B56"
+          [disabled]="code.value.length === 0 || !product"
+          color="accent"
+          class="btn-selected"
+          (click)="addProduct(code)"
+          >
+          Agregar
+        </button>
+        <button
+          mat-button
+          color="warn"
+          (click)="closeDialog()"
+          >
+          Regresar
+        </button>
+  
+  
+      </div>
+  
+  
+    </mat-card>
+  
+  </div>
+  

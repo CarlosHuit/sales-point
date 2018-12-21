@@ -4,7 +4,7 @@ import { AuthService } from '../../auth/auth.service';
 import { MatDialog              } from '@angular/material';
 import { AddProductComponent    } from '../../dialogs/add-product/add-product.component';
 import { Product                } from '../../classes/product';
-import { Article, Order         } from '../../classes/order';
+import { Article,               } from '../../classes/purchase';
 import { StorageService         } from '../../services/storage/storage.service';
 import { ClientsService         } from '../../services/clients/clients.service';
 import { Client                 } from 'src/app/classes/client';
@@ -27,9 +27,9 @@ export class PurchasesRegisterComponent implements OnInit {
 
   columns:        string[] = ['Sku', 'Descripción', 'U.', 'Sub total'];
   activeDialog:   boolean;
-  bill:           boolean;
+  pay:            boolean;
   dataSource =    [];
-  awaitBill:      boolean;
+  awaitPay:      boolean;
   loadingClients = true;
   loadingProviders = true;
 
@@ -48,11 +48,11 @@ export class PurchasesRegisterComponent implements OnInit {
     this.getProviders();
   }
 
-  billing     = () => this.bill = true;
+  billing     = () => this.pay = true;
   openDialog  = () => this.activeDialog = true;
   closeDialog = ev => this.activeDialog = false;
-  genTotal    = () => this.dataSource.map(p => p.subTotal()).reduce((acc, val) => acc + val, 0);
-  closeDialogBill = (state: EventListener) => this.bill = false;
+  genTotal    = () => this.dataSource.map(p => p.subTotalCost()).reduce((acc, val) => acc + val, 0);
+  closeDialogBill = (state: EventListener) => this.pay = false;
 
 
   openDialogDelete = (i: number) => {
@@ -77,30 +77,29 @@ export class PurchasesRegisterComponent implements OnInit {
 
   registerSale = (ev: {date: Date, received: number}) => {
 
-    this.awaitBill        = true;
+    this.awaitPay        = true;
     this.purchase.payment   = ev.received;
     this.purchase.purchaseDate = ev.date;
     this.purchase.total      = this.genTotal();
-    this.bill             = false;
+    this.pay             = false;
 
     this._purchases.savePurchase(this.purchase)
       .subscribe(
-        (res) => console.log(res),
-        (err) => console.log(err)
-        // this.handleSuccesSave,
-        // this.handleErrorSave
+        this.handleSuccesSave,
+        this.handleErrorSave
         );
 
   }
 
   handleSuccesSave = (res) => {
     setTimeout(() => {
+      console.log(res);
       this.dataSource       = [];
       this.purchase.articles   = [];
       this.purchase.purchaseDate = null;
       this.purchase.payment     = null;
       this.purchase.total      = null;
-      this.awaitBill        = false;
+      this.awaitPay        = false;
 
       this.authService.showError(res.message);
 
@@ -108,8 +107,8 @@ export class PurchasesRegisterComponent implements OnInit {
   }
 
   handleErrorSave = (err) => {
-
-    setTimeout(() => (this.awaitBill = false, this.authService.showError(err)), 1000);
+    console.log(err);
+    setTimeout(() => (this.awaitPay = false, this.authService.showError(err)), 1000);
 
   }
 

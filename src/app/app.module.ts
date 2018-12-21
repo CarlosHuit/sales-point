@@ -52,6 +52,8 @@ import { UpdateProviderComponent } from './providers/update-provider/update-prov
 import { InventoryComponent } from './inventory/inventory/inventory.component';
 import { QueryExistenceComponent } from './inventory/query-existence/query-existence.component';
 import { ExistenceComponent } from './classes/existence/existence.component';
+import { PurchaseAddProductComponent } from './purchases/purchase-add-product/purchase-add-product.component';
+import { PaymentComponent } from './purchases/payment/payment.component';
 
 
 @NgModule({
@@ -99,6 +101,8 @@ import { ExistenceComponent } from './classes/existence/existence.component';
     InventoryComponent,
     QueryExistenceComponent,
     ExistenceComponent,
+    PurchaseAddProductComponent,
+    PaymentComponent,
   ],
   imports: [
     ReactiveFormsModule,

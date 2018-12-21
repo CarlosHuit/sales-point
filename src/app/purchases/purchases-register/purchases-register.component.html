@@ -51,7 +51,7 @@
                   <span >{{item.sku}}</span>
                   <span >{{item.description}}</span>
                   <span class="center" >{{item.quantity}}</span>
-                  <span >{{item.subTotal() | currency:0:'Q'}}</span>
+                  <span >{{item.subTotalCost() | currency:0:'Q'}}</span>
     
                 </div>
   
@@ -89,24 +89,24 @@
     </div>
   
     <!------ Add Product Component ------>
-    <app-form-add-product
+    <app-purchase-add-product
       *ngIf="activeDialog"
       (evsAddProduct)="addProduct($event)"
       (evsCloseDialog)="closeDialog($event)"
       >
-    </app-form-add-product>
+    </app-purchase-add-product>
   
     <!------ Billing Component ------>
-    <app-billing
+    <app-payment
       (evsClose)="closeDialogBill($event)"
       (evsPay)="registerSale($event)"
-      *ngIf="bill"
+      *ngIf="pay"
       [total]="genTotal()"
       >
-    </app-billing>
+    </app-payment>
   
     <!------ Animation loading Component ------>
-    <app-spinner *ngIf="awaitBill"></app-spinner>  
+    <app-spinner *ngIf="awaitPay"></app-spinner>  
   
   </div>
   
