@@ -11,9 +11,11 @@ import { AuthService        } from '../../auth/auth.service';
 })
 export class DevolutionsComponent implements OnInit {
 
-  loadingSales: boolean;
+  loadingDevolutions: boolean;
   timeInterval: TimeInterval;
   devolutions:  Devolution[];
+
+  titles = ['No.', 'fecha', 'sku', 'descripción', 'usuario', 'U.'];
 
   constructor(
     private _devolutions: DevolutionService,
@@ -24,7 +26,7 @@ export class DevolutionsComponent implements OnInit {
   }
 
   searchByInterval = (dates: TimeInterval) => {
-    this.loadingSales = true;
+    this.loadingDevolutions = true;
     this.timeInterval = dates;
 
     this._devolutions.getDevolutions(dates)
@@ -36,26 +38,26 @@ export class DevolutionsComponent implements OnInit {
   }
 
 
-  getPurchasesSucces = (res: Devolution[]) => {
+  getPurchasesSucces = (res: {message: string, devolutions: Devolution[]}) => {
     setTimeout(() => {
 
       console.log(res);
-      // if (res.purchases.length > 0) {
-      //   this.purchases = res.purchases;
-      //   this.loadingSales = false;
-      // }
+      if (res.devolutions.length > 0) {
+        this.devolutions = res.devolutions;
+        this.loadingDevolutions = false;
+      }
 
-      // if (res.purchases.length === 0) {
-      //   this.loadingSales = false;
-      //   this._auth.showError(res.message);
-      // }
+      if (res.devolutions.length === 0) {
+        this.loadingDevolutions = false;
+        this._auth.showError(res.message);
+      }
 
     }, 1000);
   }
 
   getPurchasesError = (err: string) => {
     setTimeout(
-      () => (this.loadingSales = false, this._auth.showError(err)),
+      () => (this.loadingDevolutions = false, this._auth.showError(err)),
       1000
     );
   }

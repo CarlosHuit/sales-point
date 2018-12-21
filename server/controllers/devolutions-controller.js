@@ -47,7 +47,7 @@ export const get_devolutions = async (req, res, next) => {
         '$lt':  new Date(finalDate).toISOString() 
       }
     })
-    .populate('user',     { __v: 0 })
+    .populate('registerBy',     { __v: 0 })
     .populate('product',  { __v: 0 })
 
     if (devolutions.length > 0) {

@@ -2,12 +2,71 @@
   <mat-card class="animation-show card">
 
 
-    <div class="container-title">
-      <app-title-bar title="Consultar Devoluciones" ></app-title-bar>
+    <div
+      class="container-title"
+      >
+      <app-title-bar
+        title="Consultar Devoluciones"
+        >
+      </app-title-bar>
     </div>
 
-    <div class="container-devolutions">
+    <div
+      *ngIf="loadingDevolutions"
+      style="height: 50px; width: 50px; margin: 10px auto"
+      >
+      <mat-spinner></mat-spinner>
+    </div>
+
+    <div
+      class="container-devolutions"
+      *ngIf="!loadingDevolutions  && !devolutions"
+      >
       <app-dates-selector (evSearchByInterval)="searchByInterval($event)"></app-dates-selector>
+    </div>
+
+
+    <div class="full-container" *ngIf="devolutions">
+
+      <div class="info-dates">
+        <span> <span style="font-weight: 500;">De: </span> {{timeInterval['initialDate'] | amLocale: 'es' |
+          amDateFormat: 'MMMM DD'}} </span>
+        <span> <span style="font-weight: 500;">A: </span> {{timeInterval['finalDate'] | amLocale: 'es' | amDateFormat:
+          'MMMM DD'}} </span>
+      </div>
+
+
+
+      <div class="m-c-table">
+
+
+        <!-- table Of products -->
+        <div class="table-titles">
+          <div class="table-title" *ngFor="let title of titles">{{title}}</div>
+        </div>
+
+
+        <div class="container-rows">
+          <div
+            class="table-rows"
+            [class.pair]="i % 2 === 0"
+            [class.impair]="i % 2 !== 0"
+            *ngFor="let devolution of devolutions; let i = index"
+            >
+            <span>{{i + 1}}</span>
+            <span>{{devolution.dateDevolution | amLocale: 'es' | amDateFormat: 'MMM DD'}}</span>
+            <span>{{devolution.product.sku}}</span>
+            <span>{{devolution.product.description}}</span>
+            <span>{{devolution.registerBy.firstName}} {{devolution.registerBy.lastName}}</span>
+            <span>{{devolution.quantity}}</span>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
     </div>
 
   </mat-card>
