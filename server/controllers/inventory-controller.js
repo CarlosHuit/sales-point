@@ -2,6 +2,8 @@ import Debug from 'debug'
 import { nameProject          } from '../config'
 import { Existences, Products } from '../models'
 
+
+
 export const initialize_existences = async (req, res, next) => {
   
   const debug = new Debug(`${nameProject}: inventory:initialize-existences`)
@@ -33,6 +35,8 @@ export const initialize_existences = async (req, res, next) => {
   }
 
 }
+
+
 
 export const save_inventory_entry = async ( req, res, next) => {
 
@@ -80,19 +84,14 @@ export const save_inventory_entry = async ( req, res, next) => {
 
 }
 
+
+
 export const save_inventory_entry_devolution = async ( req, res, next) => {
 
-  const debug = new Debug(`${nameProject}: inventory:save-entry`)
+  const debug = new Debug(`${nameProject}: inventory:save-entry-devolution`)
 
   try {
     
-//  _id
-// product
-// registerBy
-// dateDevolution
-// quantity
-// observation
-
     const devolution    = req.devolution
     const devolution_id = devolution._id
     const quantity      = devolution.quantity
@@ -118,14 +117,18 @@ export const save_inventory_entry_devolution = async ( req, res, next) => {
 
 
   } catch (error) {
+
     debug(error)    
     const err = 'Error al facturar'
     debug(err)
     res.status(400).json({message: err, error: err}) 
+
   }
 
 
 }
+
+
 
 export const save_inventory_output = async (req, res, next) => {
   
@@ -196,6 +199,8 @@ export const get_inventory = async (req, res, next) => {
   }
 
 }
+
+
 
 export const get_product_existence = async (req, res, next) => {
 
