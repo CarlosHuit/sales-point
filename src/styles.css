@@ -259,4 +259,12 @@ body {
 }
 
 
+.pair {
+  background: #37a7e74a;
+}
+
+.impair {
+  background: skyblue;
+}
+
 @media (min-width: 320px) and (orientation: landscape) {}
